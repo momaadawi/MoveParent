@@ -1,0 +1,44 @@
+<div id="welcome-container">
+  <!-- <div class="logo-skip-btn d-flex flex-row">
+    <span [routerLink]="['/login']" id="skip-btn" class="align-self-start">skip</span>
+  <img id="welcome-logo" class="align-self-center" src="../../../assets/logo.svg">
+  </div> -->
+  <div class="d-flex flex-column">
+    <div class="d-flex flex-row-reverse justify-content-between">
+      <span [routerLink]="['/login']" class="text-secondary"><u>{{'skip' | translate}}</u></span>
+      <a (click)="changeLang()" class="text-secondary"><u>{{'En' | translate}}</u></a>
+    </div>
+    <img id="welcome-logo"  src="../../../assets/logo.svg">
+  </div>
+  <div style="height: 230px;display: flex;justify-content: center;">
+    <img id="welcome-infograph" [src]="welcome_infographImg">
+  </div>
+  <div id="closure">
+    <button (click)="nextSlide(carousel)" mat-mini-fab color="warn"
+      aria-label="Example icon button with a filter list icon">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+    <ngb-carousel #carousel [showNavigationArrows]="false" (slide)="onSlide($event)">
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <h3 class="slide-header">{{"welcome_slide_1.header" | translate}}</h3>
+          <p class="slide-content">{{"welcome_slide_1.content" |  translate}}</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <h3 class="slide-header">{{"welcome_slide_2.header" | translate}}</h3>
+          <p class="slide-content">{{"welcome_slide_2.content" | translate}}
+          </p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <h3 class="slide-header">{{"welcome_slide_3.header" | translate}}</h3>
+          <p class="slide-content">{{"welcome_slide_3.content" | translate}}</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    <button [routerLink]="['/login']" mat-flat-button>{{'login' | translate}}</button>
+  </div>
+</div>

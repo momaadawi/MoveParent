@@ -1,0 +1,41 @@
+<mat-sidenav-container  class="sidenav-container">
+  <mat-sidenav #drawer position="start" class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      <div class="student_info d-flex flex-row justify-content-around">
+        <div *ngIf="menuData.parentImage.length < 1 || menuData.parentImage == undefined" class="profile-pic align-self-center"><img src="../../../assets/profilepci.png" alt="" class="rounded-circle profile-pic-img-parent"></div>
+        <div *ngIf="menuData.parentImage.length > 1" class="profile-pic align-self-center"><img [src]="'data:image/png;base64,' + menuData.parentImage" alt="" class="rounded-circle profile-pic-img-parent"></div>
+      <div class="d-flex flex-column">
+        <div class="parent-info text-secondary">{{menuData.parentName}}</div>
+      </div>
+      </div>
+    </mat-toolbar>
+    <mat-nav-list>
+      <!-- <a mat-list-item ><div class="d-flex flex-row"><i class="bi bi-person-fill"></i><span>My Profile</span></div></a> -->
+      <a [routerLink]="['/home']" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-calendar"></i><span>{{'sideMenu.history_trip' | translate}}</span></div></a>
+      <a (click)="openDialog_studnets()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.kids' | translate}}</span></div></a>
+      <a (click)="openDialog_absence_plan()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.absence_plan' | translate}}</span></div></a>
+      <a (click)="openDialog_about()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-info-circle"></i><span>{{'sideMenu.about_App' | translate}}</span></div></a>
+      <a mat-list-item ><div class="d-flex flex-row"><i class="bi bi-question-circle"></i><span>{{'sideMenu.support' | translate}}</span></div></a>
+      <a (click)="openDialog_Changelang()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-globe"></i><span>{{'sideMenu.change_Language' | translate}}</span></div></a>
+      <a [routerLink]="['/login']" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-box-arrow-left"></i><span>{{'sideMenu.logout' | translate}}</span></div></a>
+      <a (click)="openDialog_changePass()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-lock-fill"></i><span>{{'sideMenu.change_Password' | translate}}</span></div></a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="none">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="example-spacer">
+        <!-- <span id="day">Monday</span><span>25, October</span> -->
+      </div>
+        <button (click)="open_notification_dialog()" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>notifications</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

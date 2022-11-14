@@ -1,0 +1,71 @@
+{
+  "En": "En",
+  "skip": "تخطي",
+  "welcome_slide_1":{
+    "header": "مرحبا بالمدرسة",
+    "content": "يدعمك تطبيق الأباء بطريقة لمتابعة أطفالك من وإلي المدرسة"
+  },
+  "welcome_slide_2":{
+    "header": "متابعه حالة الرحلة للطلاب",
+    "content": "في اي وقت يمكن التطبيق الأباء من متابعة حالة ركوب الطالب ونزوله من الحافلة واستلام إشعارات بوصول الحافلة لنقطة الإلتقاء و وصولها لنقظة الوصول  بالمدرسة والعكس"
+  },
+  "welcome_slide_3":{
+    "header": "الإتصال بالمدرسة بسرعه",
+    "content": "يمكنك تطبيق الأباء بالإتصال بالمدرسة او المسئولين والإبلاغ عن حالات الغياب او تغير الحافلة او السائق"
+  },
+  "login": "تسجيل الدخول",
+  "submit": "إرسال",
+  "cancel": "إغلاق",
+  "save": "حفظ",
+  "notifications": "الإشعارات",
+  "hints":{
+    "enter_user_name_and_password": "قم بإدخال اسم المستخدم وكلمه المرور",
+    "forget_password": "نسيت كلمة المرور؟",
+    "username": "اسم المستخدم",
+    "password": "كلمة السر",
+    "reset_password": "إعادة تعيين كلمة المرور",
+    "enter_your_username": "أدخل اسم المستخدم الخاص بك",
+    "reset_password_method_select": "إختر وسيلة واحدة لإستلام كلة المرور",
+    "via_sms": "من خلال رسالة نصية",
+    "via_email": "من خلال البريد",
+    "go_to": "إذهب الي",
+    "change_Password": "تغيير كلمة المرور",
+    "new_password": "كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور الجديدة",
+    "yes_confirm_absence": "نعم, أكد الغياب"
+  },
+  "validation":{
+    "username_required": "يجب إدخال أسم المستخدم",
+    "password_required": "يجب إدخال كلمة المرور",
+    "password_match": "كلمة المرور غير متطابقة"
+  },
+  "sideMenu": {
+    "history_trip": "الرحلات",
+    "about_App": "عن التطبيق",
+    "support": "الدعم",
+    "change_Language": "تغيير اللغة",
+    "logout": "تسجيل خروج",
+    "change_Password": "تغيير كلمة المرور",
+    "kids": "أطفالي",
+    "absence_plan": "خطة غياب"
+  },
+  "language": {
+    "english": "English",
+    "arabic": "عربي"
+  },
+  "dialog": {
+    "about": "التطبيق يتيح الي الأباء البقاء علي إتصال بأطفالهم علي الطريق إلي المدرسة"
+  },
+  "student_trips":{
+    "hello_mom_data": "مرحبا, الام & الاب",
+    "follow_children_trips": "تتبع رحلات أطفالك",
+    "go_to_school": "رحلات الذهاب",
+    "back_from_school": "رحلات العودة",
+    "bus_code" : "رقم الحافلة",
+    "trip_time": "وقت الركوب",
+    "driver_name": "إسم السائق",
+    "supervisor_name": "إسم المشرف"
+  }
+
+
+}

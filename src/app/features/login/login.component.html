@@ -1,0 +1,29 @@
+<div id="welcome-container">
+  <a (click)="changeLang()"><span class="text-secondary"><u>{{'En' | translate}}</u></span></a>
+<img id="welcome-logo" src="../../../assets/logo.svg">
+<div>
+  <h2 id="login-word">{{'login' | translate}}</h2>
+  <p class="tip">{{'hints.enter_user_name_and_password' | translate}}</p>
+</div>
+  <form  id="loginForm" [formGroup]="loginForm" (ngSubmit)="login()"  class="g-3 column needs-validation" novalidate>
+    <div  class="input-group mb-3">
+      <span class="input-group-text transparent"><i class="bi bi-person-fill"></i></span>
+      <input  [ngClass]="{'form-control':true, 'left-border-none': true, 'is-invalid': (UserName.invalid && (UserName.dirty || UserName.touched))}"  formControlName="UserName" type="text"  placeholder="{{'hints.username' | translate}}" aria-label="username" >
+      <div [ngClass]="{'invalid-feedback': UserName.errors?.['required']}" *ngIf="UserName.errors?.['required']">{{'validation.username_required' | translate}}</div>
+    </div>
+
+    <div class="input-group ">
+      <span class="input-group-text transparent" ><i class="bi bi-lock"></i></span>
+      <input [ngClass]="{'form-control':true, 'left-border-none': true, 'is-invalid': (Password.invalid && (Password.dirty || Password.touched))}" id="password_input" formControlName="Password" type="password" placeholder="{{'hints.password' | translate}}" aria-label="password">
+      <div [ngClass]="{'invalid-feedback': Password.errors?.['required']}" *ngIf="Password.errors?.['required']" >{{'validation.password_required' | translate}}</div>
+    </div>
+
+    <!-- <a [routerLink]="['/resetpassword']"><span class="forgot-btn mb-3">{{'hints.forget_password' | translate}}</span></a> -->
+    <div id="sub-btn" class="d-grid gap-2 col-10 position-relative">
+      <button [disabled]="!loginForm.valid" type="submit" mat-flat-button>
+        <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">{{'login' | translate}}</span>
+      </button>
+    </div>
+  </form>
+</div>

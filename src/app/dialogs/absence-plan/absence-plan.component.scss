@@ -1,0 +1,25 @@
+@import '../../../styles/variables';
+
+.absence_container {
+  height: 100%;
+}
+
+.absence_container .mat-dialog-content {
+  height: 100%;
+}
+#sub-btn .mat-focus-indicator {
+  background: $main-btn;
+  border-radius: $main-btn-radius !important;
+  color: #f1f1f1;
+  margin-top: 3em;
+  width: 100%;
+  height: 50px;
+}
+
+#absenceForm {
+  height: 100%;
+}
+
+.form-control{
+  height: 50px;
+}

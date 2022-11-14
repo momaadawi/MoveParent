@@ -1,0 +1,16 @@
+
+<div class="d-flex flex-column justify-content-center">
+  <p class="text-center">Absence Plan</p>
+  <p class="text-center">By confirmig this you will assign your child as absent from this trip today.</p>
+
+
+  <button [mat-dialog-close]="data" (click)="set_student_as_Absent()" cdkFocusInitial mat-raised-button id="sub-btn" mat-flat-button>
+    <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span class="sr-only">{{'hints.yes_confirm_absence' | translate}}</span>
+  </button>
+  <mat-dialog-actions   align="center">
+    <button mat-button mat-dialog-close>{{'cancel' | translate}}</button>
+  </mat-dialog-actions>
+
+</div>
+

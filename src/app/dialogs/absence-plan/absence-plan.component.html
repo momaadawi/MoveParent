@@ -1,0 +1,50 @@
+<div mat-dialog-close class="border-bottom d-flex flex-row justify-content-between">
+  <i class="bi bi-arrow-left"></i>
+  <span mat-dialog-close>X</span>
+</div>
+<div class="container absence_container mt-3">
+  <mat-dialog-content class="mat-typography">
+    <form id="absenceForm" [formGroup]="AbsenceForm" (ngSubmit)="save_absencec_plan(AbsenceForm)"
+      class="g-3 column needs-validation" novalidate>
+
+      <div class="input-group mb-3">
+        <mat-form-field style="width: 100%;" appearance="fill">
+          <mat-label>students</mat-label>
+          <mat-select formControlName="StudentsId" multiple>
+            <mat-option *ngFor="let student of students " [value]="student.Id">{{student.Name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="input-group mb-3">
+        <input formControlName="StartDate" class="form-control" placeholder="start date" name="dp" ngbDatepicker
+          #startDate="ngbDatepicker" />
+        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="startDate.toggle()" type="button"></button>
+      </div>
+      <div class="input-group mb-3">
+        <input formControlName="EndDate" type="text" class="form-control" placeholder="end date" name="dp" ngbDatepicker
+          #endDate="ngbDatepicker" />
+        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="endDate.toggle()" type="button"></button>
+      </div>
+      <div class="input-group mb-3">
+        <input formControlName="Name" type="text" class="form-control" placeholder="Name" />
+      </div>
+      <div class="input-group mb-3">
+        <textarea formControlName="Comment" class="form-control" placeholder="comment"></textarea>
+      </div>
+
+      <mat-dialog-actions align="center">
+        <div id="sub-btn" class="d-grid gap-2 col-10 position-relative">
+          <button [disabled]="!AbsenceForm.valid" type="submit" mat-flat-button>
+            <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">{{'save' | translate}}</span>
+          </button>
+        </div>
+      </mat-dialog-actions>
+
+      <mat-dialog-actions align="center">
+        <button mat-button mat-dialog-close>{{'cancel' | translate}}</button>
+      </mat-dialog-actions>
+    </form>
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,71 @@
+{
+  "En": "عربي",
+  "skip": "skip",
+  "welcome_slide_1":{
+    "header": "Welcome To Schools",
+    "content": "Schools app afford you the contentment of mind, following up your children trip toand their schools."
+  },
+  "welcome_slide_2":{
+    "header": "Monitor status real time",
+    "content": "At aytime your parent can know the status of child like (in bus / out of bus) and monitor the trip status and get alerted about the arrival time of bus for pickup and delivery of child"
+  },
+  "welcome_slide_3":{
+    "header": "Be Always On Touch",
+    "content": "At any time you can call the bus driver & supervisor, see your child's status and get alerted about the bus arrival time."
+  },
+  "login": "Login",
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "save": "Save",
+  "notifications": "Notifications",
+  "hints":{
+    "enter_user_name_and_password": "Enter you username and password",
+    "forget_password": "forget password?",
+    "username": "Username",
+    "password": "Password",
+    "reset_password": "Reset password",
+    "enter_your_username": "Enter your username",
+    "reset_password_method_select": "Select one the following method to receive your password.",
+    "via_sms": "Via SMS",
+    "via_email": "Via Email",
+    "go_to": "got to",
+    "change_Password": "Change Password",
+    "new_password": "New password",
+    "confirm_password": "Confirm new password",
+    "yes_confirm_absence": "Yes, Confirm Absence"
+  },
+  "validation":{
+    "username_required": "Username is required field.",
+    "password_required": "Password is required field.",
+    "password_match": "Password does not matching."
+  },
+  "sideMenu": {
+    "history_trip": "History Trips",
+    "about_App": "About App",
+    "support": "Support",
+    "change_Language": "Change Language",
+    "logout": "Logout",
+    "change_Password": "Change Password",
+    "kids": "Kids",
+    "absence_plan": "Absence Plan"
+
+  },
+  "language": {
+    "english": "English",
+    "arabic": "عربي"
+  },
+  "dialog": {
+    "about": "Move parent enables to stay connected to their children on the road to school"
+  }
+  ,
+  "student_trips":{
+    "hello_mom_data": "Hello, Mom & Dad",
+    "follow_children_trips": "Follow Your Children School Trips",
+    "go_to_school": "Go to school",
+    "back_from_school": "Back from school",
+    "bus_code" : "Bus Code",
+    "trip_time": "Trip Time",
+    "driver_name": "Driver Name",
+    "supervisor_name": "Supervisor name"
+  }
+}
