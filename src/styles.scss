@@ -2,14 +2,24 @@ html,
 body {
   height: 100%;
   width: 100%;
-  // background: rgb(255, 255, 255);
-  // background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(230, 249, 247) 100%);
 }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.green-snackbar {
+  background: rgb(76, 208, 125);
+  color: white;
+}
+
+
+.red-snackbar {
+  background: #f77167;
+  color: white;
+}
+
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

@@ -8,28 +8,26 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./change-lang.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ChangeLangComponent implements OnInit, OnDestroy {
+export class ChangeLangComponent implements OnInit {
   langForm: FormGroup = this.createForm()
   selectedLang: string = '';
+  get Lang() {
+    return this.langForm.get('lang') as FormControl
+  }
+
 
   constructor(private _translate: TranslateService,
-              private _fb: FormBuilder ) { }
-  ngOnDestroy(): void {
-    console.log('destorued')
-  }
+    private _fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.selectedLang = this._translate.currentLang;
   }
-  changeLan(selection: any){
+  changeLan(selection: any) {
     this._translate.use(selection.srcElement.value);
   }
   createForm() {
     return this._fb.group({
       'lang': ['', Validators.required],
     });
-  }
-  get Lang() {
-    return this.langForm.get('lang') as FormControl
   }
 }

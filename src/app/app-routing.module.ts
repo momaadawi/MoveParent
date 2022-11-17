@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './features/welcome/welcome.component';
 import { LoginComponent } from './features/login/login.component';
 import { AppNavigationComponent } from './features/app-navigation/app-navigation.component';
-import { ResetPasswordComponent } from './features/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -13,10 +12,6 @@ const routes: Routes = [
   {
     path:'login',
     component: LoginComponent
-  },
-  {
-    path: 'resetpassword',
-    component: ResetPasswordComponent
   },
   {
     path: 'home',

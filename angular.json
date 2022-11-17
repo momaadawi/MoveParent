@@ -83,12 +83,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "MoveParent:build:production",
-              "proxyConfig": "src/proxy.conf.js"
+              "browserTarget": "MoveParent:build:production"
             },
             "development": {
-              "browserTarget": "MoveParent:build:development",
-              "proxyConfig": "src/proxy.conf.js"
+              "browserTarget": "MoveParent:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -9,7 +9,7 @@
 
       <div class="input-group mb-3">
         <mat-form-field style="width: 100%;" appearance="fill">
-          <mat-label>students</mat-label>
+          <mat-label>{{'students' | translate }}</mat-label>
           <mat-select formControlName="StudentsId" multiple>
             <mat-option *ngFor="let student of students " [value]="student.Id">{{student.Name}}</mat-option>
           </mat-select>
@@ -17,20 +17,20 @@
       </div>
 
       <div class="input-group mb-3">
-        <input formControlName="StartDate" class="form-control" placeholder="start date" name="dp" ngbDatepicker
+        <input formControlName="StartDate" class="form-control" placeholder="{{'absence_plan.start_date' | translate}}" name="dp" ngbDatepicker
           #startDate="ngbDatepicker" />
         <button class="btn btn-outline-secondary bi bi-calendar3" (click)="startDate.toggle()" type="button"></button>
       </div>
       <div class="input-group mb-3">
-        <input formControlName="EndDate" type="text" class="form-control" placeholder="end date" name="dp" ngbDatepicker
+        <input formControlName="EndDate" type="text" class="form-control" placeholder="{{ 'absence_plan.end_date' | translate }}" name="dp" ngbDatepicker
           #endDate="ngbDatepicker" />
         <button class="btn btn-outline-secondary bi bi-calendar3" (click)="endDate.toggle()" type="button"></button>
       </div>
       <div class="input-group mb-3">
-        <input formControlName="Name" type="text" class="form-control" placeholder="Name" />
+        <input formControlName="Name" type="text" class="form-control" placeholder="{{'absence_plan.name' | translate }}" />
       </div>
       <div class="input-group mb-3">
-        <textarea formControlName="Comment" class="form-control" placeholder="comment"></textarea>
+        <textarea formControlName="Comment" class="form-control" placeholder="{{ 'absence_plan.comment' | translate }}"></textarea>
       </div>
 
       <mat-dialog-actions align="center">
@@ -48,3 +48,4 @@
     </form>
   </mat-dialog-content>
 </div>
+

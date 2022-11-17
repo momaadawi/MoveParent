@@ -16,7 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class StudentsComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
-  spinner: boolean = false;
+  loader: boolean = false;
   panelOpenState = false;
   allStudents: ParentStudent[] = [];
   backFromSchool: ParentStudent[] = []
@@ -30,10 +30,11 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.retriveStudents();
+    console.log(this.students)
   }
 
   private retriveStudents() {
-    this.spinner = true;
+    this.loader = true;
     this.subs.add(
       this._studentService.get_Students().subscribe({
         next: res => {
@@ -52,7 +53,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
                   this.students.backFromSchool.push(st);
               },
               complete: () => {
-                this.spinner = false;
+                this.loader = false;
               }
             });
           });

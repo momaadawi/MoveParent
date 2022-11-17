@@ -13,6 +13,7 @@
     "header": "Be Always On Touch",
     "content": "At any time you can call the bus driver & supervisor, see your child's status and get alerted about the bus arrival time."
   },
+  "students": "Students",
   "login": "Login",
   "submit": "Submit",
   "cancel": "Cancel",
@@ -66,6 +67,19 @@
     "bus_code" : "Bus Code",
     "trip_time": "Trip Time",
     "driver_name": "Driver Name",
-    "supervisor_name": "Supervisor name"
+    "supervisor_name": "Supervisor name",
+    "no_trips_go_to_school": "No trips go to school!",
+    "no_trips_back_from_school": "no trip back from School!"
+  },
+  "absence_plan":{
+    "start_date": "Start date",
+    "end_date": "End date",
+    "name": "Name",
+    "comment": "Comment"
+  },
+  "poi": {
+    "pick_up_location": "PickUp location",
+    "drop_off_location": "DropOff location"
   }
+
 }

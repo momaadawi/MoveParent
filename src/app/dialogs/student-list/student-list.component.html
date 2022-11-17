@@ -1,7 +1,10 @@
 <div mat-dialog-close class="dialog_header" class="border-bottom">
   <i class="bi bi-arrow-left"></i>
 </div>
+<mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
+
 <div class="student_info d-flex flex-row justify-content-between border-bottom  " *ngFor="let st of studnets">
+
   <div *ngIf="st.Image.length > 0" class="profile-pic "><img src="data:image/png;base64, {{st.Image}}" alt=""
       class="rounded-circle profile-pic-img"></div>
   <div *ngIf="st.Image.length < 1" class="profile-pic "><img src="assets/profilepci.png" alt=""
@@ -10,8 +13,8 @@
 
   <i mat-button  [matMenuTriggerFor]="menu" #menuTrigger class="bi bi-three-dots-vertical"></i>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="update_poi()" >Pick up location</button>
-    <button mat-menu-item (click)="update_poi()">Drop off location</button>
+    <button mat-menu-item (click)="update_poi(st, 1)" >{{ 'poi.pick_up_location' | translate }}</button>
+    <button mat-menu-item (click)="update_poi(st, 2)">{{ 'poi.drop_off_location' | translate }}</button>
   </mat-menu>
 
 

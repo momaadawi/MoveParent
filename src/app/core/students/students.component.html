@@ -9,7 +9,8 @@
   </div>
   <mat-tab-group id="tab_group" animationDuration="0">
     <mat-tab label="{{'student_trips.go_to_school' | translate}}">
-      <mat-spinner *ngIf="spinner" class="mx-auto modal-dialog-centered"></mat-spinner>
+      <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
+      <mat-panel-description class="mx-auto modal-dialog-centered"  *ngIf="!loader &&students.goToSchool.length == 0">{{ 'student_trips.no_trips_go_to_school' | translate}}</mat-panel-description>
 
       <div class="student_trip" *ngFor="let pickUpStudent of students.goToSchool">
         <div class="student_info d-flex flex-row justify-content-around">
@@ -54,8 +55,8 @@
       </div>
     </mat-tab>
     <mat-tab label="{{'student_trips.back_from_school' | translate}}">
-      <mat-spinner *ngIf="spinner" class="mx-auto modal-dialog-centered"></mat-spinner>
-
+      <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered"[diameter]="30"></mat-spinner>
+      <mat-panel-description class="mx-auto modal-dialog-centered"  *ngIf="!loader && students.backFromSchool.length == 0">{{ 'student_trips.no_trips_back_from_school' | translate}}</mat-panel-description>
       <div class="student_trip" *ngFor="let backFromSchool of students.backFromSchool">
         <div class="student_info d-flex flex-row justify-content-around">
           <div class="profile-pic "><img [src]="backFromSchool.ImageRerouce" alt="" class="rounded-circle profile-pic-img"></div>

@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { MatDialog } from '@angular/material/dialog';
+import { cssClasses } from '../../shared/cssClasses.conf';
 
 export function ConfirmedValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -25,7 +26,7 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit, OnDestroy {
-  private sink = new SubSink();
+  private _subSink = new SubSink();
   resetPassForm: FormGroup;
   spinner: boolean = false;
 
@@ -43,17 +44,16 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       validator: ConfirmedValidator('newPassword', 'confirmPassword')
     });
   }
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
   submit() {
     this.spinner = true;
     if (!this.resetPassForm.valid) {
-      this._snackBar.open('please check your passwords', 'X', { duration: 3000 })
+      this._snackBar.open('please check your passwords', 'X', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild]  })
       this.spinner = false;
       return
     }
-    this.sink.add(
+    this._subSink.add(
       this._accountService.changePassword({
         userName: this._cookieService.get(Configuration.coookies.UserName),
         password: this.resetPassForm.controls['oldPassword'].value,
@@ -61,23 +61,23 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       }).subscribe({
         next: res => {
           if (res.IsErrorState)
-            this._snackBar.open(res.Value, '', { duration: 3000 })
+            this._snackBar.open(res.Value, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
           else if (!res.IsErrorState && res.Value == 'Success') {
-            this._snackBar.open('password changed please login with new password', res.Value, { duration: 5000 })
+            this._snackBar.open('password changed please login with new password', res.Value, { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
             this._router.navigate(['login'])
             this._dialog.closeAll();
           }
         },
         error: err => {
           console.log(err)
-          this._snackBar.open('something wrong please ask for help.')
+          this._snackBar.open('something wrong please ask for help.', 'X', { duration: Configuration.alertTime, panelClass: [ cssClasses.snackBar.faild]})
         }
       })
     )
     this.spinner = false;
   }
   ngOnDestroy(): void {
-    this.sink.unsubscribe()
+    this._subSink.unsubscribe()
   }
 
 

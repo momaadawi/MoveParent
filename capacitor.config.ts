@@ -4,11 +4,7 @@ const config: CapacitorConfig = {
   appId: 'com.altairparent',
   appName: 'Move Parent',
   webDir: 'dist/MoveParent',
-  bundledWebRuntime: false,
-  server:{
-    url: "http://192.168.1.11:4200",
-    cleartext: true,
-  }
+  bundledWebRuntime: false
 };
 
 export default config;

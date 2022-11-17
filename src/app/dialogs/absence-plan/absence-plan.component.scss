@@ -1,12 +1,5 @@
 @import '../../../styles/variables';
 
-.absence_container {
-  height: 100%;
-}
-
-.absence_container .mat-dialog-content {
-  height: 100%;
-}
 #sub-btn .mat-focus-indicator {
   background: $main-btn;
   border-radius: $main-btn-radius !important;
@@ -16,10 +9,9 @@
   height: 50px;
 }
 
-#absenceForm {
-  height: 100%;
-}
-
+.mat-dialog-content {
+  display: unset;
+  }
 .form-control{
   height: 50px;
 }

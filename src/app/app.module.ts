@@ -36,6 +36,7 @@ import { AbsencePlanComponent } from './dialogs/absence-plan/absence-plan.compon
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { UpdatePOIComponent } from './dialogs/update-poi/update-poi.component';
+import { GoogleMapsModule } from '@angular/google-maps'
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -56,7 +57,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationComponent,
     AbsencePlanComponent,
     UpdatePOIComponent
-
   ],
   imports: [
     BrowserModule,
@@ -73,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    GoogleMapsModule,
     MatDialogModule,
     MatMenuModule,
     MatDatepickerModule,

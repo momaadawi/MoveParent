@@ -22,6 +22,7 @@ export let Configuration = {
     Image: 'image',
     UserName: 'userName'
   },
-  googleApiKey: 'AIzaSyA8Y53lojH7RkCC3vH_nGmmEv0XUpZI10M'
+  googleApiKey: 'AIzaSyA8Y53lojH7RkCC3vH_nGmmEv0XUpZI10M',
+  alertTime: 4000
 };
 
