@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 export interface ParentStudent {
   studentDetails: StudentDetails;
-  ImageRerouce: any;
+  ImageUrl: any;
   Id: number;
   Name: string;
   Image: string;

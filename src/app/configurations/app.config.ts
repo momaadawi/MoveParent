@@ -16,13 +16,16 @@ export let Configuration = {
       updateStudentPOI: 'api/students/updatepoi'
     }
   },
-  coookies: {
+  cookies: {
     Authorization: 'Authorization',
     Id: 'id',
     Image: 'image',
     UserName: 'userName'
   },
   googleApiKey: 'AIzaSyA8Y53lojH7RkCC3vH_nGmmEv0XUpZI10M',
-  alertTime: 4000
+  alertTime: 4000,
+  alertPosition: {
+    top: ''
+  }
 };
 

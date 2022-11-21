@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WelcomeComponent } from './features/welcome/welcome.component';
-import { LoginComponent } from './features/login/login.component';
-import { AppNavigationComponent } from './features/app-navigation/app-navigation.component';
+import { AppNavigationComponent, LoginComponent, WelcomeComponent } from './features/features';
+import { AuthorizationGuardGuard } from './providers/authorization-guard.guard';
 
 const routes: Routes = [
   {
     path: '',
-     component:WelcomeComponent
+     component: WelcomeComponent,
+     canActivate: [AuthorizationGuardGuard]
   },
   {
     path:'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AuthorizationGuardGuard]
   },
   {
     path: 'home',

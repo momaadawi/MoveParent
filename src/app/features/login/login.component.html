@@ -20,7 +20,7 @@
 
     <!-- <a [routerLink]="['/resetpassword']"><span class="forgot-btn mb-3">{{'hints.forget_password' | translate}}</span></a> -->
     <div id="sub-btn" class="d-grid gap-2 col-10 position-relative">
-      <button [disabled]="!loginForm.valid" type="submit" mat-flat-button>
+      <button  type="submit" mat-flat-button>
         <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         <span class="sr-only">{{'login' | translate}}</span>
       </button>

@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SubSink } from 'subsink';
 import { Configuration } from '../../configurations/app.config';
 import { cssClasses } from '../../shared/cssClasses.conf';
+import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
 
 @Component({
   selector: 'app-update-poi',
@@ -31,8 +32,9 @@ export class UpdatePOIComponent implements OnInit, OnDestroy {
 
 
   constructor(private _studentService: StudentService,
-    private _snakBar: MatSnackBar,
+    private _snackBar: MatSnackBar,
     private _dialog: MatDialog,
+    private _customTranslate: CustomTranslateService,
     @Inject(MAT_DIALOG_DATA) public data: { student: ParentStudent; updateType: SystemEnum.UpdatePoiState; }) {
   }
 
@@ -84,15 +86,14 @@ export class UpdatePOIComponent implements OnInit, OnDestroy {
       this._studentService.update_student_POI(request).subscribe({
         next: res => {
           if (res.IsErrorState)
-            this._snakBar.open(res.ErrorDescription, 'x', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+            this._snackBar.open(res.ErrorDescription, 'x', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
           else{
             this._dialog.getDialogById('di_update_poi')?.close()
-            this._snakBar.open('student location updated.', 'X', { duration : Configuration.alertTime, panelClass: [ cssClasses.snackBar.success] })
+            this._snackBar.open(this._customTranslate.translate('snack-bar.student_location_updated'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
           }
         },
         error: err =>{
-          this._snakBar.open('something wrong tray again!', 'X', {duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild]})
-          console.log(err)
+          this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
         },
         complete:() =>{
           this.spinner = false

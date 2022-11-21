@@ -79,5 +79,15 @@
   "poi": {
     "pick_up_location": "نقطة الإلتقاط",
     "drop_off_location": "نفطة النزول"
+  },
+  "snack-bar": {
+    "please_check_user_name_password": "من فضلك تأكد من المستخدم و كلمة المرور",
+    "something_wrong_retry_again": "حدث خطأ حاول مرة أخري",
+    "student_set_absent_succsfully": "تم إضافة خطة غياب للطالب بنجاح",
+    "password_changed_sucessfully" : "تم تغيير كلمة المرور بنجاح",
+    "please_check_password": "من فضلك تأكد من كلمة المرور",
+    "student_location_updated": "تم تغيير الموقع بنجاح",
+    "wrong_data": "خطأ في البيانات !!"
   }
+
 }

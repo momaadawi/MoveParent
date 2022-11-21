@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { MatDialog } from '@angular/material/dialog';
 import { cssClasses } from '../../shared/cssClasses.conf';
+import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
 
 export function ConfirmedValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -35,7 +36,8 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     private _cookieService: CookieService,
     private _snackBar: MatSnackBar,
     private _router: Router,
-    private _dialog: MatDialog) {
+    private _dialog: MatDialog,
+    private _customTranslate: CustomTranslateService) {
     this.resetPassForm = this.formBuilder.group({
       'oldPassword': ['', Validators.required],
       'newPassword': ['', [Validators.required]],
@@ -49,13 +51,13 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   submit() {
     this.spinner = true;
     if (!this.resetPassForm.valid) {
-      this._snackBar.open('please check your passwords', 'X', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild]  })
+      this._snackBar.open(this._customTranslate.translate('snack-bar.please_check_password'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
       this.spinner = false;
       return
     }
     this._subSink.add(
       this._accountService.changePassword({
-        userName: this._cookieService.get(Configuration.coookies.UserName),
+        userName: this._cookieService.get(Configuration.cookies.UserName),
         password: this.resetPassForm.controls['oldPassword'].value,
         newPassword: this.resetPassForm.controls['newPassword'].value
       }).subscribe({
@@ -63,14 +65,14 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
           if (res.IsErrorState)
             this._snackBar.open(res.Value, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
           else if (!res.IsErrorState && res.Value == 'Success') {
-            this._snackBar.open('password changed please login with new password', res.Value, { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
+            this._snackBar.open(this._customTranslate.translate('snack-bar.password_changed_sucessfully'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
             this._router.navigate(['login'])
             this._dialog.closeAll();
           }
         },
         error: err => {
           console.log(err)
-          this._snackBar.open('something wrong please ask for help.', 'X', { duration: Configuration.alertTime, panelClass: [ cssClasses.snackBar.faild]})
+          this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
         }
       })
     )

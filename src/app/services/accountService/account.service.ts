@@ -6,7 +6,6 @@ import { Configuration } from '../../configurations/app.config';
 import { CookieService } from 'ngx-cookie-service';
 import { ChangePasswordRequest, ChangePasswordResponse } from './ChangePassword.model';
 import { Router } from '@angular/router';
-import { SystemEnum } from 'src/app/configurations/system.enum';
 import { environment } from '../../../environments/environment.prod';
 @Injectable({
   providedIn: 'root'

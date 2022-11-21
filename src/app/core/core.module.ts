@@ -13,6 +13,7 @@ import { AuthorizationInterceptor } from '../providers/authorization.interceptor
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDialogModule,
     MatProgressSpinnerModule,
     NgbModule,
+    NgxPullToRefreshModule,
     TranslateModule.forChild({
       loader: {
           provide: TranslateLoader,

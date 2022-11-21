@@ -9,6 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { cssClasses } from 'src/app/shared/cssClasses.conf';
 import { Configuration } from '../../configurations/app.config';
 import { SubSink } from 'subsink';
+import { from } from 'rxjs';
+import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
 
 @Component({
   selector: 'app-absence-plan',
@@ -23,7 +25,8 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
   constructor(private _fb: FormBuilder,
     private _studentService: StudentService,
     private _absenceService: AbsenceService,
-    private _snakBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar,
+    private _customTranslate : CustomTranslateService) { }
 
   ngOnInit(): void {
     this._studentService.get_Students()
@@ -44,6 +47,11 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
   }
 
   save_absencec_plan(form: FormGroup) {
+    if(!form.valid){
+      this._snackBar.open(this._customTranslate.translate('snack-bar.wrong_data'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+      return;
+    }
+
     this.spinner = true;
     let AbsenceRequest: AbsenceRequest = {
       StudentsId: form.get('StudentsId')?.value,
@@ -56,13 +64,15 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
       this._absenceService.setAbsense(AbsenceRequest).subscribe({
         next: res => {
           if (res.IsErrorState)
-            this._snakBar.open(res.ErrorDescription, 'X', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
-          else if (!res.IsErrorState)
-            this._snakBar.open('student set absent succsfully', 'X', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
+            this._snackBar.open(res.ErrorDescription, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+          else if (!res.IsErrorState){
+            this._snackBar.open(this._customTranslate.translate('snack-bar.student_set_absent_succsfully'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
+            form.reset();
+          }
         },
         error: err => {
           console.log(err)
-          this._snakBar.open('something wrong try again!', 'X', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+          this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
         },
         complete: () => {
           this.spinner = false;

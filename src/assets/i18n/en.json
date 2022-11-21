@@ -80,6 +80,16 @@
   "poi": {
     "pick_up_location": "PickUp location",
     "drop_off_location": "DropOff location"
+  },
+  "snack-bar": {
+    "please_check_user_name_password": "please check user name or password!!",
+    "something_wrong_retry_again": "something wrong retry again",
+    "student_set_absent_succsfully": "student set absent succsfully",
+    "password_changed_sucessfully" : "password chaned succsfully",
+    "please_check_password": "please check password!!",
+    "student_location_updated": "student location updated",
+    "wrong_data": "wrong form data!!"
+
   }
 
 }

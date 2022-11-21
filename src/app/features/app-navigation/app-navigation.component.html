@@ -18,7 +18,7 @@
       <a (click)="openDialog_about()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-info-circle"></i><span>{{'sideMenu.about_App' | translate}}</span></div></a>
       <a mat-list-item ><div class="d-flex flex-row"><i class="bi bi-question-circle"></i><span>{{'sideMenu.support' | translate}}</span></div></a>
       <a (click)="openDialog_Changelang()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-globe"></i><span>{{'sideMenu.change_Language' | translate}}</span></div></a>
-      <a [routerLink]="['/login']" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-box-arrow-left"></i><span>{{'sideMenu.logout' | translate}}</span></div></a>
+      <a (click)="logOut()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-box-arrow-left"></i><span>{{'sideMenu.logout' | translate}}</span></div></a>
       <a (click)="openDialog_changePass()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-lock-fill"></i><span>{{'sideMenu.change_Password' | translate}}</span></div></a>
     </mat-nav-list>
   </mat-sidenav>

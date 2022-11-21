@@ -14,7 +14,7 @@
 
       <div class="student_trip" *ngFor="let pickUpStudent of students.goToSchool">
         <div class="student_info d-flex flex-row justify-content-around">
-          <div class="profile-pic "><img [src]="pickUpStudent.ImageRerouce" alt="" class="rounded-circle profile-pic-img"></div>
+          <div class="profile-pic "><img [src]="pickUpStudent.ImageUrl" alt="" class="rounded-circle profile-pic-img"></div>
           <div class="student-name">{{pickUpStudent.Name}}</div>
           <button type="button" (click)="setAbsent(pickUpStudent)" [ngClass]="generate_student_status_Class_Style(pickUpStudent.studentDetails.StudentStatusId)">{{pickUpStudent.studentDetails.StudnetStatusName}}</button>
         </div>
@@ -40,14 +40,14 @@
                   <div class="contact-title text-info">{{'student_trips.driver_name' | translate}}</div>
                   <div class="contact-name">{{pickUpStudent.plan.DriverName}}</div>
                 </div>
-                <div class="call-icon" (click)="call(pickUpStudent.plan.DriverMobileNumber)"><img class="call-dilaer" src="../../../assets//call-dirlaer.png"></div>
+                <div class="call-icon" (click)="call(pickUpStudent.plan.DriverMobileNumber)"><img class="call-dilaer" src="assets/call-icon.svg"></div>
               </div>
               <div class="cotact-info supervisor">
                 <div class="contact">
                   <div class="contact-title text-info">{{'student_trips.supervisor_name' | translate}}</div>
                   <div class="contact-name">{{pickUpStudent.plan.SuperVisorName}}</div>
                 </div>
-                <div class="call-icon" (click)="call(pickUpStudent.plan.SuperVisorMobileNumber)"><img class="call-dilaer" src="../../../assets//call-dirlaer.png"></div>
+                <div class="call-icon" (click)="call(pickUpStudent.plan.SuperVisorMobileNumber)"><img class="call-dilaer" src="assets/call-icon.svg"></div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -59,7 +59,7 @@
       <mat-panel-description class="mx-auto modal-dialog-centered"  *ngIf="!loader && students.backFromSchool.length == 0">{{ 'student_trips.no_trips_back_from_school' | translate}}</mat-panel-description>
       <div class="student_trip" *ngFor="let backFromSchool of students.backFromSchool">
         <div class="student_info d-flex flex-row justify-content-around">
-          <div class="profile-pic "><img [src]="backFromSchool.ImageRerouce" alt="" class="rounded-circle profile-pic-img"></div>
+          <div class="profile-pic "><img [src]="backFromSchool.ImageUrl" alt="" class="rounded-circle profile-pic-img"></div>
           <div class="student-name">{{backFromSchool.Name}}</div>
           <button type="button" (click)="setAbsent(backFromSchool)" [ngClass]="generate_student_status_Class_Style(backFromSchool.studentDetails.StudentStatusId)">{{backFromSchool.studentDetails.StudnetStatusName}}</button>
         </div>
@@ -85,14 +85,14 @@
                   <div class="contact-title text-info">{{'student_trips.driver_name' | translate}}</div>
                   <div class="contact-name">{{backFromSchool.plan.DriverName}}</div>
                 </div>
-                <div class="call-icon" (click)="call(backFromSchool.plan.DriverMobileNumber)"><img class="call-dilaer" src="../../../assets//call-dirlaer.png"></div>
+                <div class="call-icon" (click)="call(backFromSchool.plan.DriverMobileNumber)"><img class="call-dilaer" src="assets/call-icon.svg"></div>
               </div>
               <div class="cotact-info supervisor">
                 <div class="contact">
                   <div class="contact-title text-info">{{'student_trips.supervisor_name' | translate}}</div>
                   <div class="contact-name">{{backFromSchool.plan.SuperVisorName}}</div>
                 </div>
-                <div class="call-icon" (click)="call(backFromSchool.plan.SuperVisorMobileNumber)"><img class="call-dilaer" src="../../../assets//call-dirlaer.png"></div>
+                <div class="call-icon" (click)="call(backFromSchool.plan.SuperVisorMobileNumber)"><img class="call-dilaer" src="assets/call-icon.svg"></div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -102,4 +102,3 @@
     </mat-tab>
   </mat-tab-group>
 </div>
-

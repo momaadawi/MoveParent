@@ -11,6 +11,7 @@ import { ChangeLangComponent } from 'src/app/dialogs/change-lang/change-lang.com
 import { StudentListComponent } from '../../dialogs/student-list/student-list.component';
 import { NotificationComponent } from '../../dialogs/notification/notification.component';
 import { AbsencePlanComponent } from 'src/app/dialogs/absence-plan/absence-plan.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -23,7 +24,7 @@ export class AppNavigationComponent implements OnInit, OnDestroy {
     panelClass: 'dialog_size'
   }
 
-  menuData: {parentName: string, parentImage:string } = {
+  menuData: { parentName: string, parentImage: string } = {
     parentName: '',
     parentImage: ''
   }
@@ -34,35 +35,37 @@ export class AppNavigationComponent implements OnInit, OnDestroy {
       shareReplay()
     );
   constructor(private breakpointObserver: BreakpointObserver,
-              private _cookieService: CustomCookieService,
-              public _dialog: MatDialog) {}
+    private _cookieService: CustomCookieService,
+    public _dialog: MatDialog,
+    private _router: Router) { }
 
   ngOnInit(): void {
-    this.menuData.parentName = this._cookieService.getCookieByKey(Configuration.coookies.UserName)
-    this.menuData.parentImage = this._cookieService.getCookieByKey(Configuration.coookies.Image)
+    this.menuData.parentName = this._cookieService.getCookieByKey(Configuration.cookies.UserName)
+    this.menuData.parentImage = this._cookieService.getCookieByKey(Configuration.cookies.Image)
   }
-  openDialog_about(){
+  openDialog_about() {
     this._dialog.open(AboutComponent, this._dilaogConfig)
   }
-  openDialog_changePass(){
+  openDialog_changePass() {
     this._dialog.open(ChangePasswordComponent, this._dilaogConfig)
   }
-  openDialog_Changelang(){
+  openDialog_Changelang() {
     this._dialog.open(ChangeLangComponent, this._dilaogConfig);
   }
-  openDialog_studnets(){
+  openDialog_studnets() {
     this._dialog.open(StudentListComponent, this._dilaogConfig)
   }
-  open_notification_dialog(){
+  open_notification_dialog() {
     this._dialog.open(NotificationComponent, this._dilaogConfig)
   }
-  openDialog_absence_plan(){
+  openDialog_absence_plan() {
     this._dialog.open(AbsencePlanComponent, this._dilaogConfig)
+  }
+  logOut() {
+    this._cookieService.clearAllCookies()
+    this._router.navigate(['/login'])
   }
   ngOnDestroy(): void {
     this._dialog.closeAll();
   }
-
-
-
 }
