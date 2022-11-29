@@ -5,7 +5,7 @@ import { StudentsComponent } from './students/students.component';
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatButtonModule } from '@angular/material/button'
 import { MatExpansionModule } from '@angular/material/expansion'
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -31,15 +32,17 @@ import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
     MatProgressSpinnerModule,
     NgbModule,
     NgxPullToRefreshModule,
+    InputTextModule,
+
     TranslateModule.forChild({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     })
   ],
-  providers:[
+  providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true }
   ]
 })

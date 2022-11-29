@@ -85,10 +85,11 @@
   border-radius: $main-btn-radius;
   color: #f1f1f1;
 }
-#closure > button.mat-focus-indicator:nth-child(3) {
+
+#closure>button.mat-focus-indicator:nth-child(3) {
   width: 215px;
   height: 50px;
-  }
+}
 
 #closure {
   justify-content: space-around;
@@ -115,7 +116,13 @@
   color: gray;
   font-size: 15px;
 }
-
+.slide-heade{
+  margin: 0;
+}
 .carousel-inner {
   height: 100px;
+}
+#welcome-infograph {
+  width: 100%;
   }
+

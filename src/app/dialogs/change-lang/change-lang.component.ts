@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
 
 @Component({
   selector: 'change-lang',
@@ -10,21 +11,23 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ChangeLangComponent implements OnInit {
   langForm: FormGroup = this.createForm()
-  selectedLang: string = '';
-  get Lang() {
-    return this.langForm.get('lang') as FormControl
-  }
+  languages: { value: string, name: string }[] = [
+    { value: 'en', name: 'English'},
+    { value: 'ar', name: 'عربي'}
+  ]
 
-
-  constructor(private _translate: TranslateService,
-    private _fb: FormBuilder) { }
+  constructor(private _fb: FormBuilder,
+    private _costumTranslate: CustomTranslateService,
+    private _translate: TranslateService) { }
 
   ngOnInit(): void {
-    this.selectedLang = this._translate.currentLang;
+    this.langForm.patchValue({ 'lang': this._translate.currentLang })
   }
-  changeLan(selection: any) {
-    this._translate.use(selection.srcElement.value);
+
+  changeLan(event: any) {
+    this._costumTranslate.changeLange(event.value);
   }
+
   createForm() {
     return this._fb.group({
       'lang': ['', Validators.required],

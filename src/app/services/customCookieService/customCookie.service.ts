@@ -3,13 +3,15 @@ import { CookieService } from 'ngx-cookie-service';
 import { CapacitorCookies } from '@capacitor/core';
 import { LoginResponse } from '../accountService/Login.model';
 import { Configuration } from '../../configurations/app.config';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomCookieService {
 
-  constructor(private _cookieService: CookieService) { }
+  constructor(private _cookieService: CookieService,
+    private _transalte: TranslateService) { }
 
   getCookies = () => {
     return this._cookieService.getAll()
@@ -47,6 +49,7 @@ export class CustomCookieService {
      this._cookieService.set(Configuration.cookies.Authorization, loginresponse.Token.replace('Basic', ''))
      this._cookieService.set(Configuration.cookies.UserName, loginresponse.Value.Name)
      this._cookieService.set(Configuration.cookies.Image, loginresponse.Value.Image)
+     this._cookieService.set(Configuration.cookies.Direction, this._transalte.currentLang == 'ar' ? 'rtl' : 'ltr' )
   }
 }
 

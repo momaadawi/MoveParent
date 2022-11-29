@@ -1,41 +1,107 @@
-<div mat-dialog-close class="border-bottom d-flex flex-row justify-content-between">
-  <i class="bi bi-arrow-left"></i>
-  <span mat-dialog-close>X</span>
+<div class="border-bottom d-flex flex-row justify-content-between">
+  <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
 </div>
-<div class="container absence_container mt-3">
+<div  class="container absence_container mt-3">
   <mat-dialog-content class="mat-typography">
     <form id="absenceForm" [formGroup]="AbsenceForm" (ngSubmit)="save_absencec_plan(AbsenceForm)"
       class="g-3 column needs-validation" novalidate>
 
+      <!-- <mat-label>{{'students' | translate }}</mat-label>
       <div class="input-group mb-3">
-        <mat-form-field style="width: 100%;" appearance="fill">
-          <mat-label>{{'students' | translate }}</mat-label>
-          <mat-select formControlName="StudentsId" multiple>
-            <mat-option *ngFor="let student of students " [value]="student.Id">{{student.Name}}</mat-option>
+        <mat-form-field style="width: 100%;" appearance="outline" >
+          <mat-select #selected  multiple formControlName="StudentsId" >
+            <mat-option  *ngFor="let student of students " [value]="student.Id">{{student.Name}}</mat-option>
           </mat-select>
         </mat-form-field>
+      </div> -->
+      <div class="field p-fluid mb-3">
+        <label for="students-input" class="form-label text-secondary mb-3">{{'students' | translate}}</label>
+        <p-multiSelect  [options]="students" optionValue="Id" inputId="students-input"  placeholder="{{'students' | translate}}" optionLabel="Name"
+        formControlName="StudentsId"
+        [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['StudentsId'].invalid && (AbsenceForm.controls['StudentsId'].dirty || AbsenceForm.controls['StudentsId'].touched))}"></p-multiSelect>
+        <!-- <p-calendar inputId="students-input" [readonlyInput]="true" formControlName="StudentsId" placeholder="{{'absence_plan.students' | translate}}"
+        [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['StudentsId'].invalid && (AbsenceForm.controls['StudentsId'].dirty || AbsenceForm.controls['StudentsId'].touched))}"></p-calendar> -->
       </div>
 
+      <!-- <mat-label>{{'absence_plan.start_date' | translate}}</mat-label>
       <div class="input-group mb-3">
+        <mat-form-field dir="ltr" style="width: 100%;" appearance="outline" >
+          <input matInput [matDatepicker]="StartDate" formControlName="StartDate">
+          <mat-datepicker-toggle  matSuffix [for]="StartDate"></mat-datepicker-toggle>
+          <mat-datepicker #StartDate></mat-datepicker>
+           <mat-hint>MM/DD/YYYY</mat-hint>
+        </mat-form-field>
+      </div> -->
+
+      <!-- <mat-label>{{'absence_plan.end_date' | translate}}</mat-label>
+      <div class="input-group mb-3">
+        <mat-form-field style="width: 100%;" appearance="outline" >
+          <input matInput [matDatepicker]="EndDate" formControlName="EndDate">
+          <mat-datepicker-toggle matSuffix [for]="EndDate"></mat-datepicker-toggle>
+          <mat-datepicker #EndDate></mat-datepicker>
+        </mat-form-field>
+      </div> -->
+
+
+    <div class="field p-fluid mb-3">
+      <label for="startdate-input" class="form-label text-secondary mb-3">{{'absence_plan.start_date' | translate}}</label>
+      <p-calendar inputId="startdate-input" [readonlyInput]="true" formControlName="StartDate" placeholder="{{'absence_plan.start_date' | translate}}"
+      [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['StartDate'].invalid && (AbsenceForm.controls['StartDate'].dirty || AbsenceForm.controls['StartDate'].touched))}"></p-calendar>
+    </div>
+
+    <div class="field p-fluid mb-3">
+      <label for="enddate-input" class="form-label text-secondary mb-3">{{'absence_plan.end_date' | translate}}</label>
+      <p-calendar  inputId="enddate-input" [readonlyInput]="true" formControlName="EndDate" placeholder="{{'absence_plan.end_date' | translate}}"
+      [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['EndDate'].invalid && (AbsenceForm.controls['EndDate'].dirty || AbsenceForm.controls['EndDate'].touched))}"></p-calendar>
+    </div>
+
+      <!-- <div class="field col-12 md:col-12">
+        <label for="buttonbar">{{'absence_plan.end_date' | translate}}</label>
+        <p-calendar  showButtonBar="true" inputId="buttonbar"></p-calendar>
+    </div> -->
+
+      <!-- <mat-label>{{'absence_plan.name' | translate}}</mat-label>
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <input formControlName="Name" matInput placeholder="{{'absence_plan.name' | translate }}">
+      </mat-form-field> -->
+
+      <div class="field p-fluid mb-3">
+        <label for="name-input" class="form-label text-secondary mb-3">{{'absence_plan.name' | translate}}</label>
+          <input  id="name-input" type="text" cols="30" [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['Name'].invalid && (AbsenceForm.controls['Name'].dirty || AbsenceForm.controls['Name'].touched))}" placeholder="{{'absence_plan.name' | translate}}" formControlName="Name" pInputText>
+      </div>
+
+      <div class="field p-fluid mb-3">
+        <label for="comment-input" class="form-label text-secondary mb-3">{{'absence_plan.comment' | translate}}</label>
+          <textarea  id="comment-input" rows="5" cols="30" [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['Comment'].invalid && (AbsenceForm.controls['Comment'].dirty || AbsenceForm.controls['Comment'].touched))}" placeholder="{{'absence_plan.comment' | translate}}" formControlName="Comment" pInputTextarea></textarea>
+      </div>
+
+      <!-- <mat-label>{{'absence_plan.comment' | translate}}</mat-label>
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <textarea formControlName="Comment" placeholder="{{ 'absence_plan.comment' | translate }}" matInput></textarea>
+      </mat-form-field>
+ -->
+      <!-- <div class="input-group mb-3">
         <input formControlName="StartDate" class="form-control" placeholder="{{'absence_plan.start_date' | translate}}" name="dp" ngbDatepicker
-          #startDate="ngbDatepicker" />
+          #startDate="ngbDatepicker" >
         <button class="btn btn-outline-secondary bi bi-calendar3" (click)="startDate.toggle()" type="button"></button>
       </div>
       <div class="input-group mb-3">
         <input formControlName="EndDate" type="text" class="form-control" placeholder="{{ 'absence_plan.end_date' | translate }}" name="dp" ngbDatepicker
-          #endDate="ngbDatepicker" />
+          #endDate="ngbDatepicker"  />
         <button class="btn btn-outline-secondary bi bi-calendar3" (click)="endDate.toggle()" type="button"></button>
       </div>
-      <div class="input-group mb-3">
-        <input formControlName="Name" type="text" class="form-control" placeholder="{{'absence_plan.name' | translate }}" />
-      </div>
-      <div class="input-group mb-3">
-        <textarea formControlName="Comment" class="form-control" placeholder="{{ 'absence_plan.comment' | translate }}"></textarea>
-      </div>
 
+
+      <div class="input-group mb-3">
+        <input  formControlName="Name" type="text" class="form-control" placeholder="{{'absence_plan.name' | translate }}" />
+      </div>
+      <div class="input-group mb-3">
+        <textarea  formControlName="Comment" class="form-control" placeholder="{{ 'absence_plan.comment' | translate }}"></textarea>
+      </div>
+ -->
       <mat-dialog-actions align="center">
         <div id="sub-btn" class="d-grid gap-2 col-10 position-relative">
-          <button  type="submit" mat-flat-button>
+          <button [disabled]="spinner"  type="submit" mat-flat-button>
             <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <span class="sr-only">{{'save' | translate}}</span>
           </button>

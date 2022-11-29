@@ -1,16 +1,18 @@
-<div mat-dialog-close class="mb-3 border-bottom d-flex flex-row justify-content-between">
-  <i class="bi bi-arrow-left"></i>
-  <span mat-dialog-close>X</span>
+<div class="mb-3 border-bottom d-flex flex-row justify-content-between">
+  <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
 </div>
 
-<mat-dialog-content class="mat-typography">
-    <google-map height="800px" width="100%" [options]="mapOptions" [center]="student_position" (mapClick)="mapClick($event)">
-      <map-marker [position]="student_position" [options]="markerOptions" ></map-marker>
-    </google-map>
-</mat-dialog-content>
+<!-- <mat-dialog-content class="mat-typography">
+</mat-dialog-content> -->
+<div class="container">
+  <google-map height="500px" width="100%" [options]="mapOptions" [center]="student_position" (mapClick)="mapClick($event)">
+    <map-marker [position]="student_position" [options]="markerOptions" ></map-marker>
+  </google-map>
+</div>
+
 <mat-dialog-actions align="center">
   <div id="sub-btn" class=" d-grid gap-2 col-10 position-relative">
-    <button type="submit" mat-flat-button (click)="update_student_POI()">
+    <button [disabled]="spinner" type="submit" mat-flat-button (click)="update_student_POI()">
       <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       <span class="sr-only">{{'save' | translate}}</span>
     </button>

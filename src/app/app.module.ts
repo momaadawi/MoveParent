@@ -22,9 +22,14 @@ import { CoreModule } from './core/core.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import {DropdownModule} from 'primeng/dropdown';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CalendarModule} from 'primeng/calendar';
+import {MultiSelectModule} from 'primeng/multiselect';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
+import { FormsModule } from '@angular/forms';
+import {InputTextModule} from 'primeng/inputtext';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -37,6 +42,7 @@ import {
   AboutComponent, ChangeLangComponent, AbsencePlanComponent,
   SetAbsetntComponent, NotificationComponent
 } from './dialogs/dialogs';
+import { AbsenceListComponent } from './dialogs/absence-list/absence-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -56,7 +62,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SetAbsetntComponent,
     NotificationComponent,
     AbsencePlanComponent,
-    UpdatePOIComponent
+    UpdatePOIComponent,
+    AbsenceListComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +86,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDatepickerModule,
     MatSelectModule,
     NgxPullToRefreshModule,
+    InputTextModule,
+    DropdownModule,
+    InputTextareaModule,
+    MultiSelectModule,
+    CalendarModule,
+    FormsModule,
     NgbModule,
     CoreModule,
     TranslateModule.forRoot({

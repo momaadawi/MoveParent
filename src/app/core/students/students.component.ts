@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { CallNumber } from 'capacitor-call-number';
-import { MatDialog } from '@angular/material/dialog';
 import { StudentService } from '../../services/studentService/student.service';
 import { SubSink } from 'subsink';
 import { ParentStudent } from '../../services/studentService/models/Students.model';
@@ -15,6 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class StudentsComponent implements OnInit, OnDestroy {
+  absence_backGround: string =  'white'
   private subs = new SubSink();
   loader: boolean = false;
   panelOpenState = false;
@@ -25,12 +25,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   constructor(private _studentService: StudentService,
     private _planService: PlanService,
-    private sanitizer: DomSanitizer,
-    private _dialog: MatDialog) { }
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.retriveStudents();
-    console.log(this.students)
   }
 
   private retriveStudents() {
@@ -45,11 +43,11 @@ export class StudentsComponent implements OnInit, OnDestroy {
             this._planService.getPlan(st.Id).subscribe({
               next: planRes => {
                 st.plan = planRes.Value;
-                st.studentDetails = st.plan.Students.filter(s => s.StudentId == st.Id)[0];
+                st.studentDetails = st.plan?.Students.filter(s => s.StudentId == st.Id)[0];
                 st.ImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${st.Image}`);
-                if (st.plan.PlanType == 1)
-                  this.students.goToSchool.push(st);
-                if (st.plan.PlanType == 2)
+                if (st.plan?.PlanType == 1)
+                  this.students.goToSchool.push(st)
+                if (st.plan?.PlanType == 2)
                   this.students.backFromSchool.push(st);
               },
               complete: () => {
@@ -85,5 +83,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
     return 'btn-outline-success student-status-btn btn btn-sm'
 
+  }
+  setAbsence_backgound(studentStatus: number):string{
+    if(studentStatus == 2) //absent
+      return 'absent-student'
+    return ''
   }
 }

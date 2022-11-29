@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { delay, interval, Subject, timeInterval, timeout, timer } from 'rxjs';
+import { CustomTranslateService } from './services/customTranslateService/custom-translate.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { delay, interval, Subject, timeInterval, timeout, timer } from 'rxjs';
 })
 export class AppComponent{
 
-  constructor(translate: TranslateService) {
+  constructor(translate: TranslateService,
+            private _customeTransalte: CustomTranslateService) {
     translate.addLangs(['en', 'ar']);
     translate.setDefaultLang('en');
     translate.use('en');
@@ -18,5 +20,4 @@ export class AppComponent{
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang?.match(/en|ar/) ? browserLang : 'en');
   }
-
 }

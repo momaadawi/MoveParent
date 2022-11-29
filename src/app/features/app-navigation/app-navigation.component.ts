@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -10,8 +10,14 @@ import { ChangePasswordComponent } from 'src/app/dialogs/change-password/change-
 import { ChangeLangComponent } from 'src/app/dialogs/change-lang/change-lang.component';
 import { StudentListComponent } from '../../dialogs/student-list/student-list.component';
 import { NotificationComponent } from '../../dialogs/notification/notification.component';
-import { AbsencePlanComponent } from 'src/app/dialogs/absence-plan/absence-plan.component';
 import { Router } from '@angular/router';
+import { AbsenceListComponent } from '../../dialogs/absence-list/absence-list.component';
+import { DilogIds } from '../../configurations/dilaogs.config';
+import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
+import { Direction, Directionality } from '@angular/cdk/bidi';
+import { DialogConfig } from 'src/app/dialogs/dialog.config';
+import { TranslateService } from '@ngx-translate/core';
+import { DialogServiceService } from '../../shared/services/dialog-service.service';
 
 @Component({
   selector: 'app-navigation',
@@ -20,15 +26,10 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class AppNavigationComponent implements OnInit, OnDestroy {
-  private _dilaogConfig: MatDialogConfig = {
-    panelClass: 'dialog_size'
-  }
-
   menuData: { parentName: string, parentImage: string } = {
     parentName: '',
     parentImage: ''
   }
-  isLoged: boolean = false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -37,33 +38,37 @@ export class AppNavigationComponent implements OnInit, OnDestroy {
   constructor(private breakpointObserver: BreakpointObserver,
     private _cookieService: CustomCookieService,
     public _dialog: MatDialog,
-    private _router: Router) { }
+    private _router: Router,
+    private _dialogService: DialogServiceService) { }
 
   ngOnInit(): void {
     this.menuData.parentName = this._cookieService.getCookieByKey(Configuration.cookies.UserName)
     this.menuData.parentImage = this._cookieService.getCookieByKey(Configuration.cookies.Image)
   }
   openDialog_about() {
-    this._dialog.open(AboutComponent, this._dilaogConfig)
+    this._dialog.open(AboutComponent, this._dialogService.fullSize_dialogConfig())
   }
   openDialog_changePass() {
-    this._dialog.open(ChangePasswordComponent, this._dilaogConfig)
+    this._dialog.open(ChangePasswordComponent, this._dialogService.fullSize_dialogConfig())
   }
   openDialog_Changelang() {
-    this._dialog.open(ChangeLangComponent, this._dilaogConfig);
+    this._dialog.open(ChangeLangComponent, this._dialogService.fullSize_dialogConfig());
   }
   openDialog_studnets() {
-    this._dialog.open(StudentListComponent, this._dilaogConfig)
+    this._dialog.open(StudentListComponent, this._dialogService.fullSize_dialogConfig())
   }
   open_notification_dialog() {
-    this._dialog.open(NotificationComponent, this._dilaogConfig)
+    this._dialog.open(NotificationComponent, this._dialogService.fullSize_dialogConfig())
   }
-  openDialog_absence_plan() {
-    this._dialog.open(AbsencePlanComponent, this._dilaogConfig)
+  openDialog_absence_list() {
+    let config = this._dialogService.fullSize_dialogConfig()
+    config.id = DilogIds.absence_list
+    this._dialog.open(AbsenceListComponent, config)
   }
   logOut() {
-    this._cookieService.clearAllCookies()
-    this._router.navigate(['/login'])
+    this._cookieService.clearAllCookies().then(_ => {
+      this._router.navigate(['/login'])
+    })
   }
   ngOnDestroy(): void {
     this._dialog.closeAll();

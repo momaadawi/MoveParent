@@ -1,16 +1,15 @@
-<div mat-dialog-close class="dialog_header" class="border-bottom">
-  <i class="bi bi-arrow-left"></i>
+<div  class="dialog_header" class="border-bottom">
+  <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
 </div>
 <h2 class="text-secondary">{{'sideMenu.change_Language' | translate}}</h2>
-<mat-dialog-content class="mat-typography">
-<form  id="loginForm" [formGroup]="langForm"   class="g-3 column needs-validation" novalidate>
-  <select [value]="selectedLang"  (change)="changeLan($event)" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-    <option  value="en">{{'language.english' | translate}}</option>
-    <option  value="ar">{{'language.arabic' | translate}}</option>
-  </select>
+
+
+<form id="langForm" [formGroup]="langForm"  class="g-3 column needs-validation" novalidate>
+  <div class="field p-fluid mb-3">
+      <p-dropdown [options]="languages" col="30" (onChange)="changeLan($event)" formControlName="lang"  optionValue="value" optionLabel="name"></p-dropdown>
+  </div>
 </form>
 
-</mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>{{'cancel' | translate}}</button>
 </mat-dialog-actions>

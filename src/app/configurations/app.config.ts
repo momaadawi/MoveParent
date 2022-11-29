@@ -20,7 +20,8 @@ export let Configuration = {
     Authorization: 'Authorization',
     Id: 'id',
     Image: 'image',
-    UserName: 'userName'
+    UserName: 'userName',
+    Direction: 'dir'
   },
   googleApiKey: 'AIzaSyA8Y53lojH7RkCC3vH_nGmmEv0XUpZI10M',
   alertTime: 4000,

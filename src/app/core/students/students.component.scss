@@ -11,7 +11,6 @@
 .welcome-header-content {
   display: flex;
   flex-direction: column;
-  text-align: center;
   justify-content: center;
 }
 
@@ -19,9 +18,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 80%;
+  width: 90%;
   border: 0.5px solid #f5f5f5;
-  border-radius: 1em;
+  border-radius: 9px;
   margin: 0 auto;
   margin-bottom: 5vh;
   background: white;
@@ -44,7 +43,7 @@
 
 .welcome-header-img {
   position: relative;
-  top: -25px;
+  top: -9px;
   scale: 120%;
 }
 
@@ -67,6 +66,7 @@ div.cotact-info {
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 15px;
+
 }
 
 .contact-name {
@@ -76,7 +76,7 @@ div.cotact-info {
 .student_info {
   width: 100%;
   margin-top: 1em;
-
+  background: white;
   // display: flex;
   // flex-direction: row;
   // justify-content: space-around;
@@ -103,6 +103,7 @@ div.cotact-info {
   border: 1px solid #dedede;
   border-radius: 8px;
   margin-top: 1em;
+  background: white;
 }
 .profile-pic-img{
   width: 35px;
@@ -151,4 +152,12 @@ margin-right: 2px;
   background: rgb(255,255,255);
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(240, 253, 252) 19%, rgba(255,255,255,1) 71%, rgb(240, 253, 252) 100%);
   }
+
+.absent-student, .absent-student mat-expansion-panel{
+  background: #EAEAEA;
+}
+.mat-expansion-panel:not([class*="mat-elevation-z"]){
+  box-shadow: none;
+}
+
 

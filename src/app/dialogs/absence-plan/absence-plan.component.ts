@@ -1,16 +1,20 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, AfterViewInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, NgForm, FormControl } from '@angular/forms';
 import { StudentService } from '../../services/studentService/student.service';
 import { map } from 'rxjs/operators';
 import { ParentStudent } from '../../services/studentService/models/Students.model';
-import { AbsenceRequest } from '../../services/absenceService/absence.model';
+import { AbsenceRequest, AbsencePlan, AbsenceResponse } from '../../services/absenceService/absence.model';
 import { AbsenceService } from '../../services/absenceService/absence.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { cssClasses } from 'src/app/shared/cssClasses.conf';
 import { Configuration } from '../../configurations/app.config';
 import { SubSink } from 'subsink';
-import { from } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DilogIds } from '../../configurations/dilaogs.config';
+import * as moment from 'moment';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-absence-plan',
@@ -19,21 +23,43 @@ import { CustomTranslateService } from '../../services/customTranslateService/cu
 })
 export class AbsencePlanComponent implements OnInit, OnDestroy {
   private _subSink = new SubSink();
+  spinner: boolean = false;
   AbsenceForm: FormGroup = this.createAbsenceForm();
   students: ParentStudent[] = [];
-  spinner: boolean = false;
+
   constructor(private _fb: FormBuilder,
     private _studentService: StudentService,
     private _absenceService: AbsenceService,
     private _snackBar: MatSnackBar,
-    private _customTranslate : CustomTranslateService) { }
+    private _customTranslate: CustomTranslateService,
+    private _dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) private _data: AbsencePlan) { }
 
   ngOnInit(): void {
+    console.log(this._data)
     this._studentService.get_Students()
       .pipe(
         map(res => { return res.Value })).subscribe({
-          next: res => this.students = res
+          next: res => this.students = res,
+          complete: () => {
+            this.seedForm()
+          }
         })
+  }
+  seedForm(): void {
+    if (this._data!?.Id > 0) {
+      this.AbsenceForm.patchValue({
+        'StudentsId': this._data.StudentsId,
+        'StartDate':  moment(this._data.StartDate).format('MM/DD/YYYY'),
+        'EndDate': moment(this._data.EndDate).format('MM/DD/YYYY'),
+        'Name': this._data.Name,
+        'Comment': this._data.Comment
+      })
+    }else{
+      this.AbsenceForm.reset()
+    }
+
+
   }
 
   createAbsenceForm() {
@@ -47,26 +73,40 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
   }
 
   save_absencec_plan(form: FormGroup) {
-    if(!form.valid){
+    if (!form.valid) {
       this._snackBar.open(this._customTranslate.translate('snack-bar.wrong_data'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
       return;
     }
-
     this.spinner = true;
     let AbsenceRequest: AbsenceRequest = {
-      StudentsId: form.get('StudentsId')?.value,
-      StartDate: new Date(form.get('StartDate')?.value['year'], form.get('StartDate')?.value['month'], form.get('StartDate')?.value['day']),
-      EndDate: new Date(form.get('EndDate')?.value['year'], form.get('EndDate')?.value['month'], form.get('EndDate')?.value['day']),
+      Id: this._data?.Id == null ? 0 : this._data?.Id,
+      StudentsId: form.get('StudentsId')?.value ,
+      StartDate: new Date(form.get('StartDate')?.value).toLocaleString(),
+      EndDate: new Date(form.get('EndDate')?.value).toLocaleString(),
       Name: form.get('Name')?.value,
-      Comment: form.get('Comment')?.value
+      Comment: form.get('Comment')?.value,
+      DeletedStudents: this._data!?.Id == null ? [] : this._data.StudentsId.filter(x => !(form.get('StudentsId')?.value as number[]).includes(x))
     }
+    let addOrUpdate: Observable<AbsenceResponse>;
+
+    if (this._data?.Id > 0)
+      addOrUpdate = this._absenceService.updateAbsence(AbsenceRequest)
+    else
+      addOrUpdate = this._absenceService.setAbsense(AbsenceRequest)
+
     this._subSink.add(
-      this._absenceService.setAbsense(AbsenceRequest).subscribe({
+      addOrUpdate.subscribe({
         next: res => {
-          if (res.IsErrorState)
+          if (res.IsErrorState){
             this._snackBar.open(res.ErrorDescription, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
-          else if (!res.IsErrorState){
+            this._dialog.getDialogById(DilogIds.absence_plan)?.close()
+          }
+          else if (!res.IsErrorState) {
+
+            // this._dialog.getDialogById(DilogIds.absence_plan)?._containerInstance.ngOnDestroy()
+            this._dialog.getDialogById(DilogIds.absence_plan)?.close()
             this._snackBar.open(this._customTranslate.translate('snack-bar.student_set_absent_succsfully'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
+            this._dialog.getDialogById(DilogIds.absence_list)?.componentInstance.retriveAbsences()
             form.reset();
           }
         },
@@ -80,7 +120,9 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
       })
     )
   }
+
   ngOnDestroy(): void {
+    this.AbsenceForm.reset()
     this._subSink.unsubscribe()
   }
 

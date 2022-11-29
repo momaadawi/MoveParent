@@ -2,17 +2,19 @@
 <div class="student-container">
   <div id="welcome-header">
     <div class="welcome-header-content">
-      <h2 class="header_h1">{{'student_trips.hello_mom_data' | translate}}</h2>
-      <p class="header_p">{{'student_trips.follow_children_trips' | translate}}</p>
+      <h2 style="font-weight: bold;" class="mb-0">{{'student_trips.hello_mom_data' | translate}}</h2>
+      <p class="text-secondary text-sm">{{'student_trips.follow_children_trips' | translate}}</p>
+      <!-- <h2 class="header_h1">{{'student_trips.hello_mom_data' | translate}}</h2>
+      <p class="header_p">{{'student_trips.follow_children_trips' | translate}}</p> -->
     </div>
-    <img class="welcome-header-img" src="assets/hand waving.png" />
+    <img class="welcome-header-img" src="assets/hand waving.svg" />
   </div>
   <mat-tab-group id="tab_group" animationDuration="0">
     <mat-tab label="{{'student_trips.go_to_school' | translate}}">
       <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
-      <mat-panel-description class="mx-auto modal-dialog-centered"  *ngIf="!loader &&students.goToSchool.length == 0">{{ 'student_trips.no_trips_go_to_school' | translate}}</mat-panel-description>
+      <mat-panel-description class="mx-auto modal-dialog-centered"  *ngIf="!loader && $any(students).goToSchool.length == 0">{{ 'student_trips.no_trips_go_to_school' | translate}}</mat-panel-description>
 
-      <div class="student_trip" *ngFor="let pickUpStudent of students.goToSchool">
+      <div [ngClass]="setAbsence_backgound(pickUpStudent.studentDetails.StudentStatusId)" class="student_trip" *ngFor="let pickUpStudent of $any(students).goToSchool">
         <div class="student_info d-flex flex-row justify-content-around">
           <div class="profile-pic "><img [src]="pickUpStudent.ImageUrl" alt="" class="rounded-circle profile-pic-img"></div>
           <div class="student-name">{{pickUpStudent.Name}}</div>
@@ -23,13 +25,13 @@
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <div class="d-flex flex-column justify-content-between bus_code">
-                  <span class="bus_code_title font-weight-normal text-info">{{'student_trips.bus_code' | translate}}</span>
+                  <span class="bus_code_title font-weight-normal text-primary">{{'student_trips.bus_code' | translate}}</span>
                   <span class="bus_code_value font-weight-light ">{{pickUpStudent.plan.BusCode}}</span>
                 </div>
               </mat-panel-title>
               <mat-panel-title>
                 <div class="d-flex flex-column justify-content-between trip_time">
-                  <span class="trip_time_title font-weight-normal text-info">{{'student_trips.trip_time' | translate}}</span>
+                  <span class="trip_time_title font-weight-normal text-primary">{{'student_trips.trip_time' | translate}}</span>
                   <span class="trip_time_value font-weight-light">{{pickUpStudent.plan.TripStartTime}}</span>
                 </div>
               </mat-panel-title>
@@ -37,14 +39,14 @@
             <div class="contact-group flex-column">
               <div class="cotact-info driver flex-row">
                 <div class="contact flex-column" >
-                  <div class="contact-title text-info">{{'student_trips.driver_name' | translate}}</div>
+                  <div class="contact-title text-primary">{{'student_trips.driver_name' | translate}}</div>
                   <div class="contact-name">{{pickUpStudent.plan.DriverName}}</div>
                 </div>
                 <div class="call-icon" (click)="call(pickUpStudent.plan.DriverMobileNumber)"><img class="call-dilaer" src="assets/call-icon.svg"></div>
               </div>
               <div class="cotact-info supervisor">
                 <div class="contact">
-                  <div class="contact-title text-info">{{'student_trips.supervisor_name' | translate}}</div>
+                  <div class="contact-title text-primary">{{'student_trips.supervisor_name' | translate}}</div>
                   <div class="contact-name">{{pickUpStudent.plan.SuperVisorName}}</div>
                 </div>
                 <div class="call-icon" (click)="call(pickUpStudent.plan.SuperVisorMobileNumber)"><img class="call-dilaer" src="assets/call-icon.svg"></div>
@@ -56,8 +58,8 @@
     </mat-tab>
     <mat-tab label="{{'student_trips.back_from_school' | translate}}">
       <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered"[diameter]="30"></mat-spinner>
-      <mat-panel-description class="mx-auto modal-dialog-centered"  *ngIf="!loader && students.backFromSchool.length == 0">{{ 'student_trips.no_trips_back_from_school' | translate}}</mat-panel-description>
-      <div class="student_trip" *ngFor="let backFromSchool of students.backFromSchool">
+      <mat-panel-description class="mx-auto modal-dialog-centered"  *ngIf="!loader && $any(students).backFromSchool.length == 0">{{ 'student_trips.no_trips_back_from_school' | translate}}</mat-panel-description>
+      <div class="student_trip" *ngFor="let backFromSchool of $any(students).backFromSchool">
         <div class="student_info d-flex flex-row justify-content-around">
           <div class="profile-pic "><img [src]="backFromSchool.ImageUrl" alt="" class="rounded-circle profile-pic-img"></div>
           <div class="student-name">{{backFromSchool.Name}}</div>
@@ -68,13 +70,13 @@
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <div class="d-flex flex-column justify-content-between bus_code">
-                  <span class="bus_code_title font-weight-normal text-info">{{'student_trips.bus_code' | translate}}</span>
+                  <span class="bus_code_title font-weight-normal text-primary">{{'student_trips.bus_code' | translate}}</span>
                   <span class="bus_code_value font-weight-light ">{{backFromSchool.plan.BusCode}}</span>
                 </div>
               </mat-panel-title>
               <mat-panel-title>
                 <div class="d-flex flex-column justify-content-between trip_time">
-                  <span class="trip_time_title font-weight-normal text-info">{{'student_trips.trip_time' | translate}}</span>
+                  <span class="trip_time_title font-weight-normal text-primary">{{'student_trips.trip_time' | translate}}</span>
                   <span class="trip_time_value font-weight-light">{{backFromSchool.plan.TripStartTime}}</span>
                 </div>
               </mat-panel-title>
@@ -82,14 +84,14 @@
             <div class="contact-group flex-column">
               <div class="cotact-info driver flex-row">
                 <div class="contact flex-column" >
-                  <div class="contact-title text-info">{{'student_trips.driver_name' | translate}}</div>
+                  <div class="contact-title text-primary">{{'student_trips.driver_name' | translate}}</div>
                   <div class="contact-name">{{backFromSchool.plan.DriverName}}</div>
                 </div>
                 <div class="call-icon" (click)="call(backFromSchool.plan.DriverMobileNumber)"><img class="call-dilaer" src="assets/call-icon.svg"></div>
               </div>
               <div class="cotact-info supervisor">
                 <div class="contact">
-                  <div class="contact-title text-info">{{'student_trips.supervisor_name' | translate}}</div>
+                  <div class="contact-title text-primary">{{'student_trips.supervisor_name' | translate}}</div>
                   <div class="contact-name">{{backFromSchool.plan.SuperVisorName}}</div>
                 </div>
                 <div class="call-icon" (click)="call(backFromSchool.plan.SuperVisorMobileNumber)"><img class="call-dilaer" src="assets/call-icon.svg"></div>

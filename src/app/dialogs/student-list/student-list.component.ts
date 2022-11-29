@@ -6,6 +6,9 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdatePOIComponent } from '../update-poi/update-poi.component';
 import { SystemEnum } from 'src/app/configurations/system.enum';
+import { TranslateService } from '@ngx-translate/core';
+import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
+import { DialogServiceService } from '../../shared/services/dialog-service.service';
 
 
 @Component({
@@ -16,14 +19,12 @@ import { SystemEnum } from 'src/app/configurations/system.enum';
 export class StudentListComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger | undefined;
   loader: boolean = false;
-  private _dilaogConfig: MatDialogConfig = {
-    panelClass: 'dialog_size',
-  }
   updatePoiType!: SystemEnum.UpdatePoiState
   studnets: ParentStudent[] = []
 
   private subSink = new SubSink();
   constructor(private _studentService: StudentService,
+    private _dialogService: DialogServiceService,
     public _dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -39,12 +40,9 @@ export class StudentListComponent implements OnInit {
     )
   }
   update_poi(student: ParentStudent, updateType: SystemEnum.UpdatePoiState) {
-    var data = {
-      student: student,
-      updateType: updateType
-    }
-    this._dilaogConfig.data = data
-    this._dilaogConfig.id = 'di_update_poi';
-    this._dialog.open(UpdatePOIComponent, this._dilaogConfig)
+    let config = this._dialogService.fullSize_dialogConfig();
+    config.data = { student: student, updateType: updateType }
+    config.id = 'di_update_poi';
+    this._dialog.open(UpdatePOIComponent, config)
   }
 }

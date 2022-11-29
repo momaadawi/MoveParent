@@ -2,17 +2,17 @@ html,
 body {
   height: 100%;
   width: 100%;
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(227,251,248,1) 19%, rgba(255,255,255,1) 71%, rgba(227,251,248,1) 100%);
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(227, 251, 248, 1) 19%, rgba(255, 255, 255, 1) 71%, rgba(227, 251, 248, 1) 100%);
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .green-snackbar {
-  background:  #268d04;
+  background: #268d04;
   color: white;
 }
 
@@ -21,18 +21,23 @@ body {
   background: #8f211a;
   color: white;
 }
-.dialog_size{
+
+.dialog_size {
   position: sticky;
   width: 100% !important;
   height: 100% !important;
-  max-width: 100%  !important;
-  background: rgb(255,255,255) !important;
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(240, 253, 252) 19%, rgba(255,255,255,1) 71%, rgb(240, 253, 252) 100%) !important;
+  max-width: 100% !important;
+  background: rgb(255, 255, 255) !important;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgb(240, 253, 252) 19%, rgba(255, 255, 255, 1) 71%, rgb(240, 253, 252) 100%) !important;
 
 }
 
+.sr-only {
+  margin-left: 1em;
+  margin-right: 1em;
+}
 
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import 'bootstrap/scss/bootstrap';
+@import "bootstrap-icons/font/bootstrap-icons.css";

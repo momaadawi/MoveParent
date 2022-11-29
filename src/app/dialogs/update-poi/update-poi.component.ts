@@ -12,6 +12,7 @@ import { SubSink } from 'subsink';
 import { Configuration } from '../../configurations/app.config';
 import { cssClasses } from '../../shared/cssClasses.conf';
 import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-poi',
@@ -35,6 +36,7 @@ export class UpdatePOIComponent implements OnInit, OnDestroy {
     private _snackBar: MatSnackBar,
     private _dialog: MatDialog,
     private _customTranslate: CustomTranslateService,
+    private _translate: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: { student: ParentStudent; updateType: SystemEnum.UpdatePoiState; }) {
   }
 

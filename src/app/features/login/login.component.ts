@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AccountService } from '../../services/accountService/account.service';
 import { LoginRequest } from '../../services/accountService/Login.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -14,7 +14,8 @@ import { CustomTranslateService } from '../../services/customTranslateService/cu
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private subSink = new SubSink()
@@ -59,8 +60,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this._accountSerivice.login(loginRequest).subscribe({
         next: response => {
           if (response.IsErrorState) {
-            this.UserName.setErrors({'not-found': true})
-            this.Password.setErrors({'not-found': true})
             this._snackBar.open( response?.ErrorDescription, '' , { duration: Configuration.alertTime, panelClass: [ cssClasses.snackBar.faild]})
             return
           }
@@ -78,10 +77,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     )
   }
   changeLang(){
-    if(this._translate.currentLang == 'en')
-      this._translate.use('ar')
-    else
-      this._translate.use('en')
+    this._customTranslate.toggleLang()
   }
   ngOnDestroy(): void {
     this.subSink.unsubscribe();

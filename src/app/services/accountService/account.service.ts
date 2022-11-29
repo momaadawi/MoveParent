@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginRequest, LoginResponse } from './Login.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Configuration } from '../../configurations/app.config';
 import { CookieService } from 'ngx-cookie-service';
 import { ChangePasswordRequest, ChangePasswordResponse } from './ChangePassword.model';

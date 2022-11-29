@@ -8,7 +8,7 @@
       <span [routerLink]="['/login']" class="text-secondary"><u>{{'skip' | translate}}</u></span>
       <a (click)="changeLang()" class="text-secondary"><u>{{'En' | translate}}</u></a>
     </div>
-    <img id="welcome-logo"  src="../../../assets/logo.svg">
+    <img id="welcome-logo" src="../../../assets/logo.svg">
   </div>
   <div style="height: 230px;display: flex;justify-content: center;">
     <img id="welcome-infograph" [src]="welcome_infographImg">
@@ -18,7 +18,7 @@
       aria-label="Example icon button with a filter list icon">
       <mat-icon>chevron_right</mat-icon>
     </button>
-    <ngb-carousel #carousel [showNavigationArrows]="false" (slide)="onSlide($event)">
+    <ngb-carousel #carousel [interval]="0"[showNavigationArrows]="false" (slide)="onSlide($event)">
       <ng-template ngbSlide>
         <div class="picsum-img-wrapper">
           <h3 class="slide-header">{{"welcome_slide_1.header" | translate}}</h3>

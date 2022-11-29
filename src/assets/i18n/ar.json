@@ -1,6 +1,8 @@
 {
   "En": "En",
   "skip": "تخطي",
+  "dir": "rtl",
+  "navigation-arrow": "bi-arrow-right",
   "welcome_slide_1":{
     "header": "مرحبا بالمدرسة",
     "content": "يدعمك تطبيق الأباء بطريقة لمتابعة أطفالك من وإلي المدرسة"
@@ -23,7 +25,7 @@
     "enter_user_name_and_password": "قم بإدخال اسم المستخدم وكلمه المرور",
     "forget_password": "نسيت كلمة المرور؟",
     "username": "اسم المستخدم",
-    "password": "كلمة السر",
+    "password": "كلمة المرور",
     "reset_password": "إعادة تعيين كلمة المرور",
     "enter_your_username": "أدخل اسم المستخدم الخاص بك",
     "reset_password_method_select": "إختر وسيلة واحدة لإستلام كلة المرور",
@@ -33,7 +35,9 @@
     "change_Password": "تغيير كلمة المرور",
     "new_password": "كلمة المرور الجديدة",
     "confirm_password": "تأكيد كلمة المرور الجديدة",
-    "yes_confirm_absence": "نعم, أكد الغياب"
+    "yes_confirm_absence": "نعم, أكد الغياب",
+    "absence_delete_confimation": "هل انت متأطد من حذف الخطة؟"
+
   },
   "validation":{
     "username_required": "يجب إدخال أسم المستخدم",
@@ -73,8 +77,8 @@
   "absence_plan":{
     "start_date": "من تاريخ",
     "end_date": "إلي تاريخ",
-    "name": "الاسم",
-    "comment": "تعليق"
+    "name": "العنوان",
+    "comment": "السبب"
   },
   "poi": {
     "pick_up_location": "نقطة الإلتقاط",

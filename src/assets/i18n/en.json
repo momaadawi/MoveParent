@@ -1,6 +1,8 @@
 {
   "En": "عربي",
   "skip": "skip",
+  "dir": "rtl",
+  "navigation-arrow": "bi-arrow-left",
   "welcome_slide_1":{
     "header": "Welcome To Schools",
     "content": "Schools app afford you the contentment of mind, following up your children trip toand their schools."
@@ -20,7 +22,7 @@
   "save": "Save",
   "notifications": "Notifications",
   "hints":{
-    "enter_user_name_and_password": "Enter you username and password",
+    "enter_user_name_and_password": "Enter your username and password",
     "forget_password": "forget password?",
     "username": "Username",
     "password": "Password",
@@ -33,7 +35,8 @@
     "change_Password": "Change Password",
     "new_password": "New password",
     "confirm_password": "Confirm new password",
-    "yes_confirm_absence": "Yes, Confirm Absence"
+    "yes_confirm_absence": "Yes, Confirm Absence",
+    "absence_delete_confimation": "Are your sure you want to delete plan?"
   },
   "validation":{
     "username_required": "Username is required field.",
@@ -62,10 +65,11 @@
   "student_trips":{
     "hello_mom_data": "Hello, Mom & Dad",
     "follow_children_trips": "Follow Your Children School Trips",
-    "go_to_school": "Go to school",
-    "back_from_school": "Back from school",
+    "go_to_school": "Going Trips",
+    "back_from_school": "Return Trips",
     "bus_code" : "Bus Code",
     "trip_time": "Trip Time",
+    "return_time": "Return Time",
     "driver_name": "Driver Name",
     "supervisor_name": "Supervisor name",
     "no_trips_go_to_school": "No trips go to school!",
@@ -74,8 +78,8 @@
   "absence_plan":{
     "start_date": "Start date",
     "end_date": "End date",
-    "name": "Name",
-    "comment": "Comment"
+    "name": "Title",
+    "comment": "Reason"
   },
   "poi": {
     "pick_up_location": "PickUp location",
@@ -88,7 +92,8 @@
     "password_changed_sucessfully" : "password chaned succsfully",
     "please_check_password": "please check password!!",
     "student_location_updated": "student location updated",
-    "wrong_data": "wrong form data!!"
+    "wrong_data": "wrong form data!!",
+    "success_absence_delete": "Absence plan deleted successfuly"
 
   }
 
