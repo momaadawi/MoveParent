@@ -93,7 +93,8 @@
     "please_check_password": "please check password!!",
     "student_location_updated": "student location updated",
     "wrong_data": "wrong form data!!",
-    "success_absence_delete": "Absence plan deleted successfuly"
+    "success_absence_delete": "Absence plan deleted successfuly",
+    "student_set_absent": "studentd set as absent successfuly"
 
   }
 

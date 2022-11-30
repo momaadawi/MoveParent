@@ -1,15 +1,15 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AccountService } from '../../services/accountService/account.service';
-import { LoginRequest } from '../../services/accountService/Login.model';
+import { AccountService } from '../../shared/services/accountService/account.service';
+import { LoginRequest } from '../../shared/services/accountService/Login.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SubSink } from 'subsink';
-import { CustomCookieService } from 'src/app/services/customCookieService/customCookie.service';
+import { CustomCookieService } from 'src/app/shared/services/customCookieService/customCookie.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Configuration } from '../../configurations/app.config';
 import { cssClasses } from '../../shared/cssClasses.conf';
-import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
+import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _cookiesService: CustomCookieService,
     private _router: Router,
     private _snackBar: MatSnackBar,
-    private _translate: TranslateService,
     private _customTranslate: CustomTranslateService) { }
   get UserName() {
     return this.loginForm.get('UserName') as FormControl

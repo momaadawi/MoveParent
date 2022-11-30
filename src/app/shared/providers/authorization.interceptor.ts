@@ -3,13 +3,11 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor,
-  HttpHeaders,
-  HttpResponse
+  HttpInterceptor
 } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { Configuration } from '../configurations/app.config';
+import { Configuration } from '../../configurations/app.config';
 
 @Injectable()
 export class AuthorizationInterceptor implements HttpInterceptor {

@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { CapacitorCookies } from '@capacitor/core';
 import { LoginResponse } from '../accountService/Login.model';
-import { Configuration } from '../../configurations/app.config';
+import { Configuration } from '../../../configurations/app.config';
 import { TranslateService } from '@ngx-translate/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CustomCookieService {
 
   constructor(private _cookieService: CookieService,

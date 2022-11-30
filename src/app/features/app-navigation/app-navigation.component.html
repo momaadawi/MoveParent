@@ -1,23 +1,44 @@
-<mat-sidenav-container  class="sidenav-container">
-  <mat-sidenav #drawer  class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
       <div class="student_info d-flex flex-row justify-content-around">
-        <div *ngIf="menuData.parentImage.length < 1 || menuData.parentImage == undefined" class="profile-pic align-self-center"><img src="../../../assets/profilepci.png" alt="" class="rounded-circle profile-pic-img-parent"></div>
-        <div *ngIf="menuData.parentImage.length > 1" class="profile-pic align-self-center"><img [src]="'data:image/png;base64,' + menuData.parentImage" alt="" class="rounded-circle profile-pic-img-parent"></div>
-      <div class="d-flex flex-column">
-        <div class="parent-info text-secondary">{{menuData.parentName}}</div>
-      </div>
+        <div *ngIf="menuData.parentImage.length < 1 || menuData.parentImage == undefined"
+          class="profile-pic align-self-center"><img src="../../../assets/profilepci.png" alt=""
+            class="rounded-circle profile-pic-img-parent"></div>
+        <div *ngIf="menuData.parentImage.length > 1" class="profile-pic align-self-center"><img
+            [src]="'data:image/png;base64,' + menuData.parentImage" alt=""
+            class="rounded-circle profile-pic-img-parent"></div>
+        <div class="d-flex flex-column">
+          <div class="parent-info text-secondary">{{menuData.parentName}}</div>
+        </div>
       </div>
     </mat-toolbar>
     <mat-nav-list>
       <!-- <a [routerLink]="['/home']" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-calendar"></i><span>{{'sideMenu.history_trip' | translate}}</span></div></a> -->
-      <a (click)="openDialog_studnets()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.kids' | translate}}</span></div></a>
-      <a (click)="openDialog_absence_list()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.absence_plan' | translate}}</span></div></a>
-      <a (click)="openDialog_about()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-info-circle"></i><span>{{'sideMenu.about_App' | translate}}</span></div></a>
-      <a (click)="openDialog_Changelang()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-globe"></i><span>{{'sideMenu.change_Language' | translate}}</span></div></a>
-      <a (click)="openDialog_changePass()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-lock-fill"></i><span>{{'sideMenu.change_Password' | translate}}</span></div></a>
-      <a (click)="logOut()" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-box-arrow-left"></i><span>{{'sideMenu.logout' | translate}}</span></div></a>
+      <a (click)="openDialog_studnets()" mat-list-item>
+        <div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.kids' | translate}}</span></div>
+      </a>
+      <a (click)="openDialog_absence_list()" mat-list-item>
+        <div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.absence_plan' | translate}}</span>
+        </div>
+      </a>
+      <a (click)="openDialog_about()" mat-list-item>
+        <div class="d-flex flex-row"><i class="bi bi-info-circle"></i><span>{{'sideMenu.about_App' | translate}}</span>
+        </div>
+      </a>
+      <a (click)="openDialog_Changelang()" mat-list-item>
+        <div class="d-flex flex-row"><i class="bi bi-globe"></i><span>{{'sideMenu.change_Language' | translate}}</span>
+        </div>
+      </a>
+      <a (click)="openDialog_changePass()" mat-list-item>
+        <div class="d-flex flex-row"><i class="bi bi-lock-fill"></i><span>{{'sideMenu.change_Password' |
+            translate}}</span></div>
+      </a>
+      <a (click)="logOut()" mat-list-item>
+        <div class="d-flex flex-row"><i class="bi bi-box-arrow-left"></i><span>{{'sideMenu.logout' | translate}}</span>
+        </div>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -28,11 +49,11 @@
       </button>
       <div class="example-spacer">
       </div>
-        <button (click)="open_notification_dialog()" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <button (click)="open_notification_dialog()" mat-icon-button class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon">
         <mat-icon>notifications</mat-icon>
       </button>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

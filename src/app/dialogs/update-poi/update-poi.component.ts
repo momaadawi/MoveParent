@@ -6,13 +6,11 @@ import { ParentStudent } from '../../services/studentService/models/Students.mod
 import { SystemEnum } from 'src/app/configurations/system.enum';
 import { StudentService } from '../../services/studentService/student.service';
 import { UpdatePOIRequest } from '../../services/studentService/models/POI.model';
-import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SubSink } from 'subsink';
 import { Configuration } from '../../configurations/app.config';
 import { cssClasses } from '../../shared/cssClasses.conf';
-import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
-import { TranslateService } from '@ngx-translate/core';
+import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
 
 @Component({
   selector: 'app-update-poi',
@@ -36,7 +34,6 @@ export class UpdatePOIComponent implements OnInit, OnDestroy {
     private _snackBar: MatSnackBar,
     private _dialog: MatDialog,
     private _customTranslate: CustomTranslateService,
-    private _translate: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: { student: ParentStudent; updateType: SystemEnum.UpdatePoiState; }) {
   }
 

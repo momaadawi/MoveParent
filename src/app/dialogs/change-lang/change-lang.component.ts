@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
+import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
 
 @Component({
   selector: 'change-lang',

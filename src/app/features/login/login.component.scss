@@ -46,7 +46,7 @@
 
 #sub-btn .mat-focus-indicator {
   background: $main-btn;
-  border-radius: $main-btn-radius!important;
+  border-radius: $main-btn-radius !important;
   color: #f1f1f1;
   margin-top: 3em;
   width: 100%;
@@ -57,28 +57,12 @@
 #loginForm {
   margin-top: 3em;
 }
-// .transparent {
 
-//   background-color: transparent !important;
-//   box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0);
-// }
-
-// .left-border-none {
-
-//   border-left: none !important;
-//   box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0);
-// }
-
-// .form-control{
-//   height: 50px;
-//   border-bottom-right-radius: .375rem !important;
-//   border-top-right-radius: .375rem !important;
-// }
-#login-word{
+#login-word {
   font-size: 30px;
   color: rgb(63, 63, 63);
 }
 
-#loginForm input{
+#loginForm input {
   border-radius: 9px;
 }

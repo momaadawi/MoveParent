@@ -1,14 +1,10 @@
 <div id="welcome-container">
-  <!-- <div class="logo-skip-btn d-flex flex-row">
-    <span [routerLink]="['/login']" id="skip-btn" class="align-self-start">skip</span>
-  <img id="welcome-logo" class="align-self-center" src="../../../assets/logo.svg">
-  </div> -->
   <div class="d-flex flex-column">
     <div class="d-flex flex-row-reverse justify-content-between">
       <span [routerLink]="['/login']" class="text-secondary"><u>{{'skip' | translate}}</u></span>
       <a (click)="changeLang()" class="text-secondary"><u>{{'En' | translate}}</u></a>
     </div>
-    <img id="welcome-logo" src="../../../assets/logo.svg">
+    <img id="welcome-logo" src="assets/logo.svg">
   </div>
   <div style="height: 230px;display: flex;justify-content: center;">
     <img id="welcome-infograph" [src]="welcome_infographImg">

@@ -25,40 +25,6 @@
       <small [ngClass]="{'p-error': Password.errors?.['required']}" *ngIf="Password.errors?.['required'] && Password.touched">{{'validation.password_required' | translate}}</small>
   </div>
 
-
-
-    <!-- <mat-label>{{'hints.username' | translate}}</mat-label>
-    <mat-form-field dir="ltr" style="width: 100%;" floatLabel="never" appearance="outline">
-      <mat-icon matPrefix>person</mat-icon>
-      <input style="border-radius: 15px;" formControlName="UserName" matInput
-        placeholder="{{'hints.username' | translate}}">
-      <mat-error *ngIf="UserName.errors?.['required']">{{'validation.username_required' | translate}}</mat-error>
-    </mat-form-field>
-
-    <mat-label>{{'hints.password' | translate}}</mat-label>
-    <mat-form-field style="width: 100%;" appearance="standard">
-      <mat-icon matPrefix><i class="bi bi-lock"></i></mat-icon>
-      <input type="password" formControlName="Password" matInput placeholder="{{'hints.password' | translate}}">
-      <mat-error *ngIf="Password.errors?.['required']">{{'validation.password_required' | translate}}</mat-error>
-    </mat-form-field> -->
-
-    <!-- <label for="username-input" class="form-label text-secondary mb-3">{{'hints.username' | translate}}</label>
-    <div  class="input-group mb-3">
-      <span class="input-group-text transparent"><i class="bi bi-person-fill"></i></span>
-      <input id="username-input" [ngClass]="{'form-control':true, 'left-border-none': true, 'is-invalid': (UserName.invalid && (UserName.dirty || UserName.touched))}"  formControlName="UserName" type="text"  placeholder="{{'hints.username' | translate}}" aria-label="username" >
-      <div [ngClass]="{'invalid-feedback': UserName.errors?.['required']}" *ngIf="UserName.errors?.['required']">{{'validation.username_required' | translate}}</div>
-    </div> -->
-
-
-
-
-    <!-- <label for="username-input" class="form-label text-secondary mb-3">{{'hints.password' | translate}}</label>
-    <div class="input-group">
-      <span class="input-group-text transparent" ><i class="bi bi-lock"></i></span>
-      <input id="username-input" [ngClass]="{'form-control':true, 'left-border-none': true, 'is-invalid': (Password.invalid && (Password.dirty || Password.touched))}" id="password_input" formControlName="Password" type="password" placeholder="{{'hints.password' | translate}}" aria-label="password">
-      <div [ngClass]="{'invalid-feedback': Password.errors?.['required']}" *ngIf="Password.errors?.['required']" >{{'validation.password_required' | translate}}</div>
-    </div> -->
-
     <!-- <a [routerLink]="['/resetpassword']"><span class="forgot-btn mb-3">{{'hints.forget_password' | translate}}</span></a> -->
     <div id="sub-btn" class="d-grid gap-2 col-10 position-relative">
       <button [disabled]="spinner" type="submit" mat-flat-button>
@@ -66,5 +32,6 @@
         <span class="sr-only">{{'login' | translate}}</span>
       </button>
     </div>
+
   </form>
 </div>

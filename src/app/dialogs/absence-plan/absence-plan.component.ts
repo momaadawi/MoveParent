@@ -1,20 +1,19 @@
-import { Component, OnInit, OnDestroy, Inject, AfterViewInit, ViewChild } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, NgForm, FormControl } from '@angular/forms';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { StudentService } from '../../services/studentService/student.service';
 import { map } from 'rxjs/operators';
 import { ParentStudent } from '../../services/studentService/models/Students.model';
-import { AbsenceRequest, AbsencePlan, AbsenceResponse } from '../../services/absenceService/absence.model';
-import { AbsenceService } from '../../services/absenceService/absence.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { cssClasses } from 'src/app/shared/cssClasses.conf';
 import { Configuration } from '../../configurations/app.config';
 import { SubSink } from 'subsink';
 import { Observable } from 'rxjs';
-import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DilogIds } from '../../configurations/dilaogs.config';
 import * as moment from 'moment';
-import { formatDate } from '@angular/common';
+import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
+import { AbsenceService } from 'src/app/services/absenceService/absence.service';
+import { AbsencePlan, AbsenceResponse, AbsenceRequest } from 'src/app/services/absenceService/absence.model';
 
 @Component({
   selector: 'app-absence-plan',
@@ -36,8 +35,7 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) private _data: AbsencePlan) { }
 
   ngOnInit(): void {
-    console.log(this._data)
-    this._studentService.get_Students()
+    let getStudentSubscription = this._studentService.get_Students()
       .pipe(
         map(res => { return res.Value })).subscribe({
           next: res => this.students = res,
@@ -45,6 +43,7 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
             this.seedForm()
           }
         })
+      this._subSink.add(getStudentSubscription)
   }
   seedForm(): void {
     if (this._data!?.Id > 0) {
@@ -58,8 +57,6 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
     }else{
       this.AbsenceForm.reset()
     }
-
-
   }
 
   createAbsenceForm() {
@@ -94,16 +91,13 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
     else
       addOrUpdate = this._absenceService.setAbsense(AbsenceRequest)
 
-    this._subSink.add(
-      addOrUpdate.subscribe({
+      let addUpdateSubscription = addOrUpdate.subscribe({
         next: res => {
           if (res.IsErrorState){
             this._snackBar.open(res.ErrorDescription, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
             this._dialog.getDialogById(DilogIds.absence_plan)?.close()
           }
           else if (!res.IsErrorState) {
-
-            // this._dialog.getDialogById(DilogIds.absence_plan)?._containerInstance.ngOnDestroy()
             this._dialog.getDialogById(DilogIds.absence_plan)?.close()
             this._snackBar.open(this._customTranslate.translate('snack-bar.student_set_absent_succsfully'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
             this._dialog.getDialogById(DilogIds.absence_list)?.componentInstance.retriveAbsences()
@@ -111,19 +105,17 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
           }
         },
         error: err => {
-          console.log(err)
           this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
         },
         complete: () => {
           this.spinner = false;
         }
       })
-    )
+      this._subSink.add(addUpdateSubscription)
   }
 
   ngOnDestroy(): void {
     this.AbsenceForm.reset()
     this._subSink.unsubscribe()
   }
-
 }

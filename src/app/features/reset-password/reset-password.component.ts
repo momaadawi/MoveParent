@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../services/accountService/account.service';
+import { AccountService } from '../../shared/services/accountService/account.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 

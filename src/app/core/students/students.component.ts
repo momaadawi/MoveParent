@@ -3,8 +3,8 @@ import { CallNumber } from 'capacitor-call-number';
 import { StudentService } from '../../services/studentService/student.service';
 import { SubSink } from 'subsink';
 import { ParentStudent } from '../../services/studentService/models/Students.model';
-import { PlanService } from '../../services/planService/plan.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { PlanService } from 'src/app/services/planService/plan.service';
 
 
 @Component({

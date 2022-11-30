@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { delay, interval, Subject, timeInterval, timeout, timer } from 'rxjs';
-import { CustomTranslateService } from './services/customTranslateService/custom-translate.service';
+import { SystemEnum } from './configurations/system.enum';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +9,12 @@ import { CustomTranslateService } from './services/customTranslateService/custom
 })
 export class AppComponent{
 
-  constructor(translate: TranslateService,
-            private _customeTransalte: CustomTranslateService) {
-    translate.addLangs(['en', 'ar']);
-    translate.setDefaultLang('en');
-    translate.use('en');
+  constructor(translate: TranslateService) {
+    translate.addLangs([SystemEnum.Language.English, SystemEnum.Language.Arabic]);
+    translate.setDefaultLang(SystemEnum.Language.English);
+    translate.use(SystemEnum.Language.English);
 
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang?.match(/en|ar/) ? browserLang : 'en');
+    translate.use(browserLang?.match(`/${SystemEnum.Language.English}|{${SystemEnum.Language.English}}/`) ? browserLang : SystemEnum.Language.English);
   }
 }

@@ -27,6 +27,11 @@ export let Configuration = {
   alertTime: 4000,
   alertPosition: {
     top: ''
+  },
+  assets: {
+    welcome_building_img: 'assets/intro/welcome-bulding.svg',
+    welcome_girl_sitting: 'assets/intro/welcome-girl-sit.svg',
+    welcome_bus: 'assets/intro/welcome-bus.svg'
   }
 };
 

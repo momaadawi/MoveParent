@@ -91,7 +91,9 @@
     "password_changed_sucessfully" : "تم تغيير كلمة المرور بنجاح",
     "please_check_password": "من فضلك تأكد من كلمة المرور",
     "student_location_updated": "تم تغيير الموقع بنجاح",
-    "wrong_data": "خطأ في البيانات !!"
+    "wrong_data": "خطأ في البيانات !!",
+    "student_set_absent": "تم تأكيد غياب الطالب"
+
   }
 
 }

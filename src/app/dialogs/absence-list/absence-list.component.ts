@@ -1,17 +1,16 @@
-import { Component, Inject, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { AbsencePlan } from '../../services/absenceService/absence.model';
-import { AbsenceService } from '../../services/absenceService/absence.service';
+import { Component, Inject, OnInit, TemplateRef, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Configuration } from '../../configurations/app.config';
 import { cssClasses } from '../../shared/cssClasses.conf';
 import { SubSink } from 'subsink';
 import { AbsencePlanComponent } from '../absence-plan/absence-plan.component';
 import { DilogIds } from '../../configurations/dilaogs.config';
-import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
-import { TranslateService } from '@ngx-translate/core';
-import { DialogServiceService } from '../../shared/services/dialog-service.service';
+import { CustomDialogService } from '../../shared/services/customDialogService/customDialog.service';
+import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
+import { AbsencePlan } from 'src/app/services/absenceService/absence.model';
+import { AbsenceService } from 'src/app/services/absenceService/absence.service';
 
 @Component({
   selector: 'app-absence-list',
@@ -19,7 +18,7 @@ import { DialogServiceService } from '../../shared/services/dialog-service.servi
   styleUrls: ['./absence-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AbsenceListComponent implements OnInit {
+export class AbsenceListComponent implements OnInit, OnDestroy {
   private _subsink = new SubSink();
   spinner: boolean = false;
   loader: boolean = false;
@@ -28,17 +27,16 @@ export class AbsenceListComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _dialog: MatDialog,
     private _customTranslate: CustomTranslateService,
-    private _dialogService: DialogServiceService,
+    private _dialogService: CustomDialogService,
     @Inject(MAT_DIALOG_DATA) public deleteId: number) { }
 
   ngOnInit(): void {
     this.retriveAbsences()
-
   }
 
   retriveAbsences() {
-            this._dialog.getDialogById(DilogIds.absence_plan)?.close()
-            this.loader = true;
+    this._dialog.getDialogById(DilogIds.absence_plan)?.close()
+    this.loader = true;
     let absenceSubscription = this._absenceService.getAbsence().subscribe({
       next: res => {
         this.$absences = of(res.Value)
@@ -53,13 +51,13 @@ export class AbsenceListComponent implements OnInit {
     this._subsink.add(absenceSubscription)
   }
   openDialogWithTemplateRef(templateRef: TemplateRef<any>, absenceId: number) {
-    let config = this._dialogService.defualt();
+    let config = this._dialogService.defualtConfig();
     config.id = DilogIds.absence_delete;
     config.data = absenceId
     this.deleteId = absenceId;
     this._dialog.open(templateRef, config);
   }
-  open_add_absence(){
+  open_add_absence() {
     let config = this._dialogService.fullSize_dialogConfig();
     config.data = null
     this._dialog.open(AbsencePlanComponent, config)
@@ -91,5 +89,8 @@ export class AbsenceListComponent implements OnInit {
       complete: () => { this.spinner = false }
     })
     this._subsink.add(deleteSubscription);
+  }
+  ngOnDestroy(): void {
+    this._subsink.unsubscribe()
   }
 }

@@ -11,5 +11,15 @@ export namespace SystemEnum {
     UpdatePickUpLocation = 1,
     updateDropOffLocation = 2
   }
+
+  export enum ResponseAction{
+    Success = 0,
+    Failed = 1,
+    Warning = 2
+  }
+  export enum Language{
+    English = 'en',
+    Arabic = 'ar'
+  }
 }
 

@@ -2,11 +2,10 @@
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
 </div>
 
-<!-- <mat-dialog-content class="mat-typography">
-</mat-dialog-content> -->
 <div class="container">
-  <google-map height="500px" width="100%" [options]="mapOptions" [center]="student_position" (mapClick)="mapClick($event)">
-    <map-marker [position]="student_position" [options]="markerOptions" ></map-marker>
+  <google-map height="500px" width="100%" [options]="mapOptions" [center]="student_position"
+    (mapClick)="mapClick($event)">
+    <map-marker [position]="student_position" [options]="markerOptions"></map-marker>
   </google-map>
 </div>
 

@@ -1,14 +1,12 @@
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { StudentService } from '../../services/studentService/student.service';
 import { SubSink } from 'subsink';
 import { ParentStudent } from 'src/app/services/studentService/models/Students.model';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UpdatePOIComponent } from '../update-poi/update-poi.component';
 import { SystemEnum } from 'src/app/configurations/system.enum';
-import { TranslateService } from '@ngx-translate/core';
-import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
-import { DialogServiceService } from '../../shared/services/dialog-service.service';
+import { CustomDialogService } from '../../shared/services/customDialogService/customDialog.service';
 
 
 @Component({
@@ -16,28 +14,28 @@ import { DialogServiceService } from '../../shared/services/dialog-service.servi
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.scss']
 })
-export class StudentListComponent implements OnInit {
+export class StudentListComponent implements OnInit, OnDestroy {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger | undefined;
+  private _subSink = new SubSink();
   loader: boolean = false;
   updatePoiType!: SystemEnum.UpdatePoiState
   studnets: ParentStudent[] = []
 
-  private subSink = new SubSink();
   constructor(private _studentService: StudentService,
-    private _dialogService: DialogServiceService,
+    private _dialogService: CustomDialogService,
     public _dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loader = true;
-    this.subSink.add(
-      this._studentService.get_Students()
-        .subscribe({
-          next: st => this.studnets = st.Value,
-          complete: () => {
-            this.loader = false;
-          }
-        })
-    )
+
+    let getStudent_subscription = this._studentService.get_Students()
+      .subscribe({
+        next: st => this.studnets = st.Value,
+        complete: () => {
+          this.loader = false;
+        }
+      })
+    this._subSink.add(getStudent_subscription)
   }
   update_poi(student: ParentStudent, updateType: SystemEnum.UpdatePoiState) {
     let config = this._dialogService.fullSize_dialogConfig();
@@ -45,4 +43,8 @@ export class StudentListComponent implements OnInit {
     config.id = 'di_update_poi';
     this._dialog.open(UpdatePOIComponent, config)
   }
+  ngOnDestroy(): void {
+    this._subSink.unsubscribe()
+  }
+
 }

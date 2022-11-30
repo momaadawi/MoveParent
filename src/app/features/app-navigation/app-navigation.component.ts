@@ -2,22 +2,13 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { CustomCookieService } from '../../services/customCookieService/customCookie.service';
+import { CustomCookieService } from '../../shared/services/customCookieService/customCookie.service';
 import { Configuration } from '../../configurations/app.config';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AboutComponent } from 'src/app/dialogs/about/about.component';
-import { ChangePasswordComponent } from 'src/app/dialogs/change-password/change-password.component';
-import { ChangeLangComponent } from 'src/app/dialogs/change-lang/change-lang.component';
-import { StudentListComponent } from '../../dialogs/student-list/student-list.component';
-import { NotificationComponent } from '../../dialogs/notification/notification.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AbsenceListComponent } from '../../dialogs/absence-list/absence-list.component';
 import { DilogIds } from '../../configurations/dilaogs.config';
-import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
-import { Direction, Directionality } from '@angular/cdk/bidi';
-import { DialogConfig } from 'src/app/dialogs/dialog.config';
-import { TranslateService } from '@ngx-translate/core';
-import { DialogServiceService } from '../../shared/services/dialog-service.service';
+import { CustomDialogService } from '../../shared/services/customDialogService/customDialog.service';
+import { AboutComponent, ChangePasswordComponent, ChangeLangComponent, StudentListComponent, NotificationComponent, AbsenceListComponent } from '../../dialogs/dialogs'
 
 @Component({
   selector: 'app-navigation',
@@ -39,7 +30,7 @@ export class AppNavigationComponent implements OnInit, OnDestroy {
     private _cookieService: CustomCookieService,
     public _dialog: MatDialog,
     private _router: Router,
-    private _dialogService: DialogServiceService) { }
+    private _dialogService: CustomDialogService) { }
 
   ngOnInit(): void {
     this.menuData.parentName = this._cookieService.getCookieByKey(Configuration.cookies.UserName)

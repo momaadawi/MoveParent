@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from '../../services/accountService/account.service';
+import { AccountService } from '../../shared/services/accountService/account.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Configuration } from '../../configurations/app.config';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { MatDialog } from '@angular/material/dialog';
 import { cssClasses } from '../../shared/cssClasses.conf';
-import { CustomTranslateService } from '../../services/customTranslateService/custom-translate.service';
+import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
 
 export function ConfirmedValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -55,8 +55,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       this.spinner = false;
       return
     }
-    this._subSink.add(
-      this._accountService.changePassword({
+     let changePassword_subscription =  this._accountService.changePassword({
         userName: this._cookieService.get(Configuration.cookies.UserName),
         password: this.resetPassForm.controls['oldPassword'].value,
         newPassword: this.resetPassForm.controls['newPassword'].value
@@ -75,12 +74,10 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
           this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
         }
       })
-    )
     this.spinner = false;
+    this._subSink.add(changePassword_subscription)
   }
   ngOnDestroy(): void {
     this._subSink.unsubscribe()
   }
-
-
 }

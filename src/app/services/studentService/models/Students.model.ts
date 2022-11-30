@@ -1,5 +1,5 @@
-import { Plan, PlanResponse, StudentDetails } from '../../planService/plan.model';
 import { Observable } from 'rxjs';
+import { Plan, StudentDetails } from '../../planService/plan.model';
 
 export interface ParentStudent {
   studentDetails: StudentDetails;
