@@ -2,29 +2,27 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
-      <div class="student_info d-flex flex-row justify-content-around">
-        <div *ngIf="menuData.parentImage.length < 1 || menuData.parentImage == undefined"
+      <div class="student_info d-flex flex-row justify-content-start">
+        <!-- <div *ngIf="menuData.parentImage.length < 1 || menuData.parentImage == undefined"
           class="profile-pic align-self-center"><img src="../../../assets/profilepci.png" alt=""
             class="rounded-circle profile-pic-img-parent"></div>
+
         <div *ngIf="menuData.parentImage.length > 1" class="profile-pic align-self-center"><img
             [src]="'data:image/png;base64,' + menuData.parentImage" alt=""
-            class="rounded-circle profile-pic-img-parent"></div>
+            class="rounded-circle profile-pic-img-parent"></div> -->
+            <p-avatar *ngIf="menuData.parentImage.length < 1 || menuData.parentImage == undefined"  ng label="{{menuData.parentName[0].toUpperCase()}}" styleClass="mr-2" size="small" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+
         <div class="d-flex flex-column">
-          <div class="parent-info text-secondary">{{menuData.parentName}}</div>
+          <div class="parent-info text-secondary mr-2 ml-2">{{menuData.parentName}}</div>
         </div>
       </div>
     </mat-toolbar>
     <mat-nav-list>
-      <!-- <a [routerLink]="['/home']" mat-list-item ><div class="d-flex flex-row"><i class="bi bi-calendar"></i><span>{{'sideMenu.history_trip' | translate}}</span></div></a> -->
       <a (click)="openDialog_studnets()" mat-list-item>
-        <div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.kids' | translate}}</span></div>
+        <div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.my_childrens' | translate}}</span></div>
       </a>
       <a (click)="openDialog_absence_list()" mat-list-item>
-        <div class="d-flex flex-row"><i class="bi bi-people"></i><span>{{'sideMenu.absence_plan' | translate}}</span>
-        </div>
-      </a>
-      <a (click)="openDialog_about()" mat-list-item>
-        <div class="d-flex flex-row"><i class="bi bi-info-circle"></i><span>{{'sideMenu.about_App' | translate}}</span>
+        <div class="d-flex flex-row"><i class="bi bi-balloon-heart"></i><span>{{'sideMenu.absence_plan' | translate}}</span>
         </div>
       </a>
       <a (click)="openDialog_Changelang()" mat-list-item>
@@ -35,11 +33,16 @@
         <div class="d-flex flex-row"><i class="bi bi-lock-fill"></i><span>{{'sideMenu.change_Password' |
             translate}}</span></div>
       </a>
+      <a (click)="openDialog_about()" mat-list-item>
+        <div class="d-flex flex-row"><i class="bi bi-info-circle"></i><span>{{'sideMenu.about_App' | translate}}</span>
+        </div>
+      </a>
       <a (click)="logOut()" mat-list-item>
         <div class="d-flex flex-row"><i class="bi bi-box-arrow-left"></i><span>{{'sideMenu.logout' | translate}}</span>
         </div>
       </a>
     </mat-nav-list>
+    <footer id="version-info" class="text-secondary">{{ 'version' | translate }} 2.0.1</footer>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="none">

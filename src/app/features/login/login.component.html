@@ -9,7 +9,7 @@
 
     <div class="field p-fluid mb-3">
       <label for="username-input" class="form-label text-secondary mb-3">{{'hints.username' | translate}}</label>
-      <span style="width: 100%;" class="p-input-icon-left">
+      <span style="width: 100%;" class="p-input-icon-{{ 'hand' | translate}}">
         <i class="bi bi-person-fill"></i>
         <input id="username-input" type="text" [ngClass]="{'ng-invalid ng-dirty': (UserName.invalid && (UserName.dirty || UserName.touched))}" formControlName="UserName" pInputText placeholder="{{'hints.username' | translate}}">
       </span>
@@ -18,7 +18,7 @@
 
     <div class="field p-fluid ">
       <label for="password-input" class="form-label text-secondary mb-3">{{'hints.password' | translate}}</label>
-      <span style="width: 100%;" class="p-input-icon-left">
+      <span style="width: 100%;" class="p-input-icon-{{ 'hand' | translate}}">
         <i class="bi bi-lock-fill"></i>
         <input id="password-input" type="password" [ngClass]="{'ng-invalid ng-dirty': (Password.invalid && (Password.dirty || Password.touched))}" formControlName="Password" pInputText placeholder="{{'hints.password' | translate}}">
       </span>

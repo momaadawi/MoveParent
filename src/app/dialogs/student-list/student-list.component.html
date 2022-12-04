@@ -1,21 +1,38 @@
-<div class="dialog_header" class="border-bottom">
+<div  class="border-bottom dialog_header">
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
 </div>
 <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
 
-<div class="student_info d-flex flex-row justify-content-between border-bottom  " *ngFor="let st of studnets">
 
-  <div *ngIf="st.Image.length > 0" class="profile-pic "><img src="data:image/png;base64, {{st.Image}}" alt=""
-      class="rounded-circle profile-pic-img"></div>
-  <div *ngIf="st.Image.length < 1" class="profile-pic "><img src="assets/profilepci.png" alt=""
-      class="rounded-circle profile-pic-img"></div>
-  <div class="student-name">{{st.Name}}</div>
+<div class="student_info d-flex flex-row justify-content-between border-bottom  " *ngFor="let st of $any(studnets)">
+  <p-avatar  [image]="'data:image/png;base64,'+ st.Image" styleClass="mr-2 align-self-center" size="xlarge"  shape="circle"></p-avatar>
+  <p-avatar *ngIf="st.Image.length < 1 || st.Image == '' "  ng label="{{st.Name[0].toUpperCase()}}" styleClass="mr-2 p-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
 
-  <i mat-button  [matMenuTriggerFor]="menu" #menuTrigger class="bi bi-three-dots-vertical"></i>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="update_poi(st, 1)" >{{ 'poi.pick_up_location' | translate }}</button>
-    <button mat-menu-item (click)="update_poi(st, 2)">{{ 'poi.drop_off_location' | translate }}</button>
-  </mat-menu>
+  <div class="" style="width: 215px;">
+    <h4  class="mr-2 ml-2">{{st.Name}}</h4>
+    <div class="student-details d-flex flex-column justify-content-start">
+      <div class="d-flex flex-row justify-content-start">
+        <div class="text-primary mr-2 ml-2">{{ 'student_profile.date_of_birth' | translate }}</div>
+        <small class="text-secondary vl mr-2 ml-2">{{ $any(st.StudentInfo)?.BirthDate | date:'mediumDate' }}</small>
+      </div>
+      <div class="d-flex flex-row justify-content-start">
+        <div class="text-primary mr-2 ml-2">{{ 'student_profile.class' | translate }}</div>
+        <small class="text-secondary vl mr-2 ml-2 ">{{ $any(st.StudentInfo)?.Class}}</small>
+      </div>
+      <div class="d-flex flex-row justify-content-start">
+        <div class="text-primary mr-2 ml-2">{{ 'student_profile.grade' | translate }}</div>
+        <small class="text-secondary vl mr-2 ml-2">{{ $any(st.StudentInfo)?.Grade}}</small>
+      </div>
+    </div>
+  </div>
 
+
+  <div class="ml-auto p-2">
+    <i mat-button  [matMenuTriggerFor]="menu" #menuTrigger class="bi bi-three-dots-vertical"></i>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="update_poi(st, 1)" >{{ 'poi.pick_up_location' | translate }}</button>
+      <button mat-menu-item (click)="update_poi(st, 2)">{{ 'poi.drop_off_location' | translate }}</button>
+    </mat-menu>
+  </div>
 
 </div>

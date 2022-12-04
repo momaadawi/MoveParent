@@ -1,5 +1,5 @@
 
-  export interface student {
+  export interface Student {
       Id: number;
       Name: string;
       Grade: string;
@@ -18,7 +18,7 @@
       IsErrorState: boolean;
       ErrorDescription: string;
       Exception: string
-      Value: student;
+      Value: Student;
   }
 
 

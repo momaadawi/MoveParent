@@ -1,3 +1,4 @@
+import { Student } from '../studentService/models/student.model';
 export interface RouteLine {
   LineGeometry: string;
 }
@@ -23,7 +24,6 @@ export interface StudentDetails {
   StudentArrivedTime: string;
   StudentDropOffTime: string;
   StudentPickupTime: string;
-  Parent?: any;
   StudentOrder: number;
   PlannedDate: Date;
   ActualDate?: any;

@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { UpdatePOIComponent } from '../update-poi/update-poi.component';
 import { SystemEnum } from 'src/app/configurations/system.enum';
 import { CustomDialogService } from '../../shared/services/customDialogService/customDialog.service';
+import { map } from 'rxjs';
+import { StudentProfileComponent } from '../student-profile/student-profile.component';
 
 
 @Component({
@@ -30,8 +32,18 @@ export class StudentListComponent implements OnInit, OnDestroy {
 
     let getStudent_subscription = this._studentService.get_Students()
       .subscribe({
-        next: st => this.studnets = st.Value,
+        next: st => {
+          this.studnets =  st.Value
+        },
         complete: () => {
+          this.studnets.forEach(st => {
+            let infoSub = this._studentService.get_student_by_id(st.Id).subscribe({
+              next: res => {
+                st!.StudentInfo = res.Value
+              }
+            })
+            this._subSink.add(infoSub)
+          })
           this.loader = false;
         }
       })
@@ -45,6 +57,12 @@ export class StudentListComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this._subSink.unsubscribe()
+  }
+  view_profile(studnet: ParentStudent){
+    let config = this._dialogService.fullSize_dialogConfig();
+    config.data = studnet
+    config.id = 'student-profile'
+    this._dialog.open(StudentProfileComponent, config)
   }
 
 }

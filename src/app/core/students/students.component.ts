@@ -5,6 +5,17 @@ import { SubSink } from 'subsink';
 import { ParentStudent } from '../../services/studentService/models/Students.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PlanService } from 'src/app/services/planService/plan.service';
+import { SystemEnum } from 'src/app/configurations/system.enum';
+import { MatDialog } from '@angular/material/dialog';
+import { SetAbsentComponent } from '../dialogs/set-absent/set-absent.component';
+import { CustomDialogService } from '../../shared/services/customDialogService/customDialog.service';
+import { DilogIds } from 'src/app/configurations/dilaogs.config';
+import { BusArrivalAlarmComponent } from '../dialogs/bus-arrival-alarm/bus-arrival-alarm.component';
+import { MatExpansionPanel } from '@angular/material/expansion';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { StudentDetails } from '../../services/planService/plan.model';
+import { Router } from '@angular/router';
+import { Browser } from '@capacitor/browser';
 
 
 @Component({
@@ -14,20 +25,23 @@ import { PlanService } from 'src/app/services/planService/plan.service';
   encapsulation: ViewEncapsulation.None
 })
 export class StudentsComponent implements OnInit, OnDestroy {
-  absence_backGround: string =  'white'
   private subs = new SubSink();
   loader: boolean = false;
-  panelOpenState = false;
+  expanded_StudentId: number = -1; // -1 mean that all expansion panels are closed it depends on student id
+
   allStudents: ParentStudent[] = [];
-  backFromSchool: ParentStudent[] = []
   students: { goToSchool: ParentStudent[]; backFromSchool: ParentStudent[]; }
     = { goToSchool: [], backFromSchool: [] }
 
   constructor(private _studentService: StudentService,
     private _planService: PlanService,
+    private _dialog: MatDialog,
+    private _customDialogService: CustomDialogService,
+    private _router: Router,
     private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this._dialog.open(BusArrivalAlarmComponent, this._customDialogService.defualtConfig())
     this.retriveStudents();
   }
 
@@ -63,30 +77,45 @@ export class StudentsComponent implements OnInit, OnDestroy {
   async call(phone: string) {
     await CallNumber.call({ number: phone, bypassAppChooser: true });
   }
+
   setAbsent(student: ParentStudent) {
-    // this._dialog.open(SetAbsetntComponent, {data: student})
+    let config = this._customDialogService.defualtConfig()
+    config.data = student
+    config.id = DilogIds.Set_student_Absent
+    this._dialog.open(SetAbsentComponent, config)
+  }
+
+  generate_student_status_Class_Style(studentStatus: number) {
+    let cssClasses = 'student-status-btn btn btn-sm'
+    switch (studentStatus) {
+      case SystemEnum.StudentStatus.NoShow as number:
+        return `btn-outline-danger ${cssClasses}`
+      case SystemEnum.StudentStatus.Absent as number:
+        return `btn-outline-secondary ${cssClasses}`
+      case SystemEnum.StudentStatus.Onboard as number:
+        return `btn-outline-success ${cssClasses}`
+      case SystemEnum.StudentStatus['Waiting  Pickup'] as number:
+        return `btn-outline-warning ${cssClasses}`
+      case SystemEnum.StudentStatus['Dropped  off'] as number:
+        return `btn-outline-success ${cssClasses}`
+
+      default:
+        return `btn-outline-primary ${cssClasses}`
+      }
+  }
+  setAbsence_backgound(studentStatus: number):string{
+    if(studentStatus == SystemEnum.StudentStatus.Absent as number) //absent
+      return 'absent-student'
+    return ''
+  }
+  toggle_expanding(studentId: number){
+    this.expanded_StudentId = studentId
+  }
+  redirect_to_googleMap(studentDetails: StudentDetails){
+       Browser.open({ url: `https://www.google.com/maps/search/?api=1&query=${studentDetails.Latitude},${studentDetails.Longtude}`});
+
   }
   ngOnDestroy(): void {
     this.subs.unsubscribe()
-  }
-  generate_student_status_Class_Style(studentStatus: number) {
-    if (studentStatus == 1) //no show
-      return 'btn-outline-danger student-status-btn btn btn-sm'
-    if (studentStatus == 2) //Absent
-      return 'btn-outline-secondary student-status-btn btn btn-sm'
-    if (studentStatus == 3) //Onboard
-      return 'btn-outline-success student-status-btn btn btn-sm'
-    if (studentStatus == 4) //wating pickup
-      return 'btn-outline-danger student-status-btn btn btn-sm'
-    if (studentStatus == 6) //Dropped  off
-      return 'btn-outline-success student-status-btn btn btn-sm'
-
-    return 'btn-outline-success student-status-btn btn btn-sm'
-
-  }
-  setAbsence_backgound(studentStatus: number):string{
-    if(studentStatus == 2) //absent
-      return 'absent-student'
-    return ''
   }
 }

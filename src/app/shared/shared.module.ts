@@ -8,9 +8,13 @@ import { CustomDialogService,
          CustomCookieService,
          CustomTranslateService,
          NotificationService, } from './services/services';
+import { ShortTimePipe } from './pipes/short-time.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  
+    ShortTimePipe
+  ],
   providers:[
     CustomDialogService,
     AccountService,

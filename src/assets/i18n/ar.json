@@ -2,6 +2,7 @@
   "En": "En",
   "skip": "تخطي",
   "dir": "rtl",
+  "hand": "right",
   "navigation-arrow": "bi-arrow-right",
   "welcome_slide_1":{
     "header": "مرحبا بالمدرسة",
@@ -19,8 +20,14 @@
   "login": "تسجيل الدخول",
   "submit": "إرسال",
   "cancel": "إغلاق",
+  "close": "إغلاق",
   "save": "حفظ",
+  "confirm": "تأكيد",
   "notifications": "الإشعارات",
+  "absence_plan_title": "خطة غياب",
+  "reason": "السبب",
+  "update_profile": "تعديل البيانات",
+  "version": "إصدار",
   "hints":{
     "enter_user_name_and_password": "قم بإدخال اسم المستخدم وكلمه المرور",
     "forget_password": "نسيت كلمة المرور؟",
@@ -36,7 +43,8 @@
     "new_password": "كلمة المرور الجديدة",
     "confirm_password": "تأكيد كلمة المرور الجديدة",
     "yes_confirm_absence": "نعم, أكد الغياب",
-    "absence_delete_confimation": "هل انت متأطد من حذف الخطة؟"
+    "absence_delete_confimation": "هل انت متأطد من حذف الخطة؟",
+    "confirm_set_student_absent": "تأكيد غياب الطالب اليوم"
 
   },
   "validation":{
@@ -51,7 +59,7 @@
     "change_Language": "تغيير اللغة",
     "logout": "تسجيل خروج",
     "change_Password": "تغيير كلمة المرور",
-    "kids": "أطفالي",
+    "my_childrens": "أطفالي",
     "absence_plan": "خطة غياب"
   },
   "language": {
@@ -71,29 +79,44 @@
     "driver_name": "إسم السائق",
     "supervisor_name": "إسم المشرف",
     "no_trips_go_to_school": "لا يوجد رحلات ذهاب إلي المدرسة",
-    "no_trips_back_from_school": "لا يوجد رحلات عودة من المدرسة"
-
+    "no_trips_back_from_school": "لا يوجد رحلات عودة من المدرسة",
+    "bus_left_location_at": "الحافلة غادرت ",
+    "status_confirmed_by" : "تغيرت الحالة من ",
+    "pickup_time": "وقت الركوب",
+    "pickup_address": "عنوان الركوب",
+    "drop_off_time": "وقت النزول",
+    "drop_off_address": "عنوان النزول",
+    "bus_Arrival": "وصول الحافله"
   },
   "absence_plan":{
     "start_date": "من تاريخ",
     "end_date": "إلي تاريخ",
     "name": "العنوان",
-    "comment": "السبب"
+    "comment": "تعليق"
   },
   "poi": {
-    "pick_up_location": "نقطة الإلتقاط",
+    "pick_up_location": "نقطة الصعود",
     "drop_off_location": "نفطة النزول"
   },
   "snack-bar": {
     "please_check_user_name_password": "من فضلك تأكد من المستخدم و كلمة المرور",
     "something_wrong_retry_again": "حدث خطأ حاول مرة أخري",
-    "student_set_absent_succsfully": "تم إضافة خطة غياب للطالب بنجاح",
+    "student_set_absent_succsfully": "تم حفظ خطة غياب للطالب بنجاح",
     "password_changed_sucessfully" : "تم تغيير كلمة المرور بنجاح",
     "please_check_password": "من فضلك تأكد من كلمة المرور",
     "student_location_updated": "تم تغيير الموقع بنجاح",
     "wrong_data": "خطأ في البيانات !!",
-    "student_set_absent": "تم تأكيد غياب الطالب"
-
+    "student_set_absent": "تم تأكيد غياب الطالب",
+    "please_select_reason": "اختر سبب الغياب"
+  },
+  "student_profile": {
+    "gender": "النوع",
+    "date_of_birth": "تاريخ الميلاد",
+    "pickup_location": "نقطة الصعود",
+    "dropoff_location": "نقطة النزول",
+    "grade": "الصف",
+    "class": "الفصل",
+    "school": "المدرسة"
   }
 
 }

@@ -2,6 +2,7 @@
   "En": "عربي",
   "skip": "skip",
   "dir": "rtl",
+  "hand": "left",
   "navigation-arrow": "bi-arrow-left",
   "welcome_slide_1":{
     "header": "Welcome To Schools",
@@ -19,8 +20,14 @@
   "login": "Login",
   "submit": "Submit",
   "cancel": "Cancel",
+  "close": "Close",
   "save": "Save",
+  "confirm": "Confirm",
   "notifications": "Notifications",
+  "absence_plan_title": "Absence Plan",
+  "reason": "Reason",
+  "update_profile": "Update Profile",
+  "version": "Version",
   "hints":{
     "enter_user_name_and_password": "Enter your username and password",
     "forget_password": "forget password?",
@@ -36,7 +43,8 @@
     "new_password": "New password",
     "confirm_password": "Confirm new password",
     "yes_confirm_absence": "Yes, Confirm Absence",
-    "absence_delete_confimation": "Are your sure you want to delete plan?"
+    "absence_delete_confimation": "Are your sure you want to delete plan?",
+    "confirm_set_student_absent": "By confirmig this you will assign your child as absent from this trip today"
   },
   "validation":{
     "username_required": "Username is required field.",
@@ -50,7 +58,7 @@
     "change_Language": "Change Language",
     "logout": "Logout",
     "change_Password": "Change Password",
-    "kids": "Kids",
+    "my_childrens": "My Childrens",
     "absence_plan": "Absence Plan"
 
   },
@@ -73,13 +81,20 @@
     "driver_name": "Driver Name",
     "supervisor_name": "Supervisor name",
     "no_trips_go_to_school": "No trips go to school!",
-    "no_trips_back_from_school": "no trip back from School!"
+    "no_trips_back_from_school": "no trip back from School!",
+    "bus_left_location_at": "Bus left location at",
+    "status_confirmed_by" : "Status confirmed by",
+    "pickup_time": "Pickup time",
+    "pickup_address": "Pickup Address",
+    "drop_off_time": "Drop off Time",
+    "drop_off_address": "Drop off Address",
+    "bus_Arrival": "Bus Arrival"
   },
   "absence_plan":{
     "start_date": "Start date",
     "end_date": "End date",
     "name": "Title",
-    "comment": "Reason"
+    "comment": "Comment"
   },
   "poi": {
     "pick_up_location": "PickUp location",
@@ -88,14 +103,23 @@
   "snack-bar": {
     "please_check_user_name_password": "please check user name or password!!",
     "something_wrong_retry_again": "something wrong retry again",
-    "student_set_absent_succsfully": "student set absent succsfully",
+    "student_set_absent_succsfully": "student absent saved succsfully",
     "password_changed_sucessfully" : "password chaned succsfully",
     "please_check_password": "please check password!!",
     "student_location_updated": "student location updated",
     "wrong_data": "wrong form data!!",
     "success_absence_delete": "Absence plan deleted successfuly",
-    "student_set_absent": "studentd set as absent successfuly"
-
+    "student_set_absent": "studentd set as absent successfuly",
+    "please_select_reason": "please select reason!"
+  },
+  "student_profile": {
+    "gender": "Gender",
+    "date_of_birth": "Date Of Birth",
+    "pickup_location": "Pickup Location",
+    "dropoff_location": "Drop off Location",
+    "grade": "Grade",
+    "class": "Class",
+    "school": "School"
   }
 
 }

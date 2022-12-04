@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import { Plan, StudentDetails } from '../../planService/plan.model';
+import { Student } from './student.model';
 
 export interface ParentStudent {
   studentDetails: StudentDetails;
@@ -12,7 +13,8 @@ export interface ParentStudent {
   Longitude: number;
   ActualDate: Date;
   TimeZone: string;
-  plan: Plan
+  plan: Plan;
+  StudentInfo?: Student;
 }
 
 export interface ParentStudentsResponse {

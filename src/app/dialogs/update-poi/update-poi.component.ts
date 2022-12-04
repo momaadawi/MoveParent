@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { student } from '../../services/studentService/models/student.model';
+import { Student } from '../../services/studentService/models/student.model';
 import { ParentStudent } from '../../services/studentService/models/Students.model';
 import { SystemEnum } from 'src/app/configurations/system.enum';
 import { StudentService } from '../../services/studentService/student.service';
@@ -20,7 +20,7 @@ import { CustomTranslateService } from 'src/app/shared/services/customTranslateS
 export class UpdatePOIComponent implements OnInit, OnDestroy {
   private subsin: SubSink = new SubSink();
   spinner: boolean = false;
-  student!: student
+  student!: Student
   markerOptions: google.maps.MarkerOptions = {
     draggable: true,
   };

@@ -25,3 +25,7 @@ export interface AbsencePlan {
   Name: string;
   Id: number;
 }
+export interface Reasons{
+  ReasonName: string,
+  Value: string
+}

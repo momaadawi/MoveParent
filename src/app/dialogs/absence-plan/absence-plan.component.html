@@ -1,9 +1,9 @@
-<div class="border-bottom d-flex flex-row justify-content-between">
+<div class="border-bottom dialog_header d-flex flex-row justify-content-between">
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
 </div>
 <div class="container absence_container mt-3">
   <mat-dialog-content class="mat-typography">
-    <form id="absenceForm" [formGroup]="AbsenceForm" (ngSubmit)="save_absencec_plan(AbsenceForm)"
+    <form  id="absenceForm" [formGroup]="AbsenceForm" (ngSubmit)="save_absencec_plan(AbsenceForm)"
       class="g-3 column needs-validation" novalidate>
 
       <div class="field p-fluid mb-3">
@@ -33,10 +33,12 @@
       </div>
 
       <div class="field p-fluid mb-3">
-        <label for="name-input" class="form-label text-secondary mb-3">{{'absence_plan.name' | translate}}</label>
-        <input id="name-input" type="text" cols="30"
-          [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['Name'].invalid && (AbsenceForm.controls['Name'].dirty || AbsenceForm.controls['Name'].touched))}"
-          placeholder="{{'absence_plan.name' | translate}}" formControlName="Name" pInputText>
+        <label for="reason-input" class="form-label text-secondary mb-3">{{'reason' | translate}}</label>
+        <p-dropdown inputId="reason-input" [options]="reasons" [editable]="true" optionLabel="ReasonName" formControlName="Name" optionValue="Value"
+        [virtualScroll]="true" [virtualScrollItemSize]="5"
+          placeholder="{{'reason' | translate}}"
+          [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['Name'].invalid && (AbsenceForm.controls['Name'].dirty || AbsenceForm.controls['Name'].touched))}">
+        </p-dropdown>
       </div>
 
       <div class="field p-fluid mb-3">
@@ -47,7 +49,7 @@
       </div>
 
       <mat-dialog-actions align="center">
-        <div id="sub-btn" class="d-grid gap-2 col-10 position-relative">
+        <div id="save-absent-plan-btn" class="d-grid gap-2 col-10 position-relative">
           <button [disabled]="spinner" type="submit" mat-flat-button>
             <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <span class="sr-only">{{'save' | translate}}</span>

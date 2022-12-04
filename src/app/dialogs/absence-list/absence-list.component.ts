@@ -59,6 +59,7 @@ export class AbsenceListComponent implements OnInit, OnDestroy {
   }
   open_add_absence() {
     let config = this._dialogService.fullSize_dialogConfig();
+    config.id = DilogIds.absence_plan
     config.data = null
     this._dialog.open(AbsencePlanComponent, config)
   }

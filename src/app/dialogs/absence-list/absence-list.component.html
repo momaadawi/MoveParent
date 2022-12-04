@@ -1,8 +1,9 @@
-<div  class="border-bottom d-flex flex-row justify-content-between">
+<div  class="border-bottom dialog_header d-flex flex-row justify-content-between">
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
   <a (click)="open_add_absence()"><mat-icon class="text-success">note_add</mat-icon></a>
 </div>
 <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
+
   <mat-list role="list" *ngFor="let ab of $absences | async">
     <mat-list-item role="listitem">
       <div class="absensItem d-flex flex-row justify-content-between">

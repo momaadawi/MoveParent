@@ -1,15 +1,15 @@
-<div class="dialog_header" class="border-bottom">
+<div class="border-bottom dialog_header">
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
 </div>
 <h2 class="text-secondary">{{'sideMenu.change_Language' | translate}}</h2>
 
 <form id="langForm" [formGroup]="langForm" class="g-3 column needs-validation" novalidate>
   <div class="field p-fluid mb-3">
-    <p-dropdown [options]="languages" col="30" (onChange)="changeLan($event)" formControlName="lang" optionValue="value"
+    <p-dropdown [options]="languages" col="30" #langVal formControlName="lang" optionValue="value"
       optionLabel="name"></p-dropdown>
   </div>
 </form>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>{{'cancel' | translate}}</button>
+  <button mat-button (click)="changeLan(langVal)">{{'save' | translate}}</button>
 </mat-dialog-actions>

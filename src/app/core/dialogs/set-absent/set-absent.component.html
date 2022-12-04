@@ -1,16 +1,26 @@
+<mat-dialog-content style="overflow: visible; border-radius: 15px;">
+  <div class="d-flex flex-column justify-content-center">
+    <mat-accordion><h3 class="text-center mb-1" style="font-weight: bold;">{{ 'absence_plan_title' | translate }}</h3></mat-accordion>
+    <p class="text-center">{{ 'hints.confirm_set_student_absent' | translate }}</p>
 
-<div class="d-flex flex-column justify-content-center">
-  <p class="text-center">Absence Plan</p>
-  <p class="text-center">By confirmig this you will assign your child as absent from this trip today.</p>
-
-
-  <button [mat-dialog-close]="data" (click)="set_student_as_Absent()" cdkFocusInitial mat-raised-button id="sub-btn" mat-flat-button>
-    <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-    <span class="sr-only">{{'hints.yes_confirm_absence' | translate}}</span>
-  </button>
-  <mat-dialog-actions   align="center">
+    <form #form [formGroup]="AbsentForm" (ngSubmit)="set_student_as_Absent(AbsentForm)">
+      <div class="field p-fluid">
+        <p-dropdown [options]="reasons" [editable]="true" optionLabel="ReasonName" formControlName="Name" optionValue="Value" inputId="reason-input"
+        [virtualScroll]="true" [virtualScrollItemSize]="5"
+          placeholder="{{'reason' | translate}}"
+          [ngClass]="{'ng-invalid ng-dirty': (AbsentForm.controls['Name'].invalid && (AbsentForm.controls['Name'].dirty || AbsentForm.controls['Name'].touched))}">
+        </p-dropdown>
+      </div>
+      <button type="submit" mat-raised-button id="confgirm-absent-btn" mat-flat-button>
+        <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">{{'confirm' | translate}}</span>
+      </button>
+    </form>
+  </div>
+  <mat-dialog-actions align="center">
     <button mat-button mat-dialog-close>{{'cancel' | translate}}</button>
   </mat-dialog-actions>
 
-</div>
+
+</mat-dialog-content>
 

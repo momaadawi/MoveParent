@@ -48,13 +48,25 @@ mat-nav-list .bi {
   margin-right: 4px;
 }
 
-.profile-pic-img-parent{
+.profile-pic-img-parent {
   width: 50px;
   height: 50px;
 }
-.parent-info{
-   font-size: 15px;
+
+.parent-info {
+  font-size: 15px;
+  margin-left: 1em;
+  margin-right: 1em;
+
 }
-.student_info{
+
+.student_info {
   background: none !important;
+}
+
+#version-info{
+ position: fixed;
+bottom: 10px;
+width: 100%;
+margin: 1em;
 }

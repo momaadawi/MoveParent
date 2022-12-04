@@ -20,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // localization
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -31,6 +32,11 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CalendarModule} from 'primeng/calendar';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
+import {SkeletonModule} from 'primeng/skeleton';
+import {AvatarModule} from 'primeng/avatar';
+import {DividerModule} from 'primeng/divider';
+
 
 // google map
 import { GoogleMapsModule } from '@angular/google-maps'
@@ -62,6 +68,7 @@ import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
 
 // cros cutting concern
 import { SharedModule } from './shared/shared.module';
+import { StudentProfileComponent } from './dialogs/student-profile/student-profile.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -81,7 +88,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationComponent,
     AbsencePlanComponent,
     UpdatePOIComponent,
-    AbsenceListComponent
+    AbsenceListComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +115,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputTextareaModule,
     MultiSelectModule,
     CalendarModule,
+    PasswordModule,
+    SkeletonModule,
+    AvatarModule,
+    DividerModule,
     FormsModule,
+    MatExpansionModule,
     SharedModule,
     NgbModule,
     TranslateModule.forRoot({

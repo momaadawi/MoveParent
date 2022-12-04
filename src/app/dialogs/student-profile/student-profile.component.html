@@ -1,0 +1,53 @@
+<div  class="border-bottom dialog_header d-flex flex-row justify-content-between">
+  <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
+</div>
+<mat-dialog-content class="mat-typography">
+
+  <form id="absenceForm" [formGroup]="profileForm" class="g-3 column mt-3" >
+    <div class="d-flex flex-column justify-content-center text-center" style="width: 100%;">
+      <p-avatar label="V" icon="pi pi-user" shape="circle" styleClass="mr-2" size="xlarge" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"></p-avatar>
+      <h4>Carla Ahmed Hamed</h4>
+    </div>
+    <div class="field p-fluid mb-3">
+      <label for="gender-input"  class="form-label text-secondary mb-3">{{ 'student_profile.gender' | translate }}</label>
+      <input  disabled="true" id="gender-input"  cols="30"  placeholder="" pInputText>
+    </div>
+    <div class="field p-fluid mb-3">
+      <label for="birth-input" class="form-label text-secondary mb-3">{{ 'student_profile.date_of_birth' | translate }}</label>
+      <input disabled="true" id="birth-input" cols="30"  pInputText>
+    </div>
+    <div class="field p-fluid mb-3">
+      <label for="pickup-input" class="form-label text-secondary mb-3">{{ 'student_profile.pickup_location' | translate }}</label>
+      <input disabled="true" id="pickup-input" cols="30"  pInputText>
+    </div>
+    <div class="field p-fluid mb-3">
+      <label for="dropoff-input" class="form-label text-secondary mb-3">{{ 'student_profile.dropoff_location' | translate }}</label>
+      <input disabled="true" id="dropoff-input" cols="30"  pInputText>
+    </div>
+    <div class="field p-fluid mb-3">
+      <label for="grade-input" class="form-label text-secondary mb-3">{{ 'student_profile.grade' | translate }}</label>
+      <input disabled="true" id="grade-input" cols="30"  pInputText>
+    </div>
+    <div class="field p-fluid mb-3">
+      <label for="class-input" class="form-label text-secondary mb-3">{{ 'student_profile.class' | translate }}</label>
+      <input disabled="true" id="class-input" cols="30"  pInputText>
+    </div>
+    <div class="field p-fluid mb-3">
+      <label for="school-input" class="form-label text-secondary mb-3">{{ 'student_profile.school' | translate }}</label>
+      <input disabled="true" id="school-input" cols="30"  pInputText>
+    </div>
+
+</form>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <div id="update-profile-btn" class="d-grid gap-2 col-10 position-relative">
+    <button [disabled]="spinner" type="submit" mat-flat-button>
+      <span *ngIf="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="sr-only">{{'update_profile' | translate}}</span>
+    </button>
+  </div>
+</mat-dialog-actions>
+

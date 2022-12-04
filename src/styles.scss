@@ -29,7 +29,12 @@ body {
   max-width: 100% !important;
   background: rgb(255, 255, 255) !important;
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgb(240, 253, 252) 19%, rgba(255, 255, 255, 1) 71%, rgb(240, 253, 252) 100%) !important;
+}
 
+.modal-dialog {
+  border-radius: 22px !important;
+  border: 1px solid rgb(159, 229, 252);
+  overflow: visible;
 }
 
 .sr-only {
@@ -37,6 +42,31 @@ body {
   margin-right: 1em;
 }
 
+.mat-dialog-container .bi-arrow-right,
+.mat-dialog-container .bi-arrow-right {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.custom-modal .mat-dialog-container {
+  border-radius: 22px !important;
+  border: 1px solid rgb(159, 229, 252);
+  overflow: visible;
+  width: 315px;
+}
+
+.mat-dialog-container div.dialog_header .bi {
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+.mat-progress-spinner {
+  margin-top: 50%;
+}
+
+*{
+  font-size: 1rem
+}
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

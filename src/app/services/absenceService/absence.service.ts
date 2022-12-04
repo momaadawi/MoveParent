@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Configuration } from '../../configurations/app.config';
-import { AbsenceRequest, AbsenceResponse } from './absence.model';
-import { Observable } from 'rxjs';
+import { AbsenceRequest, AbsenceResponse, Reasons } from './absence.model';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -26,5 +26,14 @@ export class AbsenceService {
 
   deleteAbsence(absencePlan_id: number): Observable<AbsenceResponse>{
     return this._http.delete<AbsenceResponse>(environment.api + Configuration.api.absence + '/' + absencePlan_id)
+  }
+
+  lookUp_reasons(): Observable<Reasons[]>{
+    let reasons: Reasons[] = []
+    reasons.push({ ReasonName: 'Sick Leave', Value: 'Sick Leave'})
+    reasons.push({ ReasonName: 'Travling', Value: 'Travling'})
+    reasons.push({ ReasonName: 'Others', Value: 'Others'})
+
+    return of(reasons);
   }
 }
