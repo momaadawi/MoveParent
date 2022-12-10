@@ -49,6 +49,13 @@ export class CustomCookieService {
      this._cookieService.set(Configuration.cookies.Image, loginresponse.Value.Image)
      this._cookieService.set(Configuration.cookies.Direction, this._transalte.currentLang == 'ar' ? 'rtl' : 'ltr' )
   }
+  clearlogOutCookies(){
+    this._cookieService.delete(Configuration.cookies.Authorization)
+    this._cookieService.delete(Configuration.cookies.Id)
+    this._cookieService.delete(Configuration.cookies.Image)
+    this._cookieService.delete(Configuration.cookies.UserName)
+    this._cookieService.delete(Configuration.cookies.DeviceToken)
+  }
 }
 
 

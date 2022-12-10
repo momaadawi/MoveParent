@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SubSink } from 'subsink';
 import { CustomCookieService } from 'src/app/shared/services/customCookieService/customCookie.service';
-import { TranslateService } from '@ngx-translate/core';
 import { Configuration } from '../../configurations/app.config';
 import { cssClasses } from '../../shared/cssClasses.conf';
 import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
+import { NotificationService } from '../../shared/services/notificationService/notification.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _cookiesService: CustomCookieService,
     private _router: Router,
     private _snackBar: MatSnackBar,
+    private _notificationService: NotificationService,
     private _customTranslate: CustomTranslateService) { }
   get UserName() {
     return this.loginForm.get('UserName') as FormControl
@@ -36,6 +38,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._cookiesService.clearAllCookies();
+    const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
+
+    if (isPushNotificationsAvailable) {
+      this._notificationService.initPushNotification()
+    }
+
   }
 
   createForm() {
@@ -53,17 +61,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.spinner = true;
     let loginRequest: LoginRequest = {
       UserName: this.UserName.value,
-      Password: this.Password.value
+      Password: this.Password.value,
+      DeviceToken: this._cookiesService.getCookieByKey(Configuration.cookies.DeviceToken)
     }
-    this.subSink.add(
-      this._accountSerivice.login(loginRequest).subscribe({
+      let loginSub = this._accountSerivice.login(loginRequest).subscribe({
         next: response => {
           if (response.IsErrorState) {
             this._snackBar.open( response?.ErrorDescription, '' , { duration: Configuration.alertTime, panelClass: [ cssClasses.snackBar.faild]})
             return
           }
-          if (response.Token?.length > 0)
+          if (response.Token?.length > 0){
             this._cookiesService.setCookies(response)
+            this._notificationService.pushServiceLisetner()
+          }
           this._router.navigate(['home'])
         },
         error: er =>{
@@ -73,7 +83,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.spinner = false
           }
       })
-    )
+      this.subSink.add(loginSub)
   }
   changeLang(){
     this._customTranslate.toggleLang()

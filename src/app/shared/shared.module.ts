@@ -9,10 +9,10 @@ import { CustomDialogService,
          CustomTranslateService,
          NotificationService, } from './services/services';
 import { ShortTimePipe } from './pipes/short-time.pipe';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
-  
     ShortTimePipe
   ],
   providers:[
@@ -26,7 +26,8 @@ import { ShortTimePipe } from './pipes/short-time.pipe';
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
-  ]
+    SharedRoutingModule,
+  ],
+  exports: [ShortTimePipe]
 })
 export class SharedModule { }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
+import { Configuration } from '../../../configurations/app.config';
+import { SystemEnum } from 'src/app/configurations/system.enum';
 
 @Injectable()
 export class CustomTranslateService {
@@ -36,11 +38,13 @@ export class CustomTranslateService {
       document.getElementsByTagName('html')[0].removeAttribute('dir')
       document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr')
       this._cookieService.set('dir', 'ltr')
+      this._cookieService.set(Configuration.cookies.Culture, SystemEnum.Language.English)
     }
     if (this._translate.currentLang == 'ar') {
       document.getElementsByTagName('html')[0].removeAttribute('dir')
       document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl')
       this._cookieService.set('dir', 'rtl')
+      this._cookieService.set(Configuration.cookies.Culture, SystemEnum.Language.Arabic)
     }
   }
 }

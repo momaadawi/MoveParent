@@ -4,6 +4,7 @@
 </div>
 <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
 
+<div *ngIf="($absences | async)?.length == 0 && !loader" class="text-secondary text-center not_found">{{ 'hints.you_dont_have_absence_plan' | translate }}</div>
   <mat-list role="list" *ngFor="let ab of $absences | async">
     <mat-list-item role="listitem">
       <div class="absensItem d-flex flex-row justify-content-between">

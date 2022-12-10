@@ -18,4 +18,5 @@ export interface LoginResponseDetails {
 export interface LoginRequest{
   UserName: string;
   Password: string;
+  DeviceToken?: string;
 }

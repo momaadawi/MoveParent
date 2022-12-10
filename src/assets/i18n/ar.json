@@ -44,8 +44,10 @@
     "confirm_password": "تأكيد كلمة المرور الجديدة",
     "yes_confirm_absence": "نعم, أكد الغياب",
     "absence_delete_confimation": "هل انت متأطد من حذف الخطة؟",
-    "confirm_set_student_absent": "تأكيد غياب الطالب اليوم"
-
+    "confirm_set_student_absent": "تأكيد غياب الطالب اليوم",
+    "you_dont_have_absence_plan": "ليس لديك خطط غياب",
+    "you_dont_have_students": "ليس لديك طلاب",
+    "enter_new_password": "كلمة المرور الجديدة"
   },
   "validation":{
     "username_required": "يجب إدخال أسم المستخدم",
@@ -117,6 +119,11 @@
     "grade": "الصف",
     "class": "الفصل",
     "school": "المدرسة"
-  }
-
+  },
+  "weak": "ضعيف",
+  "medium": "متوسط",
+  "strong": "قوي",
+  "no_resons_exist": "لايوجد اسباب",
+  "no_result_exist": "لا توجد نتائج",
+  "no_students_exist": "لا يوجد طلاب"
 }

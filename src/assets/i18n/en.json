@@ -44,7 +44,10 @@
     "confirm_password": "Confirm new password",
     "yes_confirm_absence": "Yes, Confirm Absence",
     "absence_delete_confimation": "Are your sure you want to delete plan?",
-    "confirm_set_student_absent": "By confirmig this you will assign your child as absent from this trip today"
+    "confirm_set_student_absent": "By confirmig this you will assign your child as absent from this trip today",
+    "you_dont_have_absence_plan": "You dont' have any absence plans",
+    "you_dont_have_students": "You dont' have any students",
+    "enter_new_password": "Enter new Password"
   },
   "validation":{
     "username_required": "Username is required field.",
@@ -81,7 +84,7 @@
     "driver_name": "Driver Name",
     "supervisor_name": "Supervisor name",
     "no_trips_go_to_school": "No trips go to school!",
-    "no_trips_back_from_school": "no trip back from School!",
+    "no_trips_back_from_school": "No trips back from School!",
     "bus_left_location_at": "Bus left location at",
     "status_confirmed_by" : "Status confirmed by",
     "pickup_time": "Pickup time",
@@ -120,6 +123,12 @@
     "grade": "Grade",
     "class": "Class",
     "school": "School"
-  }
+  },
+  "weak": "Weak",
+  "medium": "medium",
+  "strong": "Strong",
+  "no_resons_exist": "No reasons exist",
+  "no_result_exist": "No result found",
+  "no_students_exist": "No students exist"
 
 }

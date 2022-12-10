@@ -39,7 +39,7 @@ import { SetAbsentComponent } from './dialogs/dialogs';
 import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
 import { SharedModule } from '../shared/shared.module';
 import { BusArrivalAlarmComponent } from './dialogs/bus-arrival-alarm/bus-arrival-alarm.component';
-import { ShortTimePipe } from '../shared/pipes/short-time.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({

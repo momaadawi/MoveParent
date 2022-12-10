@@ -3,12 +3,13 @@
 </div>
 <div class="container absence_container mt-3">
   <mat-dialog-content class="mat-typography">
-    <form  id="absenceForm" [formGroup]="AbsenceForm" (ngSubmit)="save_absencec_plan(AbsenceForm)"
+    <form id="absenceForm" [formGroup]="AbsenceForm" (ngSubmit)="save_absencec_plan(AbsenceForm)"
       class="g-3 column needs-validation" novalidate>
 
       <div class="field p-fluid mb-3">
         <label for="students-input" class="form-label text-secondary mb-3">{{'students' | translate}}</label>
         <p-multiSelect [options]="students" optionValue="Id" inputId="students-input"
+          emptyMessage="{{ 'no_students_exist' | translate }}" emptyFilterMessage="{{ 'no_result_exist' | translate }}"
           placeholder="{{'students' | translate}}" optionLabel="Name" formControlName="StudentsId"
           [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['StudentsId'].invalid && (AbsenceForm.controls['StudentsId'].dirty || AbsenceForm.controls['StudentsId'].touched))}">
         </p-multiSelect>
@@ -34,9 +35,10 @@
 
       <div class="field p-fluid mb-3">
         <label for="reason-input" class="form-label text-secondary mb-3">{{'reason' | translate}}</label>
-        <p-dropdown inputId="reason-input" [options]="reasons" [editable]="true" optionLabel="ReasonName" formControlName="Name" optionValue="Value"
-        [virtualScroll]="true" [virtualScrollItemSize]="5"
-          placeholder="{{'reason' | translate}}"
+        <p-dropdown inputId="reason-input" [options]="reasons" [editable]="true" optionLabel="ReasonName"
+          formControlName="Name" optionValue="Value" [virtualScroll]="true" [virtualScrollItemSize]="5"
+          [editable]="false" emptyMessage="{{ 'no_resons_exist' | translate }}"
+          emptyFilterMessage="{{ 'no_result_exist' | translate }}" placeholder="{{'reason' | translate}}"
           [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['Name'].invalid && (AbsenceForm.controls['Name'].dirty || AbsenceForm.controls['Name'].touched))}">
         </p-dropdown>
       </div>

@@ -93,10 +93,11 @@
 
 #closure {
   justify-content: space-around;
+  height: 380px;
 }
 
 .carousel-indicators {
-  top: 109px
+  top: 137px;
 }
 
 .carousel-indicators [data-bs-target] {
@@ -111,18 +112,13 @@
   padding: 8px 0;
 }
 
-// .slide-content {
-//   color: gray;
-//   font-size: 10.5px;
-// }
-.slide-heade{
-  margin: 0;
-}
 .carousel-inner {
-  height: 100px;
+  height: 140px;
 }
 #welcome-infograph {
   width: 100%;
   }
 
-
+.visually-hidden{
+  display: none;
+}

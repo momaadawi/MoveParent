@@ -16,22 +16,21 @@
     </button>
     <ngb-carousel #carousel [interval]="0"[showNavigationArrows]="false" (slide)="onSlide($event)">
       <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
+        <div class="text-center">
           <h3 class="slide-header">{{"welcome_slide_1.header" | translate}}</h3>
-          <p class="slide-content text-secondary text-sm">{{"welcome_slide_1.content" |  translate}}</p>
+          <small class="slide-content text-secondary text-sm">{{"welcome_slide_1.content" |  translate}}</small>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
+        <div class="text-center">
           <h3 class="slide-header">{{"welcome_slide_2.header" | translate}}</h3>
-          <p class="slide-content text-secondary text-sm">{{"welcome_slide_2.content" | translate}}
-          </p>
+          <small class="slide-content text-secondary text-sm">{{"welcome_slide_2.content" | translate}}</small>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
+        <div class="text-center">
           <h3 class="slide-header">{{"welcome_slide_3.header" | translate}}</h3>
-          <p class="slide-content text-secondary text-sm">{{"welcome_slide_3.content" | translate}}</p>
+          <small class="slide-content text-secondary text-sm">{{"welcome_slide_3.content" | translate}}</small>
         </div>
       </ng-template>
     </ngb-carousel>

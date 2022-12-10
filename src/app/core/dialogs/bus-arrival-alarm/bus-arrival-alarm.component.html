@@ -1,13 +1,13 @@
-  <div class="container mt-2 d-flex flex-column justify-content-center gap-16">
+
+  <mat-dialog-content >
+    <div class="container mt-2 d-flex flex-column justify-content-center gap-16">
     <mat-icon class="align-self-end" mat-dialog-close>close</mat-icon>
     <div class="d-flex flex-row justify-content-center gap-72 align-items-end">
-      <h1 class="">{{ 'student_trips.bus_Arrival' | translate }}</h1>
+      <h1 class="">{{ notification!.title ?? '' }}</h1>
     </div>
 
-    <div class="text-center  notificaiton-content mb-2">
-      <!-- notification will be binded here -->
-      The bus (542 - ن م ن ) is about to arrive.
-      Please meet the bus at the agreed location.
+    <div class="text-center align-self-center  notificaiton-content mb-2">
+      {{ notification!.body ?? '' }}
     </div>
     <div class="d-flex flex-row justify-content-center align-items-center">
       <p-avatar image="assets/profilepci.png" styleClass="mr-2 ml-2" shape="circle"></p-avatar>
@@ -16,11 +16,7 @@
     <img class="img-fluid" src="assets/alarm.gif">
 
     <button type="submit" mat-dialog-close mat-raised-button id="confirm-bus-alert-btn" mat-flat-button>
-      <span class="sr-only">{{'confirm' | translate}}</span>
+      <span class="sr-only">{{ 'confirm' | translate }}</span>
     </button>
   </div>
-  <!-- <mat-dialog-actions align="center">
-
-</mat-dialog-actions>
- -->
-
+  </mat-dialog-content>

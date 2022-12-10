@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://schoolsmobileservicemove.altairfms.com'
+  api: 'https://schoolsmobileservice.altairfms.com/'
 };
 
 

@@ -6,7 +6,10 @@
     <form #form [formGroup]="AbsentForm" (ngSubmit)="set_student_as_Absent(AbsentForm)">
       <div class="field p-fluid">
         <p-dropdown [options]="reasons" [editable]="true" optionLabel="ReasonName" formControlName="Name" optionValue="Value" inputId="reason-input"
-        [virtualScroll]="true" [virtualScrollItemSize]="5"
+        [virtualScroll]="true"
+        [editable]="false"
+        emptyMessage="{{ 'no_resons_exist' | translate }}"
+        emptyFilterMessage="{{ 'no_result_exist' | translate }}"
           placeholder="{{'reason' | translate}}"
           [ngClass]="{'ng-invalid ng-dirty': (AbsentForm.controls['Name'].invalid && (AbsentForm.controls['Name'].dirty || AbsentForm.controls['Name'].touched))}">
         </p-dropdown>

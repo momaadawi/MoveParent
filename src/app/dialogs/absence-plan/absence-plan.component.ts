@@ -13,7 +13,9 @@ import { DilogIds } from '../../configurations/dilaogs.config';
 import * as moment from 'moment';
 import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
 import { AbsenceService } from 'src/app/services/absenceService/absence.service';
-import { AbsencePlan, AbsenceResponse, AbsenceRequest, Reasons } from 'src/app/services/absenceService/absence.model';
+import { AbsencePlan, AbsenceResponse, AbsenceRequest, Reasons, AbsenceReasons } from 'src/app/services/absenceService/absence.model';
+import { TranslateService } from '@ngx-translate/core';
+import { SystemEnum } from 'src/app/configurations/system.enum';
 
 @Component({
   selector: 'app-absence-plan',
@@ -32,13 +34,18 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
     private _absenceService: AbsenceService,
     private _snackBar: MatSnackBar,
     private _customTranslate: CustomTranslateService,
+    private _transalte: TranslateService,
     private _dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) private _data: AbsencePlan) { }
 
   ngOnInit(): void {
     this._absenceService.lookUp_reasons().subscribe({
       next: res => {
-        this.reasons = res
+        res.Value.forEach(r => {
+          this._transalte.currentLang == SystemEnum.Language.Arabic ?
+             this.reasons.push({ Value: r.id, ReasonName: r.name_AR }) :
+             this.reasons.push({ Value: r.id, ReasonName: r.name_EN })
+        })
       }
     })
     let getStudentSubscription = this._studentService.get_Students()

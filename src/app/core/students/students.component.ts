@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy, AfterViewInit, NgZone } from '@angular/core';
 import { CallNumber } from 'capacitor-call-number';
 import { StudentService } from '../../services/studentService/student.service';
 import { SubSink } from 'subsink';
@@ -10,13 +10,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { SetAbsentComponent } from '../dialogs/set-absent/set-absent.component';
 import { CustomDialogService } from '../../shared/services/customDialogService/customDialog.service';
 import { DilogIds } from 'src/app/configurations/dilaogs.config';
-import { BusArrivalAlarmComponent } from '../dialogs/bus-arrival-alarm/bus-arrival-alarm.component';
-import { MatExpansionPanel } from '@angular/material/expansion';
-import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { StudentDetails } from '../../services/planService/plan.model';
-import { Router } from '@angular/router';
 import { Browser } from '@capacitor/browser';
-
+import { PushNotifications } from '@capacitor/push-notifications';
+import { BusArrivalAlarmComponent } from '../dialogs/bus-arrival-alarm/bus-arrival-alarm.component';
+import { Platform } from '@angular/cdk/platform';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-students',
@@ -37,15 +36,24 @@ export class StudentsComponent implements OnInit, OnDestroy {
     private _planService: PlanService,
     private _dialog: MatDialog,
     private _customDialogService: CustomDialogService,
-    private _router: Router,
-    private sanitizer: DomSanitizer) { }
+    private _zone: NgZone,
+    private sanitizer: DomSanitizer,
+    public platform: Platform) { }
 
   ngOnInit(): void {
-    this._dialog.open(BusArrivalAlarmComponent, this._customDialogService.defualtConfig())
     this.retriveStudents();
+    if(this.platform.ANDROID || this.platform.IOS){
+      PushNotifications.addListener('pushNotificationReceived', notification => {
+        this._zone.run( () => {
+          let config = this._customDialogService.defualtConfig()
+          config.data = notification
+          this._dialog.open(BusArrivalAlarmComponent, config)
+        })
+      })
+    }
   }
 
-  private retriveStudents() {
+  public retriveStudents() {
     this.loader = true;
     this.subs.add(
       this._studentService.get_Students().subscribe({
@@ -59,9 +67,9 @@ export class StudentsComponent implements OnInit, OnDestroy {
                 st.plan = planRes.Value;
                 st.studentDetails = st.plan?.Students.filter(s => s.StudentId == st.Id)[0];
                 st.ImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${st.Image}`);
-                if (st.plan?.PlanType == 1)
+                if (st.plan?.PlanType == SystemEnum.PlanType.PickUp)
                   this.students.goToSchool.push(st)
-                if (st.plan?.PlanType == 2)
+                if (st.plan?.PlanType == SystemEnum.PlanType.DropOff)
                   this.students.backFromSchool.push(st);
               },
               complete: () => {
@@ -101,21 +109,29 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
       default:
         return `btn-outline-primary ${cssClasses}`
-      }
+    }
   }
-  setAbsence_backgound(studentStatus: number):string{
-    if(studentStatus == SystemEnum.StudentStatus.Absent as number) //absent
+
+  setAbsence_backgound(studentStatus: number): string {
+    if (studentStatus == SystemEnum.StudentStatus.Absent as number) //absent
       return 'absent-student'
     return ''
   }
-  toggle_expanding(studentId: number){
+
+  toggle_expanding(studentId: number) {
     this.expanded_StudentId = studentId
   }
-  redirect_to_googleMap(studentDetails: StudentDetails){
-       Browser.open({ url: `https://www.google.com/maps/search/?api=1&query=${studentDetails.Latitude},${studentDetails.Longtude}`});
 
+  redirect_to_googleMap(studentDetails: StudentDetails) {
+    Browser.open({ url: `https://www.google.com/maps/search/?api=1&query=${studentDetails.Latitude},${studentDetails.Longtude}` });
+
+  }
+
+  refreshStudents(event: Subject<any>){
+    event.next(this.retriveStudents())
   }
   ngOnDestroy(): void {
     this.subs.unsubscribe()
   }
+
 }

@@ -14,6 +14,9 @@ import * as moment from 'moment';
 import { DilogIds } from '../../../configurations/dilaogs.config';
 import { BusArrivalAlarmComponent } from '../bus-arrival-alarm/bus-arrival-alarm.component';
 import { CustomDialogService } from '../../../shared/services/customDialogService/customDialog.service';
+import { AbsenceReasons } from '../../../services/absenceService/absence.model';
+import { TranslateService } from '@ngx-translate/core';
+import { SystemEnum } from 'src/app/configurations/system.enum';
 
 @Component({
   selector: 'app-set-absent',
@@ -30,6 +33,7 @@ export class SetAbsentComponent implements OnInit, OnDestroy {
               private _snakBar: MatSnackBar,
               public dialogRef: MatDialogRef<SetAbsentComponent>,
               private _customTransalte: CustomTranslateService,
+              private _transalte: TranslateService,
               private _dialog: MatDialog,
               private _customDialog: CustomDialogService,
               private _fb: FormBuilder,
@@ -39,7 +43,11 @@ export class SetAbsentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._absenceService.lookUp_reasons().subscribe({
       next: res => {
-        this.reasons = res
+        res.Value.forEach(r => {
+          this._transalte.currentLang == SystemEnum.Language.Arabic ?
+             this.reasons.push({ Value: r.id, ReasonName: r.name_AR }) :
+             this.reasons.push({ Value: r.id, ReasonName: r.name_EN })
+        })
       }
     })
   }

@@ -11,6 +11,7 @@ export let Configuration = {
       students: 'api/parents/students/'
     },
     absence: 'api/absenceplan',
+    absenceReason: 'GetAbsenceReasons',
     student: {
       getStudentById: 'api/students/get',
       updateStudentPOI: 'api/students/updatepoi'
@@ -21,7 +22,9 @@ export let Configuration = {
     Id: 'id',
     Image: 'image',
     UserName: 'userName',
-    Direction: 'dir'
+    Direction: 'dir',
+    DeviceToken: 'DeviceToken',
+    Culture: 'culture'
   },
   googleApiKey: 'AIzaSyA8Y53lojH7RkCC3vH_nGmmEv0XUpZI10M',
   alertTime: 4000,
