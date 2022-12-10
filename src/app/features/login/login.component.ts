@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
 
     if (isPushNotificationsAvailable) {
+      console.log('1--push notificaiton available.')
       this._notificationService.initPushNotification()
     }
 
