@@ -2,18 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 
+// interceptors
 import { AuthorizationGuardGuard } from './providers/authorization-guard.guard';
+
+// services
 import { CustomDialogService,
          AccountService,
          CustomCookieService,
          CustomTranslateService,
-         NotificationService, } from './services/services';
+         NotificationService,
+         SnackbarService } from './services/services';
+// pipes
 import { ShortTimePipe } from './pipes/short-time.pipe';
-import { BrowserModule } from '@angular/platform-browser';
+
+// components
+import { LoaderComponent } from './components/loader/loader.component';
+
+// primeng
+import { SkeletonModule } from 'primeng/skeleton'
 
 @NgModule({
   declarations: [
-    ShortTimePipe
+    ShortTimePipe,
+    LoaderComponent
   ],
   providers:[
     CustomDialogService,
@@ -22,12 +33,14 @@ import { BrowserModule } from '@angular/platform-browser';
     CustomTranslateService,
     NotificationService,
     AuthorizationGuardGuard,
-    AuthorizationGuardGuard
+    AuthorizationGuardGuard,
+    SnackbarService
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
+    SkeletonModule
   ],
-  exports: [ShortTimePipe]
+  exports: [ShortTimePipe, LoaderComponent]
 })
 export class SharedModule { }

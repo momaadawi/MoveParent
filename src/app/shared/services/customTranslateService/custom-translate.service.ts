@@ -3,9 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Configuration } from '../../../configurations/app.config';
 import { SystemEnum } from 'src/app/configurations/system.enum';
+import { Direction } from '@angular/cdk/bidi';
 
 @Injectable()
 export class CustomTranslateService {
+
   constructor(private _translate: TranslateService,
     private _cookieService: CookieService) {
   }
@@ -46,6 +48,12 @@ export class CustomTranslateService {
       this._cookieService.set('dir', 'rtl')
       this._cookieService.set(Configuration.cookies.Culture, SystemEnum.Language.Arabic)
     }
+  }
+  direction(): Direction  {
+    return this._translate.currentLang == SystemEnum.Language.Arabic ? "rtl" : 'ltr'
+  }
+  currentLan(){
+    return this._translate.currentLang
   }
 }
 

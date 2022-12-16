@@ -11,6 +11,8 @@ import { cssClasses } from '../../shared/cssClasses.conf';
 import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
 import { NotificationService } from '../../shared/services/notificationService/notification.service';
 import { Capacitor } from '@capacitor/core';
+import { SnackbarService } from '../../shared/services/snackbarService/snackbar.service';
+import { SystemEnum } from 'src/app/configurations/system.enum';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _cookiesService: CustomCookieService,
     private _router: Router,
     private _snackBar: MatSnackBar,
+    private _customSnackBar: SnackbarService,
     private _notificationService: NotificationService,
     private _customTranslate: CustomTranslateService) { }
   get UserName() {
@@ -56,7 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     if (!this.loginForm.valid) {
-      this._snackBar.open(this._customTranslate.translate('snack-bar.please_check_user_name_password'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+      this._customSnackBar.open(this._customTranslate.translate('snack-bar.please_check_user_name_password'), SystemEnum.ResponseAction.Failed)
       return
     }
     this.spinner = true;
@@ -68,17 +71,17 @@ export class LoginComponent implements OnInit, OnDestroy {
       let loginSub = this._accountSerivice.login(loginRequest).subscribe({
         next: response => {
           if (response.IsErrorState) {
-            this._snackBar.open( response?.ErrorDescription, '' , { duration: Configuration.alertTime, panelClass: [ cssClasses.snackBar.faild]})
+            this._customSnackBar.open(response?.ErrorDescription, SystemEnum.ResponseAction.Failed)
             return
           }
           if (response.Token?.length > 0){
-            this._cookiesService.setCookies(response)
+            this._cookiesService.setLoginCookies(response)
             this._notificationService.pushServiceLisetner()
           }
           this._router.navigate(['home'])
         },
         error: er =>{
-          this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+          this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
           this.spinner = false;},
         complete: () => {
           this.spinner = false

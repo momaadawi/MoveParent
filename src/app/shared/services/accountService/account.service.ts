@@ -30,6 +30,4 @@ export class AccountService {
     await this._notificaitonService.unInitlize_Notification()
     this._router.navigate(['/login'])
   }
-
-
 }

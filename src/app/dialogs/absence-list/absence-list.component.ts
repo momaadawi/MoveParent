@@ -2,8 +2,6 @@ import { Component, Inject, OnInit, TemplateRef, ViewEncapsulation, OnDestroy } 
 import { Observable, of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Configuration } from '../../configurations/app.config';
-import { cssClasses } from '../../shared/cssClasses.conf';
 import { SubSink } from 'subsink';
 import { AbsencePlanComponent } from '../absence-plan/absence-plan.component';
 import { DilogIds } from '../../configurations/dilaogs.config';
@@ -11,6 +9,9 @@ import { CustomDialogService } from '../../shared/services/customDialogService/c
 import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
 import { AbsencePlan } from 'src/app/services/absenceService/absence.model';
 import { AbsenceService } from 'src/app/services/absenceService/absence.service';
+import { TranslateService } from '@ngx-translate/core';
+import { SnackbarService } from '../../shared/services/snackbarService/snackbar.service';
+import { SystemEnum } from 'src/app/configurations/system.enum';
 
 @Component({
   selector: 'app-absence-list',
@@ -19,18 +20,21 @@ import { AbsenceService } from 'src/app/services/absenceService/absence.service'
   encapsulation: ViewEncapsulation.None
 })
 export class AbsenceListComponent implements OnInit, OnDestroy {
+  culture: string = 'en'
   private _subsink = new SubSink();
   spinner: boolean = false;
   loader: boolean = false;
   $absences!: Observable<AbsencePlan[]>
   constructor(private _absenceService: AbsenceService,
-    private _snackBar: MatSnackBar,
+    private _customSnackBar: SnackbarService,
     private _dialog: MatDialog,
     private _customTranslate: CustomTranslateService,
     private _dialogService: CustomDialogService,
+    private _transalte: TranslateService,
     @Inject(MAT_DIALOG_DATA) public deleteId: number) { }
 
   ngOnInit(): void {
+    this.culture = this._transalte.currentLang
     this.retriveAbsences()
   }
 
@@ -42,7 +46,6 @@ export class AbsenceListComponent implements OnInit, OnDestroy {
         this.$absences = of(res.Value)
       },
       error: err => {
-        this.loader = false
       },
       complete: () => {
         this.loader = false;
@@ -75,9 +78,11 @@ export class AbsenceListComponent implements OnInit, OnDestroy {
     let deleteSubscription = this._absenceService.deleteAbsence(this.deleteId).subscribe({
       next: res => {
         if (res.IsErrorState)
-          this._snackBar.open(res.ErrorDescription, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+          this._customSnackBar.open(res.ErrorDescription, SystemEnum.ResponseAction.Failed)
+          // this._snackBar.open(res.ErrorDescription, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
         else if (!res.IsErrorState) {
-          this._snackBar.open(this._customTranslate.translate('snack-bar.success_absence_delete'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
+          this._customSnackBar.open(this._customTranslate.translate('snack-bar.success_absence_delete'), SystemEnum.ResponseAction.Success)
+          // this._snackBar.open(this._customTranslate.translate('snack-bar.success_absence_delete'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
           this._dialog.getDialogById(DilogIds.absence_delete)?.close()
           this.retriveAbsences()
         }
@@ -85,7 +90,8 @@ export class AbsenceListComponent implements OnInit, OnDestroy {
       error: err => {
         console.log(err)
         this.spinner = false;
-        this._snackBar.open('success', '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+        this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+        // this._snackBar.open('success', '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
       },
       complete: () => { this.spinner = false }
     })

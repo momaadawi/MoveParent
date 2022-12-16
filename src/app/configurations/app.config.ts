@@ -11,7 +11,7 @@ export let Configuration = {
       students: 'api/parents/students/'
     },
     absence: 'api/absenceplan',
-    absenceReason: 'GetAbsenceReasons',
+    absenceReason: 'api/absenceplan/GetAbsenceReasons',
     student: {
       getStudentById: 'api/students/get',
       updateStudentPOI: 'api/students/updatepoi'

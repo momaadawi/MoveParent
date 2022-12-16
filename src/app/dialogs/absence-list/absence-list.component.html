@@ -2,13 +2,15 @@
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
   <a (click)="open_add_absence()"><mat-icon class="text-success">note_add</mat-icon></a>
 </div>
-<mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
+<!-- <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner> -->
+<app-loader [loader]="loader" [withImage]="false"></app-loader>
 
 <div *ngIf="($absences | async)?.length == 0 && !loader" class="text-secondary text-center not_found">{{ 'hints.you_dont_have_absence_plan' | translate }}</div>
   <mat-list role="list" *ngFor="let ab of $absences | async">
     <mat-list-item role="listitem">
       <div class="absensItem d-flex flex-row justify-content-between">
-        <p>{{ab.Name}}</p>
+        <p *ngIf="culture == 'en'">{{ab.AbsenceReasonEN}}</p>
+        <p *ngIf="culture == 'ar'">{{ab.AbsenceReasonAR}}</p>
         <div class="d-flex flex-row justify-content-end">
           <a (click)="edit_absence(ab)"><mat-icon class="text-success">open_in_new</mat-icon></a>
           <a (click)="openDialogWithTemplateRef(deleteDialog, ab.Id)"><mat-icon class="text-danger">delete_outline</mat-icon></a>

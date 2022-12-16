@@ -1,4 +1,3 @@
-import { Student } from '../studentService/models/student.model';
 export interface RouteLine {
   LineGeometry: string;
 }

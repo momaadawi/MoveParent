@@ -60,7 +60,8 @@ import {
   ChangeLangComponent,
   AbsencePlanComponent,
   NotificationComponent,
-  AbsenceListComponent
+  AbsenceListComponent,
+  StudentProfileComponent
 } from './dialogs/dialogs';
 
 // other imports
@@ -68,7 +69,6 @@ import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
 
 // cros cutting concern
 import { SharedModule } from './shared/shared.module';
-import { StudentProfileComponent } from './dialogs/student-profile/student-profile.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

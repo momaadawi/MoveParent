@@ -60,6 +60,7 @@
     "@capacitor/cli": "^4.4.0",
     "@types/google.maps": "^3.50.5",
     "@types/jasmine": "~4.0.0",
+    "@types/node": "^18.11.15",
     "https-proxy-agent": "^5.0.1",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",

@@ -1,8 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
-import { ActionPerformed, PushNotifications, PushNotificationSchema, Token } from '@capacitor/push-notifications';
+import { PushNotifications } from '@capacitor/push-notifications';
 import { CookieService } from 'ngx-cookie-service';
 import { Configuration } from '../../../configurations/app.config';
-import { BusArrivalAlarmComponent } from '../../../core/dialogs/bus-arrival-alarm/bus-arrival-alarm.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomDialogService } from '../customDialogService/customDialog.service';
 import { Platform } from '@angular/cdk/platform';
@@ -10,10 +9,7 @@ import { Platform } from '@angular/cdk/platform';
 @Injectable()
 export class NotificationService implements OnInit {
 
-  constructor(private _cookies: CookieService,
-    private _dialog: MatDialog,
-    private _customDialog: CustomDialogService,
-    private platform: Platform) { }
+  constructor(private _cookies: CookieService) { }
   ngOnInit(): void {
   }
 

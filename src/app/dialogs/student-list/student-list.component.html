@@ -1,7 +1,8 @@
 <div  class="border-bottom dialog_header">
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
 </div>
-<mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
+<app-loader size="4rem" [loader]="loader"></app-loader>
+<!-- <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner> -->
 
 <div *ngIf="studnets?.length == 0 && !loader" class="text-secondary text-center not_found">{{ 'hints.you_dont_have_students' | translate }}</div>
 

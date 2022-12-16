@@ -28,6 +28,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button'
+import {SkeletonModule} from 'primeng/skeleton';
 
 // components
 import { StudentsComponent } from './students/students.component';
@@ -38,7 +39,7 @@ import { SetAbsentComponent } from './dialogs/dialogs';
 // others
 import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
 import { SharedModule } from '../shared/shared.module';
-import { BusArrivalAlarmComponent } from './dialogs/bus-arrival-alarm/bus-arrival-alarm.component';
+import { PopUpNotification } from './dialogs/popup-notification/popup-notification.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -46,7 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     StudentsComponent,
     SetAbsentComponent,
-    BusArrivalAlarmComponent
+    PopUpNotification
   ],
   imports: [
     CommonModule,
@@ -64,6 +65,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DropdownModule,
     MatIconModule,
     ButtonModule,
+    SkeletonModule,
     SharedModule,
     ReactiveFormsModule,
     TranslateModule.forChild({

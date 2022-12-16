@@ -19,7 +19,6 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
   student!: Student;
 
   constructor(private _studentService: StudentService,
-    private _snackbar: MatSnackBar,
     private _fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) private studentData: ParentStudent){}
 

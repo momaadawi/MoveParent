@@ -1,0 +1,9 @@
+<div id="skelton-loader" *ngIf="loader" style="overflow: hidden;">
+  <div *ngFor="let item of fakeArray | async" class="d-flex flex-row mt-3 ">
+    <p-skeleton *ngIf="withImage" shape="circle" [size]="ImageSize"></p-skeleton>
+    <div class="d-felx flex-row align-self-center" style="width:100%">
+      <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+      <p-skeleton width="70%" styleClass="mb-2"></p-skeleton>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,10 @@
   </div>
   <mat-tab-group id="tab_group" animationDuration="0">
     <mat-tab label="{{'student_trips.go_to_school' | translate}}">
-      <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
+
+      <app-loader [loader]="loader"></app-loader>
+
+      <!-- <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner> -->
       <mat-panel-description class="mx-auto modal-dialog-centered"
         *ngIf="!loader && $any(students).goToSchool.length == 0">{{ 'student_trips.no_trips_go_to_school' | translate}}
       </mat-panel-description>
@@ -16,7 +19,7 @@
       <div [ngClass]="setAbsence_backgound(pickUpStudent.studentDetails.StudentStatusId)" class="student_trip"
         *ngFor="let pickUpStudent of $any($any(students).goToSchool)">
         <div class="student_info d-flex flex-row justify-content-around">
-          <p-avatar [image]="pickUpStudent.ImageUrl" styleClass="mr-2"  shape="circle"></p-avatar>
+          <p-avatar [image]="pickUpStudent.ImageUrl" styleClass="mr-2" shape="circle"></p-avatar>
           <!-- <div class="profile-pic "><img [src]="pickUpStudent.ImageUrl" alt="" class="rounded-circle profile-pic-img">
           </div> -->
           <div class="student-name text-center">{{pickUpStudent.Name}}</div>
@@ -25,7 +28,8 @@
             [ngClass]="generate_student_status_Class_Style(pickUpStudent.studentDetails.StudentStatusId)">{{pickUpStudent.studentDetails.StudnetStatusName}}</button>
         </div>
         <mat-accordion>
-          <mat-expansion-panel [expanded]="expanded_StudentId === pickUpStudent.studentDetails.StudentId" (opened)="toggle_expanding(pickUpStudent.studentDetails.StudentId)">
+          <mat-expansion-panel [expanded]="expanded_StudentId === pickUpStudent.studentDetails.StudentId"
+            (opened)="toggle_expanding(pickUpStudent.studentDetails.StudentId)">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <div class="d-flex flex-column justify-content-between bus_code">
@@ -48,7 +52,8 @@
                   <div class="contact-title text-primary">{{'student_trips.driver_name' | translate}}</div>
                   <div class="contact-name">{{pickUpStudent.plan.DriverName}}</div>
                 </div>
-                <div *ngIf="pickUpStudent.plan.DriverMobileNumber" class="call-icon" (click)="call(pickUpStudent.plan.DriverMobileNumber)"><img class="call-dilaer"
+                <div *ngIf="pickUpStudent.plan.DriverMobileNumber" class="call-icon"
+                  (click)="call(pickUpStudent.plan.DriverMobileNumber)"><img class="call-dilaer"
                     src="assets/call-icon.svg"></div>
               </div>
               <div class="cotact-info supervisor">
@@ -56,8 +61,9 @@
                   <div class="contact-title text-primary">{{'student_trips.supervisor_name' | translate}}</div>
                   <div class="contact-name">{{pickUpStudent.plan.SuperVisorName}}</div>
                 </div>
-                <div *ngIf="pickUpStudent.plan.SuperVisorMobileNumber" class="call-icon" (click)="call(pickUpStudent.plan.SuperVisorMobileNumber)"><img
-                    class="call-dilaer" src="assets/call-icon.svg"></div>
+                <div *ngIf="pickUpStudent.plan.SuperVisorMobileNumber" class="call-icon"
+                  (click)="call(pickUpStudent.plan.SuperVisorMobileNumber)"><img class="call-dilaer"
+                    src="assets/call-icon.svg"></div>
               </div>
             </div>
             <!-- in case student no show -->
@@ -73,7 +79,9 @@
                   <div class="contact-title text-primary">{{ 'student_trips.status_confirmed_by' | translate }}</div>
                   <div class="contact-name">{{pickUpStudent.plan.Parent}}</div>
                 </div>
-                <div (click)="redirect_to_googleMap(pickUpStudent.studentDetails)"  *ngIf="pickUpStudent.studentDetails.Longtude && pickUpStudent.studentDetails.Latitude"  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
+                <div (click)="redirect_to_googleMap(pickUpStudent.studentDetails)"
+                  *ngIf="pickUpStudent.studentDetails.Longtude && pickUpStudent.studentDetails.Latitude"
+                  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
               </div>
             </div>
             <!-- in case student on board -->
@@ -91,7 +99,9 @@
                   <div class="contact-title text-primary">{{ 'student_trips.pickup_address' | translate }}</div>
                   <div class="contact-name"></div>
                 </div>
-                <div (click)="redirect_to_googleMap(pickUpStudent.studentDetails)"  *ngIf="pickUpStudent.studentDetails.Longtude && pickUpStudent.studentDetails.Latitude"  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
+                <div (click)="redirect_to_googleMap(pickUpStudent.studentDetails)"
+                  *ngIf="pickUpStudent.studentDetails.Longtude && pickUpStudent.studentDetails.Latitude"
+                  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
               </div>
             </div>
             <!-- in case student dropped off -->
@@ -107,7 +117,9 @@
                   <div class="contact-title text-primary">{{ 'student_trips.drop_off_address' | translate }}</div>
                   <div class="contact-name"></div>
                 </div>
-                <div (click)="redirect_to_googleMap(pickUpStudent.studentDetails)" *ngIf="pickUpStudent.studentDetails.Longtude && pickUpStudent.studentDetails.Latitude"  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
+                <div (click)="redirect_to_googleMap(pickUpStudent.studentDetails)"
+                  *ngIf="pickUpStudent.studentDetails.Longtude && pickUpStudent.studentDetails.Latitude"
+                  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -118,20 +130,24 @@
     <!-- ------------------------------------------------Back from school----------------------------------------------- -->
 
     <mat-tab label="{{'student_trips.back_from_school' | translate}}">
-      <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner>
+      <app-loader [loader]="loader" [withImage]="true" ImageSize="4rem"></app-loader>
+      <!-- <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner> -->
 
-      <mat-panel-description class="mx-auto modal-dialog-centered" *ngIf="!loader && $any(students).backFromSchool.length == 0">{{ 'student_trips.no_trips_back_from_school' | translate}}</mat-panel-description>
+      <mat-panel-description class="mx-auto modal-dialog-centered"
+        *ngIf="!loader && $any(students).backFromSchool.length == 0">{{ 'student_trips.no_trips_back_from_school' |
+        translate}}</mat-panel-description>
 
       <div class="student_trip" *ngFor="let backFromSchool of $any($any(students).backFromSchool)">
         <div class="student_info d-flex flex-row justify-content-around">
-          <p-avatar [image]="backFromSchool.ImageUrl" styleClass="mr-2"  shape="circle"></p-avatar>
+          <p-avatar [image]="backFromSchool.ImageUrl" styleClass="mr-2" shape="circle"></p-avatar>
           <div class="student-name">{{backFromSchool.Name}}</div>
           <button type="button" (click)="setAbsent(backFromSchool)"
-          [disabled]="backFromSchool.studentDetails.StudentStatusId == 2"
+            [disabled]="backFromSchool.studentDetails.StudentStatusId == 2"
             [ngClass]="generate_student_status_Class_Style(backFromSchool.studentDetails.StudentStatusId)">{{backFromSchool.studentDetails.StudnetStatusName}}</button>
         </div>
         <mat-accordion>
-          <mat-expansion-panel [expanded]="expanded_StudentId === backFromSchool.studentDetails.StudentId" (opened)="toggle_expanding(backFromSchool.studentDetails.StudentId)">
+          <mat-expansion-panel [expanded]="expanded_StudentId === backFromSchool.studentDetails.StudentId"
+            (opened)="toggle_expanding(backFromSchool.studentDetails.StudentId)">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <div class="d-flex flex-column justify-content-between bus_code">
@@ -142,7 +158,8 @@
               </mat-panel-title>
               <mat-panel-title>
                 <div class="d-flex flex-column justify-content-between trip_time">
-                  <span class="trip_time_title font-weight-normal text-primary">{{'student_trips.return_time' | translate}}</span>
+                  <span class="trip_time_title font-weight-normal text-primary">{{'student_trips.return_time' |
+                    translate}}</span>
                   <span class="trip_time_value font-weight-light">{{backFromSchool.plan.TripStartTime}}</span>
                 </div>
               </mat-panel-title>
@@ -153,7 +170,8 @@
                   <div class="contact-title text-primary">{{'student_trips.driver_name' | translate}}</div>
                   <div class="contact-name">{{backFromSchool.plan.DriverName}}</div>
                 </div>
-                <div *ngIf="backFromSchool.plan.DriverMobileNumber" class="call-icon" (click)="call(backFromSchool.plan.DriverMobileNumber)"><img class="call-dilaer"
+                <div *ngIf="backFromSchool.plan.DriverMobileNumber" class="call-icon"
+                  (click)="call(backFromSchool.plan.DriverMobileNumber)"><img class="call-dilaer"
                     src="assets/call-icon.svg"></div>
               </div>
               <div class="cotact-info supervisor">
@@ -196,7 +214,9 @@
                   <div class="contact-title text-primary">{{ 'student_trips.pickup_address' | translate }}</div>
                   <div class="contact-name"></div>
                 </div>
-                <div (click)="redirect_to_googleMap(backFromSchool.studentDetails)" *ngIf="backFromSchool.studentDetails.Longtude && backFromSchool.studentDetails.Latitude"  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
+                <div (click)="redirect_to_googleMap(backFromSchool.studentDetails)"
+                  *ngIf="backFromSchool.studentDetails.Longtude && backFromSchool.studentDetails.Latitude"
+                  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
               </div>
             </div>
             <!-- in case student dropped off -->
@@ -212,7 +232,9 @@
                   <div class="contact-title text-primary">{{ 'student_trips.drop_off_address' | translate }}</div>
                   <div class="contact-name"></div>
                 </div>
-                <div (click)="redirect_to_googleMap(backFromSchool.studentDetails)" *ngIf="backFromSchool.studentDetails.Longtude && backFromSchool.studentDetails.Latitude"  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
+                <div (click)="redirect_to_googleMap(backFromSchool.studentDetails)"
+                  *ngIf="backFromSchool.studentDetails.Longtude && backFromSchool.studentDetails.Latitude"
+                  class="call-icon"><img class="call-dilaer" src="assets/location.svg"></div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -223,10 +245,9 @@
   </mat-tab-group>
 </div>
 <ngx-pull-to-refresh
-	spinnerColor="none"
+  spinnerColor="#3293a8"
   [spinnerSize]="50"
-	[distanceForRefresh]="40"
-	[isEnable]="true"
-  (refresh)="refreshStudents($event)"
-	style="display:block;height:100%;">
+  [distanceForRefresh]="50"
+  [isEnable]="true"
+  (refresh)="refreshStudents($event)">
 </ngx-pull-to-refresh>

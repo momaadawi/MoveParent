@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SystemEnum } from './configurations/system.enum';
 import { CookieService } from 'ngx-cookie-service';
-import { ActionPerformed, PushNotifications, PushNotificationSchema, Token } from '@capacitor/push-notifications';
-import { Capacitor } from '@capacitor/core';
-import { Configuration } from './configurations/app.config';
-import { NotificationService } from './shared/services/services';
 
 @Component({
   selector: 'app-root',

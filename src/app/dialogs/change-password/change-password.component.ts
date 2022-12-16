@@ -9,6 +9,8 @@ import { SubSink } from 'subsink';
 import { MatDialog } from '@angular/material/dialog';
 import { cssClasses } from '../../shared/cssClasses.conf';
 import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
+import { SnackbarService } from '../../shared/services/snackbarService/snackbar.service';
+import { SystemEnum } from 'src/app/configurations/system.enum';
 
 export function ConfirmedValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -35,6 +37,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     private _accountService: AccountService,
     private _cookieService: CookieService,
     private _snackBar: MatSnackBar,
+    private _customSnackBar: SnackbarService,
     private _router: Router,
     private _dialog: MatDialog,
     private _customTranslate: CustomTranslateService) {
@@ -51,7 +54,8 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   submit() {
     this.spinner = true;
     if (!this.resetPassForm.valid) {
-      this._snackBar.open(this._customTranslate.translate('snack-bar.please_check_password'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+      this._customSnackBar.open(this._customTranslate.translate('snack-bar.please_check_password'), SystemEnum.ResponseAction.Failed)
+      // this._snackBar.open(this._customTranslate.translate('snack-bar.please_check_password'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
       this.spinner = false;
       return
     }
@@ -62,16 +66,19 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       }).subscribe({
         next: res => {
           if (res.IsErrorState)
-            this._snackBar.open(res.Value, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+          this._customSnackBar.open(res.Value, SystemEnum.ResponseAction.Failed)
+            // this._snackBar.open(res.Value, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
           else if (!res.IsErrorState && res.Value == 'Success') {
-            this._snackBar.open(this._customTranslate.translate('snack-bar.password_changed_sucessfully'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
+            this._customSnackBar.open(this._customTranslate.translate('snack-bar.password_changed_sucessfully'), SystemEnum.ResponseAction.Success)
+            // this._snackBar.open(this._customTranslate.translate('snack-bar.password_changed_sucessfully'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
             this._router.navigate(['login'])
             this._dialog.closeAll();
           }
         },
         error: err => {
           console.log(err)
-          this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+          this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+          // this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
         }
       })
     this.spinner = false;

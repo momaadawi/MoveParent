@@ -5,6 +5,7 @@ export interface AbsenceRequest {
   EndDate: string;
   Comment?: string;
   Name?: string;
+  AbsenceReasonId?: number;
   DeletedStudents?: number[]
 }
 
@@ -24,6 +25,9 @@ export interface AbsencePlan {
   Comment: string;
   Name: string;
   Id: number;
+  AbsenceReasonId: number;
+  AbsenceReasonEN: string;
+  AbsenceReasonAR: string;
 }
 export interface Reasons{
   ReasonName: string,
@@ -31,9 +35,9 @@ export interface Reasons{
 }
 
 export interface AbsenceReasons {
-  id: number;
-  name_AR: string;
-  name_EN: string;
+  Id: number;
+  Name_AR: string;
+  Name_EN: string;
 }
 
 export interface AbsenceReasonsResponse{

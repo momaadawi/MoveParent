@@ -60,10 +60,10 @@
   color: #181818;
 }
 
-.next-btn {
+#next-btn {
   cursor: pointer;
   position: relative;
-  top: .5em;
+  top: 1.5em;
   background: $main-btn;
   border-radius: $main-btn-radius;
 }
@@ -86,14 +86,23 @@
   color: #f1f1f1;
 }
 
-#closure>button.mat-focus-indicator:nth-child(3) {
+#sub-btn .mat-focus-indicator {
+  background: $main-btn;
+  border-radius: $main-btn-radius !important;
+  color: #f1f1f1;
+  margin-bottom: 1em;
   width: 215px;
   height: 50px;
 }
 
+// #closure>button.mat-focus-indicator:nth-child(3) {
+//   width: 215px;
+//   height: 50px;
+// }
+
 #closure {
   justify-content: space-around;
-  height: 380px;
+  height: 300px;
 }
 
 .carousel-indicators {
@@ -122,3 +131,10 @@
 .visually-hidden{
   display: none;
 }
+.slide-content{
+  font-size: .875em;
+}
+// #slide-ngb-slide-1 .slide-content{
+//   font-size: 10px !important;
+// }
+

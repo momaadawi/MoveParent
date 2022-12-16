@@ -13,7 +13,7 @@ import { DilogIds } from 'src/app/configurations/dilaogs.config';
 import { StudentDetails } from '../../services/planService/plan.model';
 import { Browser } from '@capacitor/browser';
 import { PushNotifications } from '@capacitor/push-notifications';
-import { BusArrivalAlarmComponent } from '../dialogs/bus-arrival-alarm/bus-arrival-alarm.component';
+import { PopUpNotification } from '../dialogs/popup-notification/popup-notification.component';
 import { Platform } from '@angular/cdk/platform';
 import { Subject } from 'rxjs';
 
@@ -42,12 +42,12 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.retriveStudents();
-    if(this.platform.ANDROID || this.platform.IOS){
+    if (this.platform.ANDROID || this.platform.IOS) {
       PushNotifications.addListener('pushNotificationReceived', notification => {
-        this._zone.run( () => {
+        this._zone.run(() => {
           let config = this._customDialogService.defualtConfig()
           config.data = notification
-          this._dialog.open(BusArrivalAlarmComponent, config)
+          this._dialog.open(PopUpNotification, config)
         })
       })
     }
@@ -127,8 +127,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   }
 
-  refreshStudents(event: Subject<any>){
-    event.next(this.retriveStudents())
+  refreshStudents(event: Subject<any>) {
+    setTimeout(() => {
+      event.next(this.retriveStudents())
+    }, 0)
   }
   ngOnDestroy(): void {
     this.subs.unsubscribe()

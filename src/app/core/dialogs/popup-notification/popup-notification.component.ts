@@ -5,11 +5,11 @@ import { PushNotificationSchema } from '@capacitor/push-notifications';
 
 @Component({
   selector: 'app-bus-arrival-alarm',
-  templateUrl: './bus-arrival-alarm.component.html',
-  styleUrls: ['./bus-arrival-alarm.component.scss'],
+  templateUrl: './popup-notification.component.html',
+  styleUrls: ['./popup-notification.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class BusArrivalAlarmComponent implements OnInit {
+export class PopUpNotification implements OnInit {
   notification: PushNotificationSchema = {
     id: '',
     data: '',

@@ -10,7 +10,7 @@
     <img id="welcome-infograph" [src]="welcome_infographImg">
   </div>
   <div id="closure">
-    <button (click)="nextSlide(carousel)" mat-mini-fab color="warn"
+    <button id="next-btn" (click)="nextSlide(carousel)" mat-mini-fab color="warn"
       aria-label="Example icon button with a filter list icon">
       <mat-icon>chevron_right</mat-icon>
     </button>
@@ -30,10 +30,16 @@
       <ng-template ngbSlide>
         <div class="text-center">
           <h3 class="slide-header">{{"welcome_slide_3.header" | translate}}</h3>
-          <small class="slide-content text-secondary text-sm">{{"welcome_slide_3.content" | translate}}</small>
+          <small class="slide-content-p text-secondary text-sm">{{"welcome_slide_3.content" | translate}}</small>
         </div>
       </ng-template>
     </ngb-carousel>
-    <button [routerLink]="['/login']" mat-flat-button>{{'login' | translate}}</button>
+    <div id="sub-btn">
+      <button [routerLink]="['/login']"  mat-flat-button>
+        <span class="sr-only">{{'login' | translate}}</span>
+      </button>
+    </div>
+
+    <!-- <button [routerLink]="['/login']" mat-flat-button>{{'login' | translate}}</button> -->
   </div>
 </div>

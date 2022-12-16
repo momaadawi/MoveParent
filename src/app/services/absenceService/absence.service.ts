@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Configuration } from '../../configurations/app.config';
 import { AbsenceRequest, AbsenceResponse, Reasons, AbsenceReasonsResponse } from './absence.model';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -30,11 +30,5 @@ export class AbsenceService {
 
   lookUp_reasons(): Observable<AbsenceReasonsResponse>{
     return this._http.get<AbsenceReasonsResponse>(environment.api + Configuration.api.absenceReason)
-    // let reasons: Reasons[] = []
-    // reasons.push({ ReasonName: 'Sick Leave', Value: 'Sick Leave'})
-    // reasons.push({ ReasonName: 'Travling', Value: 'Travling'})
-    // reasons.push({ ReasonName: 'Others', Value: 'Others'})
-
-    // return of(reasons);
   }
 }

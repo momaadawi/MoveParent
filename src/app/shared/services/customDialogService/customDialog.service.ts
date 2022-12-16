@@ -22,8 +22,9 @@ export class CustomDialogService {
     dialogConfig.panelClass = 'custom-modal'
     return dialogConfig
   }
-  open_Dialog(component: any, config: MatDialogConfig){
-    this._dialog.open(component, config)
-  }
+  //will be used after refactor
+  // open_Dialog(component: any, config: MatDialogConfig){
+  //   this._dialog.open(component, config)
+  // }
 
 }

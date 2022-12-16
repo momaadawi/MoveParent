@@ -6,4 +6,5 @@ export * from './notification/notification.component';
 export * from './student-list/student-list.component';
 export * from './update-poi/update-poi.component'
 export * from './absence-list/absence-list.component'
+export * from './student-profile/student-profile.component'
 

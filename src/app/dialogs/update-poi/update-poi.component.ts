@@ -11,6 +11,7 @@ import { SubSink } from 'subsink';
 import { Configuration } from '../../configurations/app.config';
 import { cssClasses } from '../../shared/cssClasses.conf';
 import { CustomTranslateService } from 'src/app/shared/services/customTranslateService/custom-translate.service';
+import { SnackbarService } from '../../shared/services/snackbarService/snackbar.service';
 
 @Component({
   selector: 'app-update-poi',
@@ -32,6 +33,7 @@ export class UpdatePOIComponent implements OnInit, OnDestroy {
 
   constructor(private _studentService: StudentService,
     private _snackBar: MatSnackBar,
+    private _customSnackBar: SnackbarService,
     private _dialog: MatDialog,
     private _customTranslate: CustomTranslateService,
     @Inject(MAT_DIALOG_DATA) public data: { student: ParentStudent; updateType: SystemEnum.UpdatePoiState; }) {
@@ -60,12 +62,12 @@ export class UpdatePOIComponent implements OnInit, OnDestroy {
       })
     )
   }
-  mapClick(event: google.maps.MapMouseEvent) {
+  marker_position_changed(event: google.maps.MapMouseEvent) {
     this.student_position = event.latLng!.toJSON()
-    console.log(this.student_position)
   }
   update_student_POI() {
     this.spinner = true;
+    console.log(this.student_position)
     let request: UpdatePOIRequest = {
       StudentId: this.data.student.Id,
       PickLocationLongitude: this.student.PickLocationLongitude,
@@ -76,23 +78,26 @@ export class UpdatePOIComponent implements OnInit, OnDestroy {
     if (this.data.updateType == SystemEnum.UpdatePoiState.UpdatePickUpLocation) {
       request.PickLocationLongitude = this.student_position.lng.toString()
       request.PickLocationLatitude = this.student_position.lat.toString()
+      console.log('pickup: ' + request.PickLocationLongitude)
     }
     if (this.data.updateType == SystemEnum.UpdatePoiState.updateDropOffLocation) {
       request.DropOffLongitude = this.student_position.lng.toString()
       request.DropOffLatitude = this.student_position.lat.toString()
+      request.PickLocationLatitude = this.student_position.lat.toString()
+      console.log('drop: ' + request.DropOffLongitude)
     }
     this.subsin.add(
       this._studentService.update_student_POI(request).subscribe({
         next: res => {
           if (res.IsErrorState)
-            this._snackBar.open(res.ErrorDescription, 'x', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+          this._customSnackBar.open(res.ErrorDescription, SystemEnum.ResponseAction.Failed)
           else{
             this._dialog.getDialogById('di_update_poi')?.close()
-            this._snackBar.open(this._customTranslate.translate('snack-bar.student_location_updated'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.success] })
+            this._customSnackBar.open(this._customTranslate.translate('snack-bar.student_location_updated'), SystemEnum.ResponseAction.Success)
           }
         },
         error: err =>{
-          this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
+          this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
         },
         complete:() =>{
           this.spinner = false

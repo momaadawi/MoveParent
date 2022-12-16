@@ -42,7 +42,7 @@ export class CustomCookieService {
   clearAllCookies = async () => {
     await CapacitorCookies.clearAllCookies();
   };
-  setCookies = (loginresponse :LoginResponse) => {
+  setLoginCookies = (loginresponse :LoginResponse) => {
      this._cookieService.set(Configuration.cookies.Id, loginresponse.Value.Id)
      this._cookieService.set(Configuration.cookies.Authorization, loginresponse.Token.replace('Basic', ''))
      this._cookieService.set(Configuration.cookies.UserName, loginresponse.Value.Name)
