@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject, ComponentRef } from '@angular/core';
 import { SubSink } from 'subsink';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
@@ -12,6 +12,8 @@ import { CustomDialogService } from '../../../shared/services/customDialogServic
 import { TranslateService } from '@ngx-translate/core';
 import { SystemEnum } from 'src/app/configurations/system.enum';
 import { SnackbarService } from '../../../shared/services/snackbarService/snackbar.service';
+import { map, reduce, tap } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-set-absent',
@@ -21,6 +23,7 @@ import { SnackbarService } from '../../../shared/services/snackbarService/snackb
 })
 export class SetAbsentComponent implements OnInit, OnDestroy {
   private _subSink = new SubSink()
+  saved: boolean = false;
   AbsentForm: FormGroup = this.CreateForm()
   reasons: Reasons[] = []
   spinner: boolean = false;
@@ -58,25 +61,29 @@ export class SetAbsentComponent implements OnInit, OnDestroy {
       // this._snakBar.open(this._customTransalte.translate('snack-bar.please_select_reason'),'', { duration: Configuration.alertTime, panelClass: cssClasses.snackBar.faild})
       return
     }
+    this.spinner = true
     let absenceRequest: AbsenceRequest = {
       StudentsId: [this.data.Id],
       StartDate: new Date().toLocaleDateString(),
       EndDate: new Date().toLocaleDateString(),
-      Name: form.get('Name')?.value,
+      // Name: form.get('Name')?.value,
+      AbsenceReasonId: form.get('Name')?.value,
       Comment: ''
     }
     let setAbsense_subscription  = this._absenceService.setAbsense(absenceRequest).subscribe({
       next: res => {
-        this.spinner = true
         if(res.IsErrorState)
-        this._customSnackBar.open(res.ErrorDescription, SystemEnum.ResponseAction.Failed)
+         this._customSnackBar.open(this._customTransalte.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
           // this._snakBar.open(res.ErrorDescription, '', { duration: Configuration.alertTime, panelClass: cssClasses.snackBar.faild })
-        else
-        this._customSnackBar.open(this._customTransalte.translate('snack-bar.student_set_absent'), SystemEnum.ResponseAction.Success)
-          // this._snakBar.open(this._customTransalte.translate('snack-bar.student_set_absent'), '', { duration: Configuration.alertTime, panelClass: cssClasses.snackBar.success })
+        else{
+            this.saved = true
+            this._customSnackBar.open(this._customTransalte.translate('snack-bar.student_set_absent'), SystemEnum.ResponseAction.Success)
+            // this._snakBar.open(this._customTransalte.translate('snack-bar.student_set_absent'), '', { duration: Configuration.alertTime, panelClass: cssClasses.snackBar.success })
+        }
+
       },
       error: (err) =>{
-        this._customSnackBar.open(this._customTransalte.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+        // this._customSnackBar.open(this._customTransalte.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
         // this._snakBar.open(this._customTransalte.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: cssClasses.snackBar.faild})
       },
       complete: () => {

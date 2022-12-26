@@ -43,7 +43,7 @@
     "new_password": "كلمة المرور الجديدة",
     "confirm_password": "تأكيد كلمة المرور الجديدة",
     "yes_confirm_absence": "نعم, أكد الغياب",
-    "absence_delete_confimation": "هل انت متأكد من حذف الخطة؟",
+    "absence_delete_confimation": "هل انت متأكد من حذف خطة الغياب؟",
     "confirm_set_student_absent": "تأكيد غياب الطالب اليوم",
     "you_dont_have_absence_plan": "ليس لديك خطط غياب",
     "you_dont_have_students": "ليس لديك طلاب",
@@ -94,22 +94,31 @@
     "start_date": "من تاريخ",
     "end_date": "إلي تاريخ",
     "name": "العنوان",
-    "comment": "تعليق"
+    "comment": "تعليق",
+    "validation": {
+      "please_select_child": "إختر طالب واحد علي الأقل",
+      "feild_is_required": "هذا الحقل مطلوب"
+    }
+
   },
   "poi": {
     "pick_up_location": "نقطة الصعود",
     "drop_off_location": "نفطة النزول"
   },
   "snack-bar": {
-    "please_check_user_name_password": "من فضلك تأكد من المستخدم و كلمة المرور",
+    "please_check_user_name_password": "من فضلك تأكد من إسم المستخدم و كلمة المرور",
     "something_wrong_retry_again": "حدث خطأ حاول مرة أخري",
     "student_set_absent_succsfully": "تم حفظ خطة غياب للطالب بنجاح",
     "password_changed_sucessfully" : "تم تغيير كلمة المرور بنجاح",
     "please_check_password": "من فضلك تأكد من كلمة المرور",
     "student_location_updated": "تم تغيير الموقع بنجاح",
-    "wrong_data": "خطأ في البيانات !!",
+    "wrong_data": "خطأ في البيانات",
     "student_set_absent": "تم تأكيد غياب الطالب",
-    "please_select_reason": "اختر سبب الغياب"
+    "please_select_reason": "اختر سبب الغياب",
+    "invalid_credentails": "إسم المستخدم او كلمة المرور غير صحيحة",
+    "No_internet_connection": "لا يوجد انترنت",
+    "select_child_and_fill_required_data": "يرجي ملىء جميع البيانات المطلوبة و إختيار طفل"
+
   },
   "student_profile": {
     "gender": "النوع",
@@ -118,12 +127,110 @@
     "dropoff_location": "نقطة النزول",
     "grade": "الصف",
     "class": "الفصل",
-    "school": "المدرسة"
+    "school": "المدرسة",
+    "Date_birth": "{{date}}"
   },
   "weak": "ضعيف",
   "medium": "متوسط",
   "strong": "قوي",
   "no_resons_exist": "لايوجد اسباب",
   "no_result_exist": "لا توجد نتائج",
-  "no_students_exist": "لا يوجد طلاب"
+  "no_students_exist": "لا يوجد طلاب",
+  "primeng": {
+    "startsWith": "ابدا ب",
+    "contains": "يحتوي",
+    "notContains": "لا يحتوي",
+    "endsWith": "ينتهي ب",
+    "equals": "يساوي",
+    "notEquals": "لا يساوي",
+    "noFilter": "لا يوجد مرشح",
+    "lt": "أقل من",
+    "lte": "أقل من او يساوي",
+    "gt": "أكبر من",
+    "gte": "أكبر من او يساوي",
+    "is": "يكون",
+    "isNot": "لا يكون",
+    "before": "قبل",
+    "after": "بعد",
+    "dateIs": "التاريخ هو",
+    "dateIsNot": "التاريخ ليس ",
+    "dateBefore": "التاريخ قبل",
+    "dateAfter": "التاريخ بعد",
+    "clear": "نظيف",
+    "apply": "طبق",
+    "matchAll": "تطابق الكل",
+    "matchAny": "تطابق أي",
+    "addRule": "أضف قاعدة",
+    "removeRule": "احزف قاعدة",
+    "accept": "نعم",
+    "reject": "لا",
+    "choose": "اختر",
+    "upload": "ارفع",
+    "cancel": "إلغي",
+    "dayNames": [
+      "الأحد",
+      "الاثنين",
+      "الثلاثاء",
+      "الأربعاء",
+      "الخميس",
+      "جمعة",
+      "السبت"
+    ],
+    "dayNamesShort": [
+      "الأحد",
+      "الاثنين",
+      "الثلاثاء",
+      "الأربعاء",
+      "الخميس",
+      "جمعة",
+      "السبت"
+    ],
+    "dayNamesMin": [
+      "الأحد",
+      "الاثنين",
+      "الثلاثاء",
+      "الأربعاء",
+      "الخميس",
+      "جمعة",
+      "السبت"
+    ],
+    "monthNames": [
+      "يناير",
+      "فبراير",
+      "مارس",
+      "أبريل",
+      "مايو",
+      "يونيه",
+      "يوليو",
+      "أغسطس",
+      "سبتمبر",
+      "اكتوبر",
+      "نوفمبر",
+      "ديسمبر"
+    ],
+    "monthNamesShort": [
+      "يناير",
+      "فبراير",
+      "مارس",
+      "أبريل",
+      "مايو",
+      "يونيه",
+      "يوليو",
+      "أغسطس",
+      "سبتمبر",
+      "اكتوبر",
+      "نوفمبر",
+      "ديسمبر"
+    ],
+    "dateFormat": "mm/dd/yy",
+    "firstDayOfWeek": 0,
+    "today": "اليوم",
+    "weekHeader": "اسبوع",
+    "weak": "اسبوع",
+    "medium": "متوسط",
+    "strong": "قوي",
+    "passwordPrompt": "أدخل كلمة المرور",
+    "emptyMessage": "لم يتم العثور على نتائج",
+    "emptyFilterMessage": "لم يتم العثور على نتائج"
+  }
 }

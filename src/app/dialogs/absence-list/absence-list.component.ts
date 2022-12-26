@@ -71,6 +71,7 @@ export class AbsenceListComponent implements OnInit, OnDestroy {
     let config = this._dialogService.fullSize_dialogConfig();
     config.data = absenecePlan
     config.id = DilogIds.absence_plan
+    config.direction = this._customTranslate.direction()
     this._dialog.open(AbsencePlanComponent, config)
   }
   delete_absence() {

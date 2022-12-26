@@ -15,7 +15,7 @@
     <div class="student-details d-flex flex-column justify-content-start">
       <div class="d-flex flex-row justify-content-start">
         <div class="text-primary mr-2 ml-2">{{ 'student_profile.date_of_birth' | translate }}</div>
-        <small class="text-secondary vl mr-2 ml-2">{{ $any(st.StudentInfo)?.BirthDate | date:'mediumDate' }}</small>
+        <small class="text-secondary vl mr-2 ml-2">{{'student_profile.Date_birth' | translate:{date: $any(st.StudentInfo)?.BirthDate | translateDate} }}</small>
       </div>
       <div class="d-flex flex-row justify-content-start">
         <div class="text-primary mr-2 ml-2">{{ 'student_profile.class' | translate }}</div>

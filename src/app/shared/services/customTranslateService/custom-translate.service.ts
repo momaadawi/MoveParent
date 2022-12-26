@@ -4,12 +4,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { Configuration } from '../../../configurations/app.config';
 import { SystemEnum } from 'src/app/configurations/system.enum';
 import { Direction } from '@angular/cdk/bidi';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Injectable()
 export class CustomTranslateService {
 
   constructor(private _translate: TranslateService,
-    private _cookieService: CookieService) {
+    private _cookieService: CookieService,
+    private config: PrimeNGConfig) {
   }
 
   translate(key: string) {
@@ -22,6 +24,7 @@ export class CustomTranslateService {
     this._translate.use(lang).subscribe({
       complete: () => {
         this.Change_document_direction()
+        this._translate.get('primeng').subscribe(res => this.config.setTranslation(res));
       }
     })
   }

@@ -16,7 +16,7 @@
         *ngIf="!loader && $any(students).goToSchool.length == 0">{{ 'student_trips.no_trips_go_to_school' | translate}}
       </mat-panel-description>
 
-      <div [ngClass]="setAbsence_backgound(pickUpStudent.studentDetails.StudentStatusId)" class="student_trip"
+      <div  [ngClass]="setAbsence_backgound(pickUpStudent.studentDetails.StudentStatusId)" class="student_trip"
         *ngFor="let pickUpStudent of $any($any(students).goToSchool)">
         <div class="student_info d-flex flex-row justify-content-around">
           <p-avatar [image]="pickUpStudent.ImageUrl" styleClass="mr-2" shape="circle"></p-avatar>
@@ -24,8 +24,8 @@
           </div> -->
           <div class="student-name text-center">{{pickUpStudent.Name}}</div>
           <button type="button" (click)="setAbsent(pickUpStudent)"
-            [disabled]="pickUpStudent.studentDetails.StudentStatusId == 2"
-            [ngClass]="generate_student_status_Class_Style(pickUpStudent.studentDetails.StudentStatusId)">{{pickUpStudent.studentDetails.StudnetStatusName}}</button>
+          [disabled]="pickUpStudent.studentDetails.StudentStatusId == 2 && pickUpStudent.studentDetails.StudentStatusId == 3 && pickUpStudent.studentDetails.StudentStatusId == 6"
+          [ngClass]="generate_student_status_Class_Style(pickUpStudent.studentDetails.StudentStatusId)">{{pickUpStudent.studentDetails.StudnetStatusName}}</button>
         </div>
         <mat-accordion>
           <mat-expansion-panel [expanded]="expanded_StudentId === pickUpStudent.studentDetails.StudentId"
@@ -142,7 +142,7 @@
           <p-avatar [image]="backFromSchool.ImageUrl" styleClass="mr-2" shape="circle"></p-avatar>
           <div class="student-name">{{backFromSchool.Name}}</div>
           <button type="button" (click)="setAbsent(backFromSchool)"
-            [disabled]="backFromSchool.studentDetails.StudentStatusId == 2"
+            [disabled]="backFromSchool.studentDetails.StudentStatusId == 2 && backFromSchool.studentDetails.StudentStatusId == 3 && backFromSchool.studentDetails.StudentStatusId == 6"
             [ngClass]="generate_student_status_Class_Style(backFromSchool.studentDetails.StudentStatusId)">{{backFromSchool.studentDetails.StudnetStatusName}}</button>
         </div>
         <mat-accordion>
@@ -179,7 +179,7 @@
                   <div class="contact-title text-primary">{{'student_trips.supervisor_name' | translate}}</div>
                   <div class="contact-name">{{backFromSchool.plan.SuperVisorName}}</div>
                 </div>
-                <div class="call-icon" (click)="call(backFromSchool.plan.SuperVisorMobileNumber)"><img
+                <div  *ngIf="backFromSchool.plan.SuperVisorMobileNumber" class="call-icon" (click)="call(backFromSchool.plan.SuperVisorMobileNumber)"><img
                     class="call-dilaer" src="assets/call-icon.svg"></div>
               </div>
             </div>

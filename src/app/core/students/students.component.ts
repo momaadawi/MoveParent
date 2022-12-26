@@ -61,6 +61,8 @@ export class StudentsComponent implements OnInit, OnDestroy {
           this.allStudents = res.Value;
         },
         complete: () => {
+          this.students.goToSchool = []
+          this.students.backFromSchool = []
           this.allStudents.forEach(st => {
             this._planService.getPlan(st.Id).subscribe({
               next: planRes => {
@@ -87,10 +89,21 @@ export class StudentsComponent implements OnInit, OnDestroy {
   }
 
   setAbsent(student: ParentStudent) {
+    if(student.studentDetails.StudentStatusId == SystemEnum.StudentStatus.Absent ||
+       student.studentDetails.StudentStatusId == SystemEnum.StudentStatus.Onboard ||
+       student.studentDetails.StudentStatusId == SystemEnum.StudentStatus['Dropped  off'])
+       return;
+
     let config = this._customDialogService.defualtConfig()
     config.data = student
     config.id = DilogIds.Set_student_Absent
-    this._dialog.open(SetAbsentComponent, config)
+    const dialogRef= this._dialog.open(SetAbsentComponent, config)
+    dialogRef.afterClosed().subscribe({
+      next: _ => {
+        if(dialogRef.componentInstance.saved)
+          this.retriveStudents()
+      }
+    })
   }
 
   generate_student_status_Class_Style(studentStatus: number) {
@@ -128,6 +141,8 @@ export class StudentsComponent implements OnInit, OnDestroy {
   }
 
   refreshStudents(event: Subject<any>) {
+    this.students.goToSchool = []
+    this.students.backFromSchool = []
     setTimeout(() => {
       event.next(this.retriveStudents())
     }, 0)

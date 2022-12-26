@@ -22,7 +22,7 @@ import { SystemEnum } from 'src/app/configurations/system.enum';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private subSink = new SubSink()
-  spinner: boolean =false;
+  spinner: boolean = false;
   loginForm: FormGroup = this.createForm()
   constructor(private _fb: FormBuilder,
     private _accountSerivice: AccountService,
@@ -68,28 +68,36 @@ export class LoginComponent implements OnInit, OnDestroy {
       Password: this.Password.value,
       DeviceToken: this._cookiesService.getCookieByKey(Configuration.cookies.DeviceToken)
     }
-      let loginSub = this._accountSerivice.login(loginRequest).subscribe({
-        next: response => {
-          if (response.IsErrorState) {
-            this._customSnackBar.open(response?.ErrorDescription, SystemEnum.ResponseAction.Failed)
-            return
+    let loginSub = this._accountSerivice.login(loginRequest).subscribe({
+      next: response => {
+        if (response.IsErrorState) {
+          if (response.ErrorDescription == SystemEnum.ResponseMessage.invalid_Credentails)
+            this._customSnackBar.open(this._customTranslate.translate('snack-bar.invalid_credentails'), SystemEnum.ResponseAction.Failed)
+          else {
+            this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+            console.error(response.ErrorDescription)
           }
-          if (response.Token?.length > 0){
-            this._cookiesService.setLoginCookies(response)
-            this._notificationService.pushServiceLisetner()
-          }
-          this._router.navigate(['home'])
-        },
-        error: er =>{
-          this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
-          this.spinner = false;},
-        complete: () => {
-          this.spinner = false
-          }
-      })
-      this.subSink.add(loginSub)
+          // this._customSnackBar.open(response?.ErrorDescription, SystemEnum.ResponseAction.Failed)
+          return
+        }
+        if (response.Token?.length > 0) {
+          this._cookiesService.setLoginCookies(response)
+          this._notificationService.pushServiceLisetner()
+        }
+        this._router.navigate(['home'])
+      },
+      error: er => {
+        console.error(er)
+        // this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+        this.spinner = false;
+      },
+      complete: () => {
+        this.spinner = false
+      }
+    })
+    this.subSink.add(loginSub)
   }
-  changeLang(){
+  changeLang() {
     this._customTranslate.toggleLang()
   }
   ngOnDestroy(): void {

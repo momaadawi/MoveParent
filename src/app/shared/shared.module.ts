@@ -14,17 +14,20 @@ import { CustomDialogService,
          SnackbarService } from './services/services';
 // pipes
 import { ShortTimePipe } from './pipes/short-time.pipe';
+import { TranslateDatePipe } from './pipes/translate-date.pipe'
+
 
 // components
 import { LoaderComponent } from './components/loader/loader.component';
 
 // primeng
-import { SkeletonModule } from 'primeng/skeleton'
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [
     ShortTimePipe,
-    LoaderComponent
+    LoaderComponent,
+    TranslateDatePipe
   ],
   providers:[
     CustomDialogService,
@@ -41,6 +44,6 @@ import { SkeletonModule } from 'primeng/skeleton'
     SharedRoutingModule,
     SkeletonModule
   ],
-  exports: [ShortTimePipe, LoaderComponent]
+  exports: [ShortTimePipe, LoaderComponent, TranslateDatePipe]
 })
 export class SharedModule { }

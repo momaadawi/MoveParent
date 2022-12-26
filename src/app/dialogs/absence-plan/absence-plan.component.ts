@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { StudentService } from '../../services/studentService/student.service';
 import { map } from 'rxjs/operators';
@@ -19,13 +19,15 @@ import { TranslateService } from '@ngx-translate/core';
 import { SystemEnum } from 'src/app/configurations/system.enum';
 import { AbsenceReasonsResponse } from '../../services/absenceService/absence.model';
 import { SnackbarService } from '../../shared/services/snackbarService/snackbar.service';
+import { Direction } from '@angular/cdk/bidi';
 
 @Component({
   selector: 'app-absence-plan',
   templateUrl: './absence-plan.component.html',
-  styleUrls: ['./absence-plan.component.scss']
+  styleUrls: ['./absence-plan.component.scss'],
 })
 export class AbsencePlanComponent implements OnInit, OnDestroy {
+  direction!: Direction;
   private _subSink = new SubSink();
   spinner: boolean = false;
   reasonsContainer: Reasons[] = []
@@ -44,6 +46,7 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) private _data: AbsencePlan) { }
 
   ngOnInit(): void {
+    this.direction = this._customTranslate.direction()
     this._absenceService.lookUp_reasons()
     .subscribe({
       next: res => {
@@ -77,6 +80,10 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
       })
     }else{
       this.AbsenceForm.reset()
+      this.AbsenceForm.patchValue({
+        'StartDate':  moment(new Date()).format('MM/DD/YYYY'),
+        'EndDate': moment(new Date()).format('MM/DD/YYYY')
+      })
     }
   }
 
@@ -92,7 +99,7 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
 
   save_absencec_plan(form: FormGroup) {
     if (!form.valid) {
-      this._customSnackBar.open(this._customTranslate.translate('snack-bar.wrong_data'), SystemEnum.ResponseAction.Failed)
+      this._customSnackBar.open(this._customTranslate.translate('snack-bar.select_child_and_fill_required_data'), SystemEnum.ResponseAction.Failed)
       // this._snackBar.open(this._customTranslate.translate('snack-bar.wrong_data'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
       return;
     }
@@ -118,9 +125,9 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
       let addUpdateSubscription = addOrUpdate.subscribe({
         next: res => {
           if (res.IsErrorState){
-            this._customSnackBar.open(res.ErrorDescription, SystemEnum.ResponseAction.Failed)
+          this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
             // this._snackBar.open(res.ErrorDescription, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
-            this._dialog.getDialogById(DilogIds.absence_plan)?.close()
+            // this._dialog.getDialogById(DilogIds.absence_plan)?.close()
           }
           else if (!res.IsErrorState) {
             this._dialog.getDialogById(DilogIds.absence_plan)?.close()
@@ -131,7 +138,7 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
           }
         },
         error: err => {
-          this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+          // this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
           // this._snackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
         },
         complete: () => {

@@ -89,15 +89,17 @@ export class UpdatePOIComponent implements OnInit, OnDestroy {
     this.subsin.add(
       this._studentService.update_student_POI(request).subscribe({
         next: res => {
-          if (res.IsErrorState)
-          this._customSnackBar.open(res.ErrorDescription, SystemEnum.ResponseAction.Failed)
+          if (res.IsErrorState){
+            this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+          }
           else{
             this._dialog.getDialogById('di_update_poi')?.close()
             this._customSnackBar.open(this._customTranslate.translate('snack-bar.student_location_updated'), SystemEnum.ResponseAction.Success)
           }
         },
         error: err =>{
-          this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+          console.log(err)
+          // this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
         },
         complete:() =>{
           this.spinner = false

@@ -1,5 +1,5 @@
 // essentail
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 // localization
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import localeAr from '@angular/common/locales/ar';
+import localeArExtra from '@angular/common/locales/extra/ar';
 
 // primeng
 import {DropdownModule} from 'primeng/dropdown';
@@ -43,6 +45,8 @@ import { GoogleMapsModule } from '@angular/google-maps'
 
 // interceptors
 import { AuthorizationInterceptor } from './shared/providers/authorization.interceptor';
+import { RequestConnectionInterceptor } from './shared/providers/request-connection.interceptor';
+
 
 // components
 import { AppComponent } from './app.component';
@@ -69,6 +73,9 @@ import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
 
 // cros cutting concern
 import { SharedModule } from './shared/shared.module';
+
+import { registerLocaleData } from '@angular/common';
+import localAr from '@angular/common/locales/ar';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -132,8 +139,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: RequestConnectionInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){
+    registerLocaleData(localAr, 'ar')
+  }
+}

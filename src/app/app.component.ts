@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SystemEnum } from './configurations/system.enum';
 import { CookieService } from 'ngx-cookie-service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ import { CookieService } from 'ngx-cookie-service';
 export class AppComponent implements OnInit {
 
   constructor(private translate: TranslateService,
-              private _cookieService: CookieService) {
+              private _cookieService: CookieService,
+              private config: PrimeNGConfig
+              ) {
     translate.addLangs([SystemEnum.Language.English, SystemEnum.Language.Arabic]);
     translate.setDefaultLang(SystemEnum.Language.English);
 

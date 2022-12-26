@@ -4,15 +4,15 @@
   "dir": "rtl",
   "hand": "left",
   "navigation-arrow": "bi-arrow-left",
-  "welcome_slide_1":{
+  "welcome_slide_1": {
     "header": "Welcome To Schools",
     "content": "Schools app afford you the contentment of mind, following up your children trip to and their schools."
   },
-  "welcome_slide_2":{
+  "welcome_slide_2": {
     "header": "Monitor status real time",
     "content": "At anytime your parent can know the status of child like (in bus / out of bus) and monitor the trip status and get alerted about the arrival time of bus for pickup and delivery of child"
   },
-  "welcome_slide_3":{
+  "welcome_slide_3": {
     "header": "Be Always On Touch",
     "content": "At any time you can call the bus driver & supervisor, see your child's status and get alerted about the bus arrival time."
   },
@@ -28,7 +28,7 @@
   "reason": "Reason",
   "update_profile": "Update Profile",
   "version": "Version",
-  "hints":{
+  "hints": {
     "enter_user_name_and_password": "Enter your username and password",
     "forget_password": "forget password?",
     "username": "Username",
@@ -49,7 +49,7 @@
     "you_dont_have_students": "You dont' have any students",
     "enter_new_password": "Enter new Password"
   },
-  "validation":{
+  "validation": {
     "username_required": "Username is required field.",
     "password_required": "Password is required field.",
     "password_match": "Password does not matching."
@@ -63,7 +63,6 @@
     "change_Password": "Change Password",
     "my_childrens": "My Childrens",
     "absence_plan": "Absence Plan"
-
   },
   "language": {
     "english": "English",
@@ -71,49 +70,55 @@
   },
   "dialog": {
     "about": "Parents, teachers, and school authorities can get relaxed about student safety during their trip inside the school bus either going to school or returning to their homes. Our smart Move Parent apps can help you get real-time updates about the children and school bus by monitoring the daily bus trips of your children and getting notified via push notifications. The app will keep you alerted when the bus is on the way to pick up your children, when the bus arrives to the pickup location and waiting for student onboarding and when the bus arrives to the school and your children get out of the bus. Moreover,  you can notify the school authorities of any absent plans for your child through the app and call the driver and supervisor of the bus."
-  }
-  ,
-  "student_trips":{
+  },
+  "student_trips": {
     "hello_mom_data": "Hello, Mom & Dad",
     "follow_children_trips": "Follow Your Children School Trips",
     "go_to_school": "Going Trips",
     "back_from_school": "Return Trips",
-    "bus_code" : "Bus Code",
+    "bus_code": "Bus Code",
     "trip_time": "Trip Time",
     "return_time": "Return Time",
     "driver_name": "Driver Name",
     "supervisor_name": "Supervisor name",
-    "no_trips_go_to_school": "No trips go to school!",
-    "no_trips_back_from_school": "No trips back from School!",
+    "no_trips_go_to_school": "No trips go to school",
+    "no_trips_back_from_school": "No trips back from School",
     "bus_left_location_at": "Bus left location at",
-    "status_confirmed_by" : "Status confirmed by",
+    "status_confirmed_by": "Status confirmed by",
     "pickup_time": "Pickup time",
     "pickup_address": "Pickup Address",
     "drop_off_time": "Drop off Time",
     "drop_off_address": "Drop off Address",
     "bus_Arrival": "Bus Arrival"
   },
-  "absence_plan":{
+  "absence_plan": {
     "start_date": "Start date",
     "end_date": "End date",
     "name": "Title",
-    "comment": "Comment"
+    "comment": "Comment",
+    "validation": {
+      "please_select_child": "Please select at least one student",
+      "feild_is_required": "This field is required"
+    }
   },
   "poi": {
     "pick_up_location": "PickUp location",
     "drop_off_location": "DropOff location"
   },
   "snack-bar": {
-    "please_check_user_name_password": "please check user name or password!!",
-    "something_wrong_retry_again": "something wrong retry again",
-    "student_set_absent_succsfully": "student absent saved succsfully",
-    "password_changed_sucessfully" : "password chaned succsfully",
-    "please_check_password": "please check password!!",
-    "student_location_updated": "student location updated",
-    "wrong_data": "wrong form data!!",
-    "success_absence_delete": "Absence plan deleted successfuly",
-    "student_set_absent": "studentd set as absent successfuly",
-    "please_select_reason": "please select reason!"
+    "please_check_user_name_password": "please check user name or password",
+    "something_wrong_retry_again": "Something went wrong",
+    "student_set_absent_succsfully": "Absence plan saved successfully",
+    "password_changed_sucessfully": "Password chaned successfully",
+    "please_check_password": "Please check password",
+    "student_location_updated": "Student location updated successfully",
+    "wrong_data": "Wrong form data",
+    "success_absence_delete": "Absence plan deleted successfully",
+    "student_set_absent": "Successfully marked student as absent",
+    "please_select_reason": "Please select reason",
+    "invalid_credentails": "Incorrect username or password",
+    "No_internet_connection": "No internet connection",
+    "select_child_and_fill_required_data": "Please select a child and fill all required data"
   },
   "student_profile": {
     "gender": "Gender",
@@ -122,13 +127,110 @@
     "dropoff_location": "Drop off Location",
     "grade": "Grade",
     "class": "Class",
-    "school": "School"
+    "school": "School",
+    "Date_birth": "{{date}}"
   },
   "weak": "Weak",
   "medium": "medium",
   "strong": "Strong",
   "no_resons_exist": "No reasons exist",
   "no_result_exist": "No result found",
-  "no_students_exist": "No students exist"
-
+  "no_students_exist": "No students exist",
+  "primeng": {
+    "startsWith": "Starts with",
+    "contains": "Contains",
+    "notContains": "Not contains",
+    "endsWith": "Ends with",
+    "equals": "Equals",
+    "notEquals": "Not equals",
+    "noFilter": "No Filter",
+    "lt": "Less than",
+    "lte": "Less than or equal to",
+    "gt": "Greater than",
+    "gte": "Greater than or equal to",
+    "is": "Is",
+    "isNot": "Is not",
+    "before": "Before",
+    "after": "After",
+    "dateIs": "Date is",
+    "dateIsNot": "Date is not",
+    "dateBefore": "Date is before",
+    "dateAfter": "Date is after",
+    "clear": "Clear",
+    "apply": "Apply",
+    "matchAll": "Match All",
+    "matchAny": "Match Any",
+    "addRule": "Add Rule",
+    "removeRule": "Remove Rule",
+    "accept": "Yes",
+    "reject": "No",
+    "choose": "Choose",
+    "upload": "Upload",
+    "cancel": "Cancel",
+    "dayNames": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "dayNamesShort": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "dayNamesMin": [
+      "Su",
+      "Mo",
+      "Tu",
+      "We",
+      "Th",
+      "Fr",
+      "Sa"
+    ],
+    "monthNames": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "monthNamesShort": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "dateFormat": "mm/dd/yy",
+    "firstDayOfWeek": 0,
+    "today": "Today",
+    "weekHeader": "Wk",
+    "weak": "Weak",
+    "medium": "Medium",
+    "strong": "Strong",
+    "passwordPrompt": "Enter a password",
+    "emptyMessage": "No results found",
+    "emptyFilterMessage": "No results found"
+  }
 }
