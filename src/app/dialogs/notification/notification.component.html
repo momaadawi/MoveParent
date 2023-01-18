@@ -1,11 +1,19 @@
-<div class="border-bottom dialog_header">
+<div  class="border-bottom dialog_header">
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
+  <p-calendar placeholder="{{ 'hints.please_choose_date_range' | translate }}" #dateRange selectionMode="range" (onClickOutside)="dateChanged(dateRange)" [readonlyInput]="true" inputId="range"></p-calendar>
 </div>
+<app-loader size="4rem" [loader]="loader" [withImage]="false"></app-loader>
+<!-- <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner> -->
 
-<mat-dialog-content class="mat-typography">
+<div *ngIf="notification?.length == 0 && !loader" class="text-secondary text-center not_found">{{ 'hints.you_dont_have_notifications' | translate }}</div>
 
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <!-- <button mat-button mat-dialog-close>{{'cancel' | translate}}</button> -->
-</mat-dialog-actions>
-
+<div class="student_info d-flex flex-row justify-content-between border-bottom mb-3  " *ngFor="let nt of $any(notification)">
+  <div class="mb-3" id="{{ nt.notificationId }}">
+    <h4 *ngIf="nt.NotificationText" class="mr-2 ml-2">{{ nt.NotificationText }}</h4>
+    <h4 *ngIf="!nt.NotificationText" class="mr-2 ml-2">{{ 'hints.no_content' | translate }}</h4>
+    <div class="student-details d-flex flex-column justify-content-start">
+      <div class="d-flex flex-row justify-content-start">
+        <small class="text-secondary vl mr-2 ml-2 ">{{ nt.NotificationDate | date:'short' }}</small>
+      </div>
+    </div>
+  </div>

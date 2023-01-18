@@ -47,7 +47,10 @@
     "confirm_set_student_absent": "تأكيد غياب الطالب اليوم",
     "you_dont_have_absence_plan": "ليس لديك خطط غياب",
     "you_dont_have_students": "ليس لديك طلاب",
-    "enter_new_password": "كلمة المرور الجديدة"
+    "enter_new_password": "كلمة المرور الجديدة",
+    "you_dont_have_notifications": "ليس لديك أي إشعارات",
+    "no_content": "لا يوجد محتوي",
+    "please_choose_date_range": "اختر المدة الزمنية"
   },
   "validation":{
     "username_required": "يجب إدخال أسم المستخدم",
@@ -117,8 +120,9 @@
     "please_select_reason": "اختر سبب الغياب",
     "invalid_credentails": "إسم المستخدم او كلمة المرور غير صحيحة",
     "No_internet_connection": "لا يوجد انترنت",
-    "select_child_and_fill_required_data": "يرجي ملىء جميع البيانات المطلوبة و إختيار طفل"
-
+    "select_child_and_fill_required_data": "يرجي ملىء جميع البيانات المطلوبة و إختيار طفل",
+    "please_fill_all_required_fields": "يجب ملىء جميع الحقول",
+    "user_locked_out": "تم حظر المستخدم، يرجى الاتصال بالمسؤول"
   },
   "student_profile": {
     "gender": "النوع",

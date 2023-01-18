@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://schoolsmobileservice.altairfms.com/'
+  api: 'http://localhost:12868/'
 };
 
 

@@ -14,6 +14,7 @@ import { SystemEnum } from 'src/app/configurations/system.enum';
 import { SnackbarService } from '../../../shared/services/snackbarService/snackbar.service';
 import { map, reduce, tap } from 'rxjs/operators';
 import { firstValueFrom } from 'rxjs';
+import { SetStudentAbsentInProgressTripRequest } from '../../../services/absenceService/absence.model';
 
 @Component({
   selector: 'app-set-absent',
@@ -62,15 +63,11 @@ export class SetAbsentComponent implements OnInit, OnDestroy {
       return
     }
     this.spinner = true
-    let absenceRequest: AbsenceRequest = {
-      StudentsId: [this.data.Id],
-      StartDate: new Date().toLocaleDateString(),
-      EndDate: new Date().toLocaleDateString(),
-      // Name: form.get('Name')?.value,
+    let absenceRequest: SetStudentAbsentInProgressTripRequest = {
+      StudentId: this.data.Id,
       AbsenceReasonId: form.get('Name')?.value,
-      Comment: ''
     }
-    let setAbsense_subscription  = this._absenceService.setAbsense(absenceRequest).subscribe({
+    let setAbsense_subscription  = this._absenceService.SetStudentAbsentInProgressTrip(absenceRequest).subscribe({
       next: res => {
         if(res.IsErrorState)
          this._customSnackBar.open(this._customTransalte.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)

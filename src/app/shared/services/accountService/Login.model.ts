@@ -5,6 +5,7 @@ export interface LoginResponse {
   Token: string;
 }
 export interface LoginResponseDetails {
+  Fullname?: string;
   Name: string;
   OperatorId?: any;
   SubId: string;

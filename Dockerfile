@@ -1,7 +1,18 @@
-FROM node:16.18.0-alpine
+FROM node:16.19.0-alpine3.17 AS moveparent
+RUN mkdir -p /app
+
 WORKDIR /app
-COPY package.json .
-RUN npm install
-COPY . .
-EXPOSE 4200 49153
-CMD npm run start
+
+COPY package.json /app/
+RUN npm config set strict-ssl false \
+  && npm install --legacy-peer-deps
+
+COPY . /app/
+RUN npm run build
+
+# server stage
+FROM nginx:alpine
+COPY --from=moveparent /app/dist/MoveParent /usr/share/nginx/html
+
+
+

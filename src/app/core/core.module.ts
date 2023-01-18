@@ -40,7 +40,6 @@ import { SetAbsentComponent } from './dialogs/dialogs';
 import { NgxPullToRefreshModule } from 'ngx-pull-to-refresh';
 import { SharedModule } from '../shared/shared.module';
 import { PopUpNotification } from './dialogs/popup-notification/popup-notification.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RequestConnectionInterceptor } from '../shared/providers/request-connection.interceptor';
 
 

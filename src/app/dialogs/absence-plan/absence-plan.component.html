@@ -13,27 +13,33 @@
           placeholder="{{'students' | translate}}" optionLabel="Name" formControlName="StudentsId"
           [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['StudentsId'].invalid && (AbsenceForm.controls['StudentsId'].dirty || AbsenceForm.controls['StudentsId'].touched))}">
         </p-multiSelect>
-        <small [ngClass]="{'p-error': AbsenceForm.controls['StudentsId'].errors?.['required']}" *ngIf="AbsenceForm.controls['StudentsId'].errors?.['required'] && AbsenceForm.controls['StudentsId'].touched">{{'absence_plan.validation.please_select_child' | translate}}</small>
+        <small [ngClass]="{'p-error': AbsenceForm.controls['StudentsId'].errors?.['required']}"
+          *ngIf="AbsenceForm.controls['StudentsId'].errors?.['required'] && AbsenceForm.controls['StudentsId'].touched">{{'absence_plan.validation.please_select_child'
+          | translate}}</small>
       </div>
 
       <div class="field p-fluid mb-3">
         <label for="startdate-input" class="form-label text-secondary mb-3">{{'absence_plan.start_date' |
           translate}}</label>
-        <p-calendar inputId="startdate-input" [readonlyInput]="true" formControlName="StartDate"
+        <p-calendar inputId="startdate-input" [readonlyInput]="true" formControlName="StartDate" [minDate]="minDate"
           placeholder="{{'absence_plan.start_date' | translate}}"
           [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['StartDate'].invalid && (AbsenceForm.controls['StartDate'].dirty || AbsenceForm.controls['StartDate'].touched))}">
         </p-calendar>
-        <small [ngClass]="{'p-error': AbsenceForm.controls['StartDate'].errors?.['required']}" *ngIf="AbsenceForm.controls['StartDate'].errors?.['required'] && AbsenceForm.controls['StartDate'].touched">{{'absence_plan.validation.feild_is_required' | translate}}</small>
+        <small [ngClass]="{'p-error': AbsenceForm.controls['StartDate'].errors?.['required']}"
+          *ngIf="AbsenceForm.controls['StartDate'].errors?.['required'] && AbsenceForm.controls['StartDate'].touched">{{'absence_plan.validation.feild_is_required'
+          | translate}}</small>
       </div>
 
       <div class="field p-fluid mb-3">
         <label for="enddate-input" class="form-label text-secondary mb-3">{{'absence_plan.end_date' |
           translate}}</label>
-        <p-calendar inputId="enddate-input" [readonlyInput]="true" formControlName="EndDate"
+        <p-calendar inputId="enddate-input" [readonlyInput]="true" formControlName="EndDate" [minDate]="minDate"
           placeholder="{{'absence_plan.end_date' | translate}}"
           [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['EndDate'].invalid && (AbsenceForm.controls['EndDate'].dirty || AbsenceForm.controls['EndDate'].touched))}">
         </p-calendar>
-        <small [ngClass]="{'p-error': AbsenceForm.controls['EndDate'].errors?.['required']}" *ngIf="AbsenceForm.controls['EndDate'].errors?.['required'] && AbsenceForm.controls['EndDate'].touched">{{'absence_plan.validation.feild_is_required' | translate}}</small>
+        <small [ngClass]="{'p-error': AbsenceForm.controls['EndDate'].errors?.['required']}"
+          *ngIf="AbsenceForm.controls['EndDate'].errors?.['required'] && AbsenceForm.controls['EndDate'].touched">{{'absence_plan.validation.feild_is_required'
+          | translate}}</small>
       </div>
 
       <div class="field p-fluid mb-3">
@@ -44,7 +50,9 @@
           emptyFilterMessage="{{ 'no_result_exist' | translate }}" placeholder="{{'reason' | translate}}"
           [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['Name'].invalid && (AbsenceForm.controls['Name'].dirty || AbsenceForm.controls['Name'].touched))}">
         </p-dropdown>
-        <small [ngClass]="{'p-error': AbsenceForm.controls['Name'].errors?.['required']}" *ngIf="AbsenceForm.controls['Name'].errors?.['required'] && AbsenceForm.controls['Name'].touched">{{'absence_plan.validation.feild_is_required' | translate}}</small>
+        <small [ngClass]="{'p-error': AbsenceForm.controls['Name'].errors?.['required']}"
+          *ngIf="AbsenceForm.controls['Name'].errors?.['required'] && AbsenceForm.controls['Name'].touched">{{'absence_plan.validation.feild_is_required'
+          | translate}}</small>
       </div>
 
       <div class="field p-fluid mb-3">
@@ -52,8 +60,10 @@
         <textarea id="comment-input" rows="5" cols="30"
           [ngClass]="{'ng-invalid ng-dirty': (AbsenceForm.controls['Comment'].invalid && (AbsenceForm.controls['Comment'].dirty || AbsenceForm.controls['Comment'].touched))}"
           placeholder="{{'absence_plan.comment' | translate}}" formControlName="Comment" pInputTextarea></textarea>
-          <small [ngClass]="{'p-error': AbsenceForm.controls['Comment'].errors?.['required']}" *ngIf="AbsenceForm.controls['Comment'].errors?.['required'] && AbsenceForm.controls['Comment'].touched">{{'absence_plan.validation.feild_is_required' | translate}}</small>
-        </div>
+        <small [ngClass]="{'p-error': AbsenceForm.controls['Comment'].errors?.['required']}"
+          *ngIf="AbsenceForm.controls['Comment'].errors?.['required'] && AbsenceForm.controls['Comment'].touched">{{'absence_plan.validation.feild_is_required'
+          | translate}}</small>
+      </div>
 
       <mat-dialog-actions align="center">
         <div id="save-absent-plan-btn" class="d-grid gap-2 col-10 position-relative">

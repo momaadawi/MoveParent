@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ParentStudentsResponse } from './models/Students.model';
 import { Configuration } from 'src/app/configurations/app.config';
 import { Observable } from 'rxjs';
-import { StudentResponse } from './models/student.model';
+import { StudentResponse, StudentTripsHistoryViewResponse, StudentsTripsHistoryRequest } from './models/student.model';
 import { UpdatePOIResponse, UpdatePOIRequest } from './models/POI.model';
 import { environment } from 'src/environments/environment.prod';
 
@@ -22,5 +22,8 @@ export class StudentService {
   }
   update_student_POI(poiRequest: UpdatePOIRequest) {
     return this._http.put<UpdatePOIResponse>(environment.api + Configuration.api.student.updateStudentPOI, poiRequest)
+  }
+  student_history(StudentsTripsHistoryRequest: StudentsTripsHistoryRequest){
+    return this._http.post<StudentTripsHistoryViewResponse>(environment.api + Configuration.api.student.getstudenthistory, StudentsTripsHistoryRequest)
   }
 }

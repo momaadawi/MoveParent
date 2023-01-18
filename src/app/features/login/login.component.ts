@@ -71,14 +71,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     let loginSub = this._accountSerivice.login(loginRequest).subscribe({
       next: response => {
         if (response.IsErrorState) {
-          if (response.ErrorDescription == SystemEnum.ResponseMessage.invalid_Credentails)
+          if (response.ErrorDescription == SystemEnum.ResponseMessage.invalid_Credentails){
             this._customSnackBar.open(this._customTranslate.translate('snack-bar.invalid_credentails'), SystemEnum.ResponseAction.Failed)
-          else {
-            this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
-            console.error(response.ErrorDescription)
+            return;
           }
-          // this._customSnackBar.open(response?.ErrorDescription, SystemEnum.ResponseAction.Failed)
-          return
+          if(response.ErrorDescription == SystemEnum.ResponseMessage.lockedOut){
+            this._customSnackBar.open(this._customTranslate.translate('snack-bar.user_locked_out'), SystemEnum.ResponseAction.Failed)
+            return;
+          }else {
+            this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
+            return;
+          }
         }
         if (response.Token?.length > 0) {
           this._cookiesService.setLoginCookies(response)

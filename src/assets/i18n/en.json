@@ -47,7 +47,10 @@
     "confirm_set_student_absent": "By confirmig this you will assign your child as absent from this trip today",
     "you_dont_have_absence_plan": "You dont' have any absence plans",
     "you_dont_have_students": "You dont' have any students",
-    "enter_new_password": "Enter new Password"
+    "enter_new_password": "Enter new Password",
+    "you_dont_have_notifications": "You don't have any notifications",
+    "please_choose_date_range": "Choose date range",
+    "no_content": "No content"
   },
   "validation": {
     "username_required": "Username is required field.",
@@ -109,7 +112,7 @@
     "please_check_user_name_password": "please check user name or password",
     "something_wrong_retry_again": "Something went wrong",
     "student_set_absent_succsfully": "Absence plan saved successfully",
-    "password_changed_sucessfully": "Password chaned successfully",
+    "password_changed_sucessfully": "Password changed successfully",
     "please_check_password": "Please check password",
     "student_location_updated": "Student location updated successfully",
     "wrong_data": "Wrong form data",
@@ -118,7 +121,9 @@
     "please_select_reason": "Please select reason",
     "invalid_credentails": "Incorrect username or password",
     "No_internet_connection": "No internet connection",
-    "select_child_and_fill_required_data": "Please select a child and fill all required data"
+    "select_child_and_fill_required_data": "Please select a child and fill all required data",
+    "please_fill_all_required_fields": "Please fill all required fields",
+    "user_locked_out": "User is locked out, Please contact administrator"
   },
   "student_profile": {
     "gender": "Gender",

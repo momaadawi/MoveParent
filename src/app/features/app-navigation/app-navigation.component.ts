@@ -10,6 +10,7 @@ import { DilogIds } from '../../configurations/dilaogs.config';
 import { CustomDialogService } from '../../shared/services/customDialogService/customDialog.service';
 import { AboutComponent, ChangePasswordComponent, ChangeLangComponent, StudentListComponent, NotificationComponent, AbsenceListComponent } from '../../dialogs/dialogs'
 import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
+import { AccountService } from '../../shared/services/accountService/account.service';
 
 @Component({
   selector: 'app-navigation',
@@ -32,10 +33,11 @@ export class AppNavigationComponent implements OnInit, OnDestroy {
     private _cookieService: CustomCookieService,
     public _dialog: MatDialog,
     private _router: Router,
-    private _dialogService: CustomDialogService) { }
+    private _dialogService: CustomDialogService,
+    private _accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.menuData.parentName = this._cookieService.getCookieByKey(Configuration.cookies.UserName)
+    this.menuData.parentName = this._cookieService.getCookieByKey(Configuration.cookies.FullName)
     this.menuData.parentImage = this._cookieService.getCookieByKey(Configuration.cookies.Image)
   }
   openDialog_about() {
@@ -73,6 +75,7 @@ export class AppNavigationComponent implements OnInit, OnDestroy {
 
   }
   logOut() {
+    this._accountService.logOut()
     this._cookieService.clearAllCookies().then(_ => {
       this._router.navigate(['/login'])
     })

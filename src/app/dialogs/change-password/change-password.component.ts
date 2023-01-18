@@ -54,7 +54,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   submit() {
     this.spinner = true;
     if (!this.resetPassForm.valid) {
-      this._customSnackBar.open(this._customTranslate.translate('snack-bar.please_check_password'), SystemEnum.ResponseAction.Failed)
+      this._customSnackBar.open(this._customTranslate.translate('snack-bar.please_fill_all_required_fields'), SystemEnum.ResponseAction.Failed)
       // this._snackBar.open(this._customTranslate.translate('snack-bar.please_check_password'), '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
       this.spinner = false;
       return
@@ -66,7 +66,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       }).subscribe({
         next: res => {
           if (res.IsErrorState)
-          this._customSnackBar.open(res.Value, SystemEnum.ResponseAction.Failed)
+          this._customSnackBar.open(this._customTranslate.translate('snack-bar.something_wrong_retry_again'), SystemEnum.ResponseAction.Failed)
             // this._snackBar.open(res.Value, '', { duration: Configuration.alertTime, panelClass: [cssClasses.snackBar.faild] })
           else if (!res.IsErrorState && res.Value == 'Success') {
             this._customSnackBar.open(this._customTranslate.translate('snack-bar.password_changed_sucessfully'), SystemEnum.ResponseAction.Success)

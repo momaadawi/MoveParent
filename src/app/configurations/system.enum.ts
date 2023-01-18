@@ -37,8 +37,10 @@ export namespace SystemEnum {
     PickUp = 1,
     DropOff = 2
   }
-  export enum ResponseMessage{
-    invalid_Credentails = 'invalid credentails'
+  export enum ResponseMessage {
+    invalid_Credentails = 'invalid credentails',
+    lockedOut = 'locked out',
+    NotFound = "NotFound"
   }
 }
 

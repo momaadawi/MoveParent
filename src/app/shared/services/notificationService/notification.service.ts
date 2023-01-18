@@ -5,11 +5,14 @@ import { Configuration } from '../../../configurations/app.config';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomDialogService } from '../customDialogService/customDialog.service';
 import { Platform } from '@angular/cdk/platform';
+import { HttpClient } from '@angular/common/http';
+import { NotificationsFilterCriteria, NotificationHistoryResponse } from './notificationHistory.model';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable()
 export class NotificationService implements OnInit {
 
-  constructor(private _cookies: CookieService) { }
+  constructor(private _cookies: CookieService, private _http: HttpClient) { }
   ngOnInit(): void {
   }
 
@@ -70,5 +73,9 @@ export class NotificationService implements OnInit {
   }
 
   async unInitlize_Notification() {
+  }
+
+  GetHistoryNotification(model: NotificationsFilterCriteria){
+    return this._http.post<NotificationHistoryResponse>(environment.api + Configuration.api.Notification.GetHistoryNotification, model)
   }
 }

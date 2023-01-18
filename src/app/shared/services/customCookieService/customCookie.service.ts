@@ -46,6 +46,7 @@ export class CustomCookieService {
      this._cookieService.set(Configuration.cookies.Id, loginresponse.Value.Id)
      this._cookieService.set(Configuration.cookies.Authorization, loginresponse.Token.replace('Basic', ''))
      this._cookieService.set(Configuration.cookies.UserName, loginresponse.Value.Name)
+     this._cookieService.set(Configuration.cookies.FullName, loginresponse.Value.Fullname ?? '')
      this._cookieService.set(Configuration.cookies.Image, loginresponse.Value.Image)
      this._cookieService.set(Configuration.cookies.Direction, this._transalte.currentLang == 'ar' ? 'rtl' : 'ltr' )
   }

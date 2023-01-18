@@ -25,9 +25,16 @@ export class AccountService {
   changePassword(changePasswordmodel: ChangePasswordRequest): Observable<ChangePasswordResponse> {
     return this._http.put<ChangePasswordResponse>(environment.api + Configuration.api.Account.changePassword, changePasswordmodel)
   }
-  async logOut() {
-    this._customCookieService.clearlogOutCookies()
-    await this._notificaitonService.unInitlize_Notification()
-    this._router.navigate(['/login'])
+  logOut() {
+     this._http.post<ChangePasswordResponse>(environment.api + Configuration.api.Account.logout, {}).subscribe({
+      next: _ => {
+        this._customCookieService.clearlogOutCookies()
+      },
+      complete: () => {
+        this._router.navigate(['/login'])
+      }
+     })
+
+    // await this._notificaitonService.unInitlize_Notification()
   }
 }

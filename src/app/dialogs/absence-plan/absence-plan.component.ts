@@ -34,6 +34,7 @@ export class AbsencePlanComponent implements OnInit, OnDestroy {
   reasons: Reasons[] = []
   AbsenceForm: FormGroup = this.createAbsenceForm();
   students: ParentStudent[] = [];
+  minDate: Date = new Date();
 
   constructor(private _fb: FormBuilder,
     private _studentService: StudentService,

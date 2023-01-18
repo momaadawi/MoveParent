@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy, AfterViewInit, NgZone } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy, NgZone, ViewChild } from '@angular/core';
 import { CallNumber } from 'capacitor-call-number';
 import { StudentService } from '../../services/studentService/student.service';
 import { SubSink } from 'subsink';
@@ -89,18 +89,17 @@ export class StudentsComponent implements OnInit, OnDestroy {
   }
 
   setAbsent(student: ParentStudent) {
-    if(student.studentDetails.StudentStatusId == SystemEnum.StudentStatus.Absent ||
-       student.studentDetails.StudentStatusId == SystemEnum.StudentStatus.Onboard ||
-       student.studentDetails.StudentStatusId == SystemEnum.StudentStatus['Dropped  off'])
-       return;
-
+    if (student.studentDetails.StudentStatusId == SystemEnum.StudentStatus.Absent ||
+      student.studentDetails.StudentStatusId == SystemEnum.StudentStatus.Onboard ||
+      student.studentDetails.StudentStatusId == SystemEnum.StudentStatus['Dropped  off'])
+      return;
     let config = this._customDialogService.defualtConfig()
     config.data = student
     config.id = DilogIds.Set_student_Absent
-    const dialogRef= this._dialog.open(SetAbsentComponent, config)
+    const dialogRef = this._dialog.open(SetAbsentComponent, config)
     dialogRef.afterClosed().subscribe({
       next: _ => {
-        if(dialogRef.componentInstance.saved)
+        if (dialogRef.componentInstance.saved)
           this.retriveStudents()
       }
     })
@@ -137,7 +136,6 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   redirect_to_googleMap(studentDetails: StudentDetails) {
     Browser.open({ url: `https://www.google.com/maps/search/?api=1&query=${studentDetails.Latitude},${studentDetails.Longtude}` });
-
   }
 
   refreshStudents(event: Subject<any>) {

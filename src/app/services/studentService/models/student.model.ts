@@ -20,5 +20,25 @@
       Exception: string
       Value: Student;
   }
-
+  export interface StudentsTripsHistoryRequest {
+    Id: number;
+    DateFrom: string;
+    DateTo: string;
+}
+export interface StudentTripsHistoryViewResponse{
+  IsErrorState: boolean;
+  ErrorDescription: string;
+  Exception: string;
+  Value: StudentTripsHistoryViewValue
+}
+export interface StudentTripsHistoryViewValue {
+  Id: number;
+  StartTime: string;
+  EndTime: string;
+  DriverName: string;
+  SupervisorName: string;
+  BusPlateNumber: string;
+  TripMileage: number;
+  TripDurationMins: number;
+}
 

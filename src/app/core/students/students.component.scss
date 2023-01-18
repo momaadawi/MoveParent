@@ -107,57 +107,63 @@ div.cotact-info {
   margin-top: 1em;
   background: white;
 }
-.profile-pic-img{
+
+.profile-pic-img {
   width: 35px;
   height: 35px;
 }
-.call-dilaer{
+
+.call-dilaer {
   width: 50px;
   height: 50px;
 }
-.mat-tab-label-active > .mat-tab-label-content::before{
+
+.mat-tab-label-active>.mat-tab-label-content::before {
   content: "";
   background: $main-btn;
   border-radius: 50%;
   width: 15px;
   height: 15px;
-  box-shadow: 8px 8px 29px -6px rgba(106,106,246,0.85);
--webkit-box-shadow: 8px 8px 29px -6px rgba(106,106,246,0.85);
--moz-box-shadow: 8px 8px 29px -6px rgba(106,106,246,0.85);
-margin-left: 2px;
-margin-right: 2px;
+  box-shadow: 8px 8px 29px -6px rgba(106, 106, 246, 0.85);
+  -webkit-box-shadow: 8px 8px 29px -6px rgba(106, 106, 246, 0.85);
+  -moz-box-shadow: 8px 8px 29px -6px rgba(106, 106, 246, 0.85);
+  margin-left: 2px;
+  margin-right: 2px;
 
   // content: '\2688';
   // color: #004eb2;
 }
+
 .mat-expansion-panel-header-description {
   position: relative;
   margin: 50% 50% 50% 50%;
   align-self: center;
   justify-content: center;
-  }
+}
 
 
-
-.mat-drawer{
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(237, 250, 248) 19%, rgba(255,255,255,1) 71%, rgb(241, 253, 251) 100%);
+.mat-drawer {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgb(237, 250, 248) 19%, rgba(255, 255, 255, 1) 71%, rgb(241, 253, 251) 100%);
 }
 
 
 .mat-drawer-content {
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(240, 253, 252) 19%, rgba(255,255,255,1) 71%, rgb(240, 253, 252) 100%);
-  }
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgb(240, 253, 252) 19%, rgba(255, 255, 255, 1) 71%, rgb(240, 253, 252) 100%);
+}
 
 .mat-toolbar-single-row {
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(240, 253, 252) 19%, rgba(255,255,255,1) 71%, rgb(240, 253, 252) 100%);
-  }
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgb(240, 253, 252) 19%, rgba(255, 255, 255, 1) 71%, rgb(240, 253, 252) 100%);
+}
 
-.absent-student, .absent-student mat-expansion-panel{
+.absent-student,
+.absent-student mat-expansion-panel {
   background: #EAEAEA;
 }
-.mat-expansion-panel:not([class*="mat-elevation-z"]){
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
   box-shadow: none;
 }
+

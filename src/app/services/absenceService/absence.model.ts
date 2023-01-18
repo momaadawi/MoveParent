@@ -46,3 +46,7 @@ export interface AbsenceReasonsResponse{
   Exception: string;
   Value: AbsenceReasons[]
 }
+export interface SetStudentAbsentInProgressTripRequest {
+  StudentId: number;
+  AbsenceReasonId: number;
+}
