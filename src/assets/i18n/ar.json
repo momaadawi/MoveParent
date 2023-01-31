@@ -49,8 +49,10 @@
     "you_dont_have_students": "ليس لديك طلاب",
     "enter_new_password": "كلمة المرور الجديدة",
     "you_dont_have_notifications": "ليس لديك أي إشعارات",
+    "please_choose_date_range": "اختر المدة الزمنية",
     "no_content": "لا يوجد محتوي",
-    "please_choose_date_range": "اختر المدة الزمنية"
+    "please_choose_date": "اختر التاريخ",
+    "notification_history": "تاريخ الإشعارات"
   },
   "validation":{
     "username_required": "يجب إدخال أسم المستخدم",

@@ -50,7 +50,9 @@
     "enter_new_password": "Enter new Password",
     "you_dont_have_notifications": "You don't have any notifications",
     "please_choose_date_range": "Choose date range",
-    "no_content": "No content"
+    "no_content": "No content",
+    "please_choose_date": "Choose date",
+    "notification_history": "Notification History"
   },
   "validation": {
     "username_required": "Username is required field.",

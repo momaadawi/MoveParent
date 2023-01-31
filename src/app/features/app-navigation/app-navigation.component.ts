@@ -72,7 +72,6 @@ export class AppNavigationComponent implements OnInit, OnDestroy {
     config.id = DilogIds.absence_list
     this._dialog.open(AbsenceListComponent, config)
     this.drawer.close()
-
   }
   logOut() {
     this._accountService.logOut()

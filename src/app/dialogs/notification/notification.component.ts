@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { NotificationService } from 'src/app/shared/services/services';
 import { NotificationViewModel, NotificationsFilterCriteria } from '../../shared/services/notificationService/notificationHistory.model';
 import moment from 'moment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-notification',
@@ -11,13 +12,34 @@ import moment from 'moment';
 })
 export class NotificationComponent implements OnInit {
   loader: boolean = false;
+  @ViewChild('datePicker') datePicker:any;
   notification!: NotificationViewModel[];
-  constructor(private _notificationService: NotificationService) { }
+  notificationFormCriteria: FormGroup = this.createForm()
+
+  constructor(private _notificationService: NotificationService,
+    private _fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.seedForm();
+    let model: NotificationsFilterCriteria = {
+      PageNumber: this.notificationFormCriteria.controls['PageNumber'].value,
+      PageSize: this.notificationFormCriteria.controls['PageSize'].value,
+      DateFrom: moment(new Date()).format('YYYY/MM/DD'),
+      DateTo: moment(new Date()).format('YYYY/MM/DD'),
+    }
+    this.retriveNotifications(model);
 
   }
 
+  dateChanged(event: any){
+    let model: NotificationsFilterCriteria = {
+      PageNumber: this.notificationFormCriteria.controls['PageNumber'].value,
+      PageSize: this.notificationFormCriteria.controls['PageSize'].value,
+      DateFrom: moment(event.value).format('YYYY/MM/DD'),
+      DateTo: moment(event.value).format('YYYY/MM/DD'),
+    }
+    this.retriveNotifications(model);
+  }
 
   private retriveNotifications(model: NotificationsFilterCriteria) {
     this.loader = true;
@@ -30,14 +52,23 @@ export class NotificationComponent implements OnInit {
       }
     });
   }
-  dateChanged(event: any){
-    let model: NotificationsFilterCriteria = {
-      PageNumber: 1,
-      PageSize: 10,
-      DateFrom: moment(event.value[0]).format('MM/DD/YYYY'),
-      DateTo: moment(event.value[1]).format('MM/DD/YYYY'),
-      // DateTo: moment().subtract(10, 'day').format('MM/DD/YYYY')
-    }
-    this.retriveNotifications(model);
+  private createForm() {
+    return this._fb.group({
+      'DateFrom': ['', Validators.required],
+      'DateTo': [''],
+      'PageNumber': [''],
+      'PageSize': ['']
+    });
+  }
+  private seedForm(){
+    this.notificationFormCriteria.patchValue({
+      'DateFrom': moment(new Date()).format('MM/DD/YYYY'),
+      'DateTo': moment(new Date()).format('MM/DD/YYYY'),
+      'PageNumber': 1,
+      'PageSize': 50
+    })
+  }
+  openCalendar(event: any) {
+    this.datePicker.showOverlay(this.datePicker.inputfieldViewChild.nativeElement);
   }
 }

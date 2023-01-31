@@ -1,19 +1,33 @@
-<div  class="border-bottom dialog_header">
+<div class="border-bottom dialog_header d-flex flex-row justify-content-between">
   <i mat-dialog-close class="bi {{'navigation-arrow' | translate}}"></i>
-  <p-calendar placeholder="{{ 'hints.please_choose_date_range' | translate }}" #dateRange selectionMode="range" (onClickOutside)="dateChanged(dateRange)" [readonlyInput]="true" inputId="range"></p-calendar>
+  <span class="text-secondary">{{ 'hints.notification_history' | translate }}</span>
 </div>
-<app-loader size="4rem" [loader]="loader" [withImage]="false"></app-loader>
-<!-- <mat-spinner *ngIf="loader" class="mx-auto modal-dialog-centered" [diameter]="30"></mat-spinner> -->
-
-<div *ngIf="notification?.length == 0 && !loader" class="text-secondary text-center not_found">{{ 'hints.you_dont_have_notifications' | translate }}</div>
-
-<div class="student_info d-flex flex-row justify-content-between border-bottom mb-3  " *ngFor="let nt of $any(notification)">
-  <div class="mb-3" id="{{ nt.notificationId }}">
-    <h4 *ngIf="nt.NotificationText" class="mr-2 ml-2">{{ nt.NotificationText }}</h4>
-    <h4 *ngIf="!nt.NotificationText" class="mr-2 ml-2">{{ 'hints.no_content' | translate }}</h4>
-    <div class="student-details d-flex flex-column justify-content-start">
-      <div class="d-flex flex-row justify-content-start">
-        <small class="text-secondary vl mr-2 ml-2 ">{{ nt.NotificationDate | date:'short' }}</small>
+<div class="container mt-3">
+  <form id="langForm" [formGroup]="notificationFormCriteria" class="g-3 column needs-validation" novalidate>
+    <div class="field p-fluid mb-3">
+      <p-calendar formControlName="DateFrom"
+        (onSelect)="dateChanged(datePicker)"
+        #datePicker
+        [showButtonBar]="true"
+        [showOnFocus]="false"
+        (click)="openCalendar(datePicker)"
+        [disabled]="loader"
+        placeholder="{{ 'hints.please_choose_date' | translate }}"
+        [readonlyInput]="true"></p-calendar>
+    </div>
+  </form>
+  <app-loader size="4rem" [loader]="loader" [withImage]="false"></app-loader>
+  <div *ngIf="!$any(notification) && !loader" class="text-secondary text-center not_found">{{
+    'hints.you_dont_have_notifications' | translate }}</div>
+  <div class="student_info d-flex flex-row justify-content-between border-bottom mb-3  "
+    *ngFor="let nt of $any(notification)">
+    <div class="mb-3" id="{{ nt.notificationId }}">
+      <h4 *ngIf="nt.NotificationText" class="mr-2 ml-2">{{ nt.NotificationText }}</h4>
+      <h4 *ngIf="!nt.NotificationText" class="mr-2 ml-2">{{ 'hints.no_content' | translate }}</h4>
+      <div class="student-details d-flex flex-column justify-content-start">
+        <div class="d-flex flex-row justify-content-start">
+          <small class="text-secondary vl mr-2 ml-2 ">{{ nt.NotificationDate | date:'short' }}</small>
+        </div>
       </div>
     </div>
   </div>
