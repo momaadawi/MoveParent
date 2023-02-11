@@ -13,6 +13,7 @@ import { NotificationService } from '../../shared/services/notificationService/n
 import { Capacitor } from '@capacitor/core';
 import { SnackbarService } from '../../shared/services/snackbarService/snackbar.service';
 import { SystemEnum } from 'src/app/configurations/system.enum';
+import { PushNotifications } from '@capacitor/push-notifications';
 
 @Component({
   selector: 'app-login',
@@ -40,14 +41,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._cookiesService.clearAllCookies();
-    const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
+    this._cookiesService.clearlogOutCookies().then(_ => {
+      const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
 
-    if (isPushNotificationsAvailable) {
-      console.log('1--push notificaiton available.')
-      this._notificationService.initPushNotification()
-    }
-
+      if(isPushNotificationsAvailable){
+        console.log('1--push notificaiton available.')
+        this._notificationService.initPushNotification()
+      }
+    })
   }
 
   createForm() {

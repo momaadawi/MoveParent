@@ -75,7 +75,7 @@ export class AppNavigationComponent implements OnInit, OnDestroy {
   }
   logOut() {
     this._accountService.logOut()
-    this._cookieService.clearAllCookies().then(_ => {
+    this._cookieService.clearlogOutCookies().then(_ => {
       this._router.navigate(['/login'])
     })
   }
