@@ -66,7 +66,7 @@
     "change_Language": "Change Language",
     "logout": "Logout",
     "change_Password": "Change Password",
-    "my_childrens": "My Childrens",
+    "my_childrens": "My Children's",
     "absence_plan": "Absence Plan"
   },
   "language": {
@@ -79,10 +79,10 @@
   "student_trips": {
     "hello_mom_data": "Hello, Mom & Dad",
     "follow_children_trips": "Follow Your Children School Trips",
-    "go_to_school": "Going Trips",
-    "back_from_school": "Return Trips",
+    "go_to_school": "Pickup Trips",
+    "back_from_school": "Drop Off Trips",
     "bus_code": "Bus Code",
-    "trip_time": "Trip Time",
+    "trip_time": "Actual Trip Start Time",
     "return_time": "Return Time",
     "driver_name": "Driver Name",
     "supervisor_name": "Supervisor name",
@@ -90,9 +90,9 @@
     "no_trips_back_from_school": "No trips back from School",
     "bus_left_location_at": "Bus left location at",
     "status_confirmed_by": "Status confirmed by",
-    "pickup_time": "Pickup time",
+    "pickup_time": "Planned Pickup time",
     "pickup_address": "Pickup Address",
-    "drop_off_time": "Drop off Time",
+    "drop_off_time": "Planned Drop off Time",
     "drop_off_address": "Drop off Address",
     "bus_Arrival": "Bus Arrival"
   },

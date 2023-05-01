@@ -56,7 +56,7 @@ export class SetAbsentComponent implements OnInit, OnDestroy {
     });
   }
 
-  set_student_as_Absent(form: FormGroup){
+  set_student_as_Absent(form: FormGroup){    
     if(!form.valid){
       this._customSnackBar.open(this._customTransalte.translate('snack-bar.please_select_reason'), SystemEnum.ResponseAction.Failed)
       // this._snakBar.open(this._customTransalte.translate('snack-bar.please_select_reason'),'', { duration: Configuration.alertTime, panelClass: cssClasses.snackBar.faild})
@@ -66,6 +66,8 @@ export class SetAbsentComponent implements OnInit, OnDestroy {
     let absenceRequest: SetStudentAbsentInProgressTripRequest = {
       StudentId: this.data.Id,
       AbsenceReasonId: form.get('Name')?.value,
+      DailyTripId:this.data.plan.DailyTrip_Id
+
     }
     let setAbsense_subscription  = this._absenceService.SetStudentAbsentInProgressTrip(absenceRequest).subscribe({
       next: res => {
