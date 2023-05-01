@@ -49,4 +49,5 @@ export interface AbsenceReasonsResponse{
 export interface SetStudentAbsentInProgressTripRequest {
   StudentId: number;
   AbsenceReasonId: number;
+  DailyTripId: number;
 }

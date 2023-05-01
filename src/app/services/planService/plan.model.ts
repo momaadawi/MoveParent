@@ -45,6 +45,7 @@ export interface Plan {
   BusId: string;
   BusCode: string;
   PlateNo: string;
+  DailyTrip_Id: number;
   Students: StudentDetails[];
 }
 

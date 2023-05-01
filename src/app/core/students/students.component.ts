@@ -69,6 +69,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
                 st.plan = planRes.Value;
                 st.studentDetails = st.plan?.Students.filter(s => s.StudentId == st.Id)[0];
                 st.ImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${st.Image}`);
+                 
                 if (st.plan?.PlanType == SystemEnum.PlanType.PickUp)
                   this.students.goToSchool.push(st)
                 if (st.plan?.PlanType == SystemEnum.PlanType.DropOff)
